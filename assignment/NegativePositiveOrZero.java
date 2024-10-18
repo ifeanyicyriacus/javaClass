@@ -1,13 +1,6 @@
 import java.util.Scanner;
-/** Counts the number of +ve, -ve and zeros value in set of five numbers
-*@author Ifeanyi Cyriacus
-*/
 public class NegativePositiveOrZero{
-  /**
-  *@param args
-  *@return void
-  */
-	public static void main(String[] args){
+  public static void main(String[] args){
 	  Scanner input = new Scanner(System.in);
 	  System.out.print("Enter the first number: ");
 	  float num1 = input.nextFloat();
