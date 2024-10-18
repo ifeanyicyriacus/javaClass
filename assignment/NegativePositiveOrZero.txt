@@ -1,0 +1,29 @@
+2.32: Negative, positive and zero value
+step1:
+1. collect five numbers from user
+2. determine the number of +ve, -ve and zero (0) values
+3. print their count
+
+step2:
+1. prompt the user to enter the numbers
+2. collect the numbers
+3. store as num1, num2, num3, num4, num5
+4. store the count of +ve value as positivesCount
+5. store the count of -ve value as negativesCount
+6. store the count of zero (0) value as zerosCount
+7. if num1 > 0, increase positivesCount by 1
+8. else if num1 < 0, increase negativesCount by 1
+9. else, increase zerosCount by 1
+10. if num2 > 0, increase positivesCount by 1
+11. else if num2 < 0, increase negativesCount by 1
+12. else, increase zerosCount by 1
+13. if num3 > 0, increase positivesCount by 1
+14. else if num3 < 0, increase negativesCount by 1
+15. else, increase zerosCount by 1
+16. if num4 > 0, increase positivesCount by 1
+17. else if num4 < 0, increase negativesCount by 1
+18. else, increase zerosCount by 1
+19. if num5 > 0, increase positivesCount by 1
+20. else if num5 < 0, increase negativesCount by 1
+21. else, increase zerosCount by 1
+22. print the number of [positivesCount, negativesCount, zerosCount]

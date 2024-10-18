@@ -1,0 +1,15 @@
+3.12 palindrome integer determine if a 3 digit number
+step1:
+1. collect the integer from user
+2. separate the hundreth and unit
+3. compare the hundredth and unit for equality
+step2:
+1. prompt the user to enter a three digit integer
+2. collect the integer
+3. store value as number
+4. calculate number (mod) 10
+5. store value as unit
+6. calculate number / 100
+7. store value as hundreth
+8. if (hundreth is equal to unit), display the number is a palindrome
+9. if (hundreth is not equal to unit), display the number is not a palindrome

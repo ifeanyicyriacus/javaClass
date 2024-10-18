@@ -1,0 +1,12 @@
+2.3 converts feet into meter
+step1:
+1. collect length in feet
+2. convert feet to meter
+3. display conversion result
+step2:
+1. prompt the user to enter length (in feet)
+2. collect value
+3. save value as lengthInFeet
+4. calulate (lengthInFeet * 0.305)
+5. store value as lengthInMeter
+6. display lengthInMeter to user
