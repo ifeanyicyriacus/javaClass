@@ -1,0 +1,22 @@
+5.16 (Bar-Chart Printing Program)
+step1:
+1. collect five numbers between (1 and 30) from the user
+2. display adjacent asterisks to match each number to look like a bar-chart
+
+step2:
+1. let output = ""
+2. counter = 1
+3. do.....:
+		a. prompt the user to enter number
+		b. collect the numbers
+		c. store as exponent
+		d. temp_counter = 1
+		d. asterisks = ""
+		e. while (exponent >= temp_counter) do:
+			1. asterisks += "*"
+			2. temp_counter++
+		f. output += asterisks + "\n"
+		g. counter += 1
+ .....while (counter <= 5)
+
+4. display output

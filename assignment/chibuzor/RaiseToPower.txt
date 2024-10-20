@@ -1,0 +1,20 @@
+step1:
+1. collect two numbers (number1, number2) via keyboard
+2. calculate number1 raised to the power of number2
+3. display the result to the user
+
+step2:
+1. prompt the user to enter 1st number
+2. store as base
+3. prompt the user to enter 2nd number
+4. store as exponent
+5. result = base
+6. counter = 2
+7. if exponent is equal to zero, result = 1
+   else,
+   		while counter is less than or equal to exponent do...:
+	   		a. result = result x base
+	   		b. increase counter by 1
+
+8. if exponent is less than zero, result = 1/result
+9. display result

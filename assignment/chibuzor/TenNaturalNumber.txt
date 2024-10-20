@@ -1,0 +1,14 @@
+assignment 1: Program to calculate the sum of the first 10 natural number
+
+Step1:
+1. add the first 10 natural number
+2. calculate (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10)
+3. display result to user
+
+Step2:
+1. counter =1
+2. sum = 0
+3. while counter is less than or equal to 10 do:
+	a. increase sum by counter
+	b. increase counter by 1
+4. display the sum to the user

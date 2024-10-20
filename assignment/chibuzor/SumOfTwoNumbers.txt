@@ -1,0 +1,22 @@
+
+step1:
+1. ask the user for two numbers
+2. sum the numbers
+3. display the sum
+4. ask the user if he/she wishes to perform the operation again
+5. if yes repeat else end program
+
+step2:
+1. let decision = "n"
+2. let sum = 0
+3. do .....:
+	a. prompt user for first number
+	b. store as sum
+	c. prompt user for second number
+	d. add sum to second number
+	e. store calculation as sum
+	f. display the sum to the user 
+	g. ask user if he/she wishes to perform the operation again (y/n)?
+	h. collect response and store as decision
+  ..... while decision is equal to "y"
+

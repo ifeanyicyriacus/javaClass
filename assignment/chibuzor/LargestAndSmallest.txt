@@ -1,0 +1,22 @@
+program to determ in the largest and smallest number from set of number inputed by the user
+
+step1:
+1. collect all the numbers from the user 
+2. find the largest
+3. find the smallest
+4. display the largest and the smallest
+
+step2:
+1. largest_number = 0
+2. smallest_number = 0
+3. response = ""
+4. do .....:
+	a. prompt the user to enter number:
+	b. collect number
+	c. if this is the first iteration make the first number both largest and smallest
+	d. if number is greater then largest_number, largest_number = number
+	e. if number is less than smallest_number, smallest_number = number
+	f. ask user if he/she wants to continue (y/n)?
+	g. collect response
+  .....while(response is "y")
+5. display the largest and the lowest number
