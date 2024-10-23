@@ -1,0 +1,22 @@
+convert binary to decimal
+step1:
+1. collect binary digit
+2. convert the binary to decimal
+3. display the result
+
+step2:
+1. prompt user the enter a binary number
+2. collect add store as binNumber
+3. initilise variables base, decNumber and counter to zero (0)
+4. initilise crop1 to 10
+5. initilise crop2 to 1
+6. do the following while ((binNumber / crop2) > 0)
+	a. initialize value to 0
+	b. calculate ((binNumber % crop1) / crop2)
+	c. store as base
+	d. calculate (int)(base * Math.pow(2, counter))
+	e. store as value
+	f. increase decNumber by value;
+	g. increase crop1 and crop2 by multiplying 10
+	h. increase counter by 1
+7. display the result as decNumber

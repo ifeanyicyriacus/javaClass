@@ -1,0 +1,15 @@
+computer the area of a polygon
+Step1:
+1. collect length of one side
+2. collect number of side
+
+step2:
+1. prompt the user to enter length of one side
+2. collect the value
+3. store value in lengthOfSide
+4. prompt the user to enter the number of sides
+5. collect the value
+6. store the value in noOfSide
+7. calculate (noOfSide * Math.pow(lengthOfSide, 2))/(4*Math.tan(Math.PI/noOfSide))
+8. store value as areaOfPolygon
+9. display the area as areaOfPolygon

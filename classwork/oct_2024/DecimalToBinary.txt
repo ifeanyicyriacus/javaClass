@@ -1,0 +1,18 @@
+convert decimal number to binary number
+step1:
+1. collect decimal number
+2. convert to binary
+3. display binary number
+step2:
+1. prompt user to enter decimal number
+2. collect number
+3. store number as decNumber
+4. initialise binNumber to ""
+5. do the following while decNumber > 0:
+	a. calculate decNumber % 2
+	b. store value as rem
+	c. concatinate rem and binNumber
+	d. store as binNumber
+	e. calculate decNumber / 2
+	f. store value as decNumber
+6. display the binary number as binNumber

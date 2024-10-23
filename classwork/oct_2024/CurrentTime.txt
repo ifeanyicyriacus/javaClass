@@ -1,0 +1,15 @@
+program to display current time
+Step1: 
+1. get the Date and time
+2. display the date and time to user
+
+step2:
+1. get the day of week store as dayOfWeek
+2. get the day of month store as dayOfMonth
+3. get the month of the year store as monthOfYear
+4. get the year store as year
+5. get the minutes store as min
+6. get the seconds store as sec
+7. display the date and time on the same line in this format:
+(dayOfWeek dayOfMonth monthOfYear, year hrs:min:sec) 
+

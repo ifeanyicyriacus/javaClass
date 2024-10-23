@@ -1,0 +1,17 @@
+Step1:
+1. calculate the energy needed to heat water from initial temp to final temp
+2. display the energy
+
+step2:
+1. prompt the user to enter the amount of water in Kg
+2. collect the value
+3.store value as weightOfWater
+4. prompt the user to enter initial temperature (in celcius)
+5. collect the value
+6. store value as initTemp
+7. prompt the user to enter final temperature (in celcius)
+8. collect the value
+9. store value as finalTemp
+10. calculate weightOfWater * (finalTemp - initTemp) * 4184
+11. store value as energy
+12. display the required amount of energy (in joules) 

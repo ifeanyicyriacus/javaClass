@@ -1,0 +1,12 @@
+Step1:
+1. collect weight in pound
+2. convert it to kilogram
+3. display result
+
+step2:
+1. prompt the user to enter weight in pound
+2. collect value
+3. store as weightInPound
+4. calculate weightInPound * 0.454
+5. store result as weightInKg
+6. display (weightInPound) pound is (weightInKg) kilograms

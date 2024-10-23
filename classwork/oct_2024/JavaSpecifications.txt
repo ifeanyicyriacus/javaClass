@@ -1,0 +1,9 @@
+write java program to check wether java is installed
+Step1:
+1. Display Java version: ...
+2. Display java Runtime Version: ...
+3. Display java Home:...
+4. Display Java Vendor
+5. Display Java Vendor URL
+6. Display Java Class Path
+

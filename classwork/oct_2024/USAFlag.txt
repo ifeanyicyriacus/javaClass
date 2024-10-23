@@ -1,0 +1,33 @@
+usa flag
+
+6 stars by 5stars
+    total height: 15
+stars 12x5 34x5
+12   
+6x (12+34)   
+Step1: 
+1. Display the pattern below
+* * * * * * ----------------------------------
+ * * * * * *----------------------------------
+* * * * * * ----------------------------------
+ * * * * * *----------------------------------
+* * * * * * ----------------------------------
+----------------------------------------------
+----------------------------------------------
+----------------------------------------------
+----------------------------------------------
+----------------------------------------------
+----------------------------------------------
+
+Step2:
+1. set row = 1
+2. do the following while (row <= 5):
+	a. if row number is odd display "* " 6 times followed by "-" 34 times (same line)
+		else didplay " *" 6 times followed by "-" 34 times (same line)
+    b. increment row by 1
+    c. send cursor to next line
+3. while row is <= 11 do the following:
+	a. display "-" 46 times (same line)
+	b. send cursor to nextline
+	c increment row by 1
+	

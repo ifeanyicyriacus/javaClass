@@ -1,0 +1,17 @@
+finging the runway length of an airplane
+step1:
+1. collect the acceleration (a)
+2. collect the take-off speed (v)
+3. calculate the minimum run way length of the airplane
+4. display the result
+
+step2:
+1. prompt the user to enter the acceleration (in metres/second^2)
+2. collect the value
+3. store value as acceleration
+4. prompt the user to enter the take off speed (in metres/second)
+5. collect the value
+6. store value as velocity
+7. calculate acceleration^2/(2 x velocity)
+8. store value as minRunwayLength
+9. display the minRunwayLength to user

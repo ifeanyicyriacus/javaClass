@@ -1,0 +1,23 @@
+Health application: computing Body Mass Index
+step1:
+1. collect eweight in pound
+2. collect height in inch
+3. calculate the BMI
+4. display the result
+
+step2:
+1. prompt user to enter weight (in pounds)
+2. collect the value
+3. store the value as weightInPound
+4. prompt user to enter height (in inches)
+5. collect the value
+6. store the value as heightInInches
+7. calculate weightInPound * 0.45359237
+8. store value as weightInKg
+9. calculate heightInInch * 0.0254
+10. store value as heightInMetre
+11. calculate weightInKg / heightInMetre^2
+12. store value as bmi
+13. display the bmi
+
+
