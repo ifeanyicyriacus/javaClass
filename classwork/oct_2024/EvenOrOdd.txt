@@ -1,0 +1,7 @@
+step1:
+1. collect number
+2. if number % 2 equals 0 
+		a. display 1
+   else:
+		b. display 0
+

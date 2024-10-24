@@ -1,0 +1,15 @@
+step1:
+1. collect three integer 
+2. return true if two or more integer have the same rightmost digit
+
+step2:
+1. do the following three times:
+	a. collect integer
+	b. store as number
+	c. calculate number %10
+	d. store as rightMostDigit
+2. if (number1 == number2) or (number2 == number3) or (number3 == number1)
+	a. print "The Result is: true"
+   else
+    b. print "The Result is: false"
+	

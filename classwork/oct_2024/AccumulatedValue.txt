@@ -1,0 +1,29 @@
+calculate future interest value
+step1:
+1. read investment amount
+2. read annual interest rate
+3. read number of years
+4. calculate the future investment value
+5. display the future investment value
+
+step2:
+1. prompt user to enter investment amount
+2. collect and store as investmentAmount
+3. prompt user to enter the interest rate
+4. collect and store as interestRate
+5. prompt the user to enter the number of years
+6. collect and store as noOfYears
+7. calculate interestRate / 12 /100
+8. store as monthlyInterestRate
+9. calculate noOfYears * 12
+10. store as noOfMonth
+11. calculate investmentAmount x ((1 + monthlyInterestRate) ^ noOfMonth)
+12. store value as accumulatedValue
+13. display The Accumulated value as accumulatedValue
+
+input:investment amount 1000.56
+interest rate in percentage 4.25
+number of years: 1
+accumulated value 1043.92
+
+
