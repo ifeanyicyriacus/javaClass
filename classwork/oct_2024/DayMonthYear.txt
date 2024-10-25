@@ -1,0 +1,12 @@
+step1:
+1. prompt and collect month number
+2. store as monthNumber
+3. prompt and collect year
+4. store as year
+5. get the name of the month using monthNumber
+6. store as monthName
+7. get the number of days in a month using monthNumber
+8. store as numberOfDays
+9. if year is a leap year (year % 4 == 0 && monthNumber == 2)
+	number
+10. Display (month) (year) has (no_of_days) days

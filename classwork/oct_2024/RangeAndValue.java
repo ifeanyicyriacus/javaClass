@@ -10,8 +10,8 @@ public class RangeAndValue{
 		System.out.print("Enter step: ");
 		int step = input.nextInt();
 
-		for(int count = min+1; min <= count && count <= max; count += step){
-			counter +=1;
+		for(int i = min; min <= i && i <= max; i++){
+			if (i % step == 0){counter +=1;}
 		}
 		System.out.println(counter);
 	}

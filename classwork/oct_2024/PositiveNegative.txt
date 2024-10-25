@@ -1,0 +1,9 @@
+program to get the number from the user
+step1:
+1. prompt user to input the number
+2. collect number
+3. store as number
+4. if number > 0
+	a. display "number is positive"
+   else
+   	b. display "number is not positive"
