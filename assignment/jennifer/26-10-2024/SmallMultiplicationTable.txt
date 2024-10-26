@@ -1,0 +1,11 @@
+1. prompt user to input the number (Table to be calculated) 
+2. collect value
+3. store as number
+4. prompt user to input the number of terms 
+5. collect value
+6. store as terms
+7. assign counter = 0
+8. while counter < terms, do the following:
+	a. display {number} X {counter} = {number * counter}
+	b. increment counter by 1
+	
