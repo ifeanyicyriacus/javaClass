@@ -1,0 +1,14 @@
+Largest ans smallest from a series of number
+step1:
+1. prompt user to enter a numbers 
+2. collect and store as init_number
+3. assign number to largest and smallest
+4. prompt the user to enter another number
+5. while the user has not terminate (<ctrl> + d):
+	a. if number > largest:
+		1. assign number to largest
+	b. if number < smallest:
+		1. assign number to smallest
+6. after termination:
+	a. display the largest
+	b. display the smallest

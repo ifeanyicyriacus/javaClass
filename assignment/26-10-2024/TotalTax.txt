@@ -1,0 +1,16 @@
+determine the tax for each of three citizens
+the tax rate is 15% for earnings up to 30,000 usd
+and 20% for all earning in excess of the 30,000 ceiling
+
+Step1:
+1. prompt the user to enter earnings
+2. collect and store as earnings
+3. calculate earnings - 30,000
+4. store as excessEarning
+5. if excessEarning is <= 0:
+	a. totalTax = earnings * 15%
+   else: (where earnings >30,000)
+	a. totalTax = earnings * 15%
+	b. totalTax += (excessEarning * 20%)
+6. display "Your total tax is: {totalTax}"
+	

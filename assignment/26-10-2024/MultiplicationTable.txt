@@ -1,0 +1,12 @@
+print multiplication table:
+step1:
+1. set counterB = 1
+2. while(b <= 9) do the following:
+	a. set counterA = 1
+	b. while(a <= 9) do the following:
+			display a x b = a*b
+			print "\tab"
+			increment counterA by 1
+	c. print "\tab" next line
+	d. increment b by 1
+	

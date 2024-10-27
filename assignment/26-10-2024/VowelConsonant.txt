@@ -1,0 +1,11 @@
+VowelConsonant
+Step1:
+1. prompt user to enter a single character from the alphabet
+2. collect character
+3. store as letter
+4. if the letter match any vowel letter:
+	a. display "Input letter is Vowel"
+   else if letter matches any consonant:
+   	a. display "Input letter is a consonant"
+   else (i.e it dosnt match any alphabeth, or it has more than a letter):
+   	a. display "error message"

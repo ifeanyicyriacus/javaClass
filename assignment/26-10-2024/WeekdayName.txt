@@ -1,0 +1,6 @@
+Program to display the weekday name based on integer (1- 7)collected from user
+step1:
+1. prompt user to input number
+2. collect and store number as number
+3. if the number matches any of our 7 cases
+	a. display the associated Weekday name

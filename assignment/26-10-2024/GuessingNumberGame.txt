@@ -1,0 +1,12 @@
+guessing number game
+step1:
+1. generate a random number, store as targetNumber
+2. do the following until user guess correctly 
+	a. prompt user to guess random number (1 - 100)
+	b. collect number and store in guess
+	c. if guess > targetNumber:
+		1. display "Too high, try again"
+	   else if guess < targetNumber:
+	   	1. display "Too low, try again"
+	   else:
+	   	1. display "Correct guess"

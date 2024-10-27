@@ -1,0 +1,3 @@
+display the pattern on console
+step:
+1. 

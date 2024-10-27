@@ -5,7 +5,7 @@ public class FeetToMeter{
     
     System.out.print("Enter number (in feet):");
     float numInFeet = input.nextFloat();
-    double numInMeter = numInFeet / 0.305;
+    double numInMeter = numInFeet * 0.305;
     
     System.out.printf("%f feet is %f meters%n", numInFeet, numInMeter);
   }

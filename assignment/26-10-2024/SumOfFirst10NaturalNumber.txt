@@ -1,0 +1,8 @@
+program to calculate the sum of the first 10 natural number
+step1:
+1. set counter = 1
+2. set sum = 0 
+3. while (counter <= 10) do the following:
+	a. sum = sum + counter
+	b. increment counter by 1
+4. Display the sum of the first 10 natural number is: 

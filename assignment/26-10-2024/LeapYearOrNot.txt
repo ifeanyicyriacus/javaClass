@@ -1,0 +1,11 @@
+Leap year or not
+Step1:
+prompt the user to input the year
+collect value
+store as year
+calculate year % 4
+store value as result
+if value is equal to 0:
+	a. display {year} is a leap year
+if value is not equal to 0
+	b. display {year} is not a leap year

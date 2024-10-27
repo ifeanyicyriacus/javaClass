@@ -1,0 +1,12 @@
+Program to test two numbers with three decimal place for equality
+step1:
+1. prompt user to input floating-point number: 
+2. collect and store as number1
+2. prompt user to input another floating-point number: 
+3. collect and store as number2
+4. calculate number1 - number2
+5. store value as difference
+6. if abs(difference) < 0.001:
+	a. display they are the same
+   else:
+   	a. display they are different
