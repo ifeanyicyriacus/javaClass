@@ -1,3 +1,28 @@
-display the pattern on console
+display this pattern:
+Pattern A	Pattern B	 Pattern C	Pattern D
+*           	* * * * * * 	           *	 * * * * * *	
+* *         	* * * * *   	         * *	   * * * * *	
+* * *       	* * * *     	       * * *	     * * * *	
+* * * *     	* * *       	     * * * *	       * * *	
+* * * * *   	* *         	   * * * * *	         * *	
+* * * * * * 	*           	 * * * * * *	           *
+
 step:
-1. 
+1. let counterB = 1, counterA = 1
+2. print "Pattern A	Pattern B	 Pattern C	Pattern D"
+3. while(counterB <= 6), do the following:
+	a. while counterA <= 4, do the following:
+		1. if counterA <= 1, do the following:
+			a. print "* " counterB times
+			b. print "  " (6 - counterB) times
+		2. if counterA <= 2, do the following:
+			a. print "* " (7 - counterB) times
+			b. print "  " (counterB - 1) times
+		3. if counterA <= 3, do the following:
+			a. print "  " (6 - counterB) times
+			b. print " *" counterB times
+		4. if counterA <= 1, do the following:
+			a. print "  " (counterB - 1) times
+			b. print " *" (7 - counterB) times
+		5. print the "\t" in same line
+	b. print the "\n"

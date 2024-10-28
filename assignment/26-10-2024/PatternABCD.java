@@ -1,25 +1,24 @@
 public class PatternABCD{
 	public static void main(String[] args){
-	  System.out.printf("Pattern%-8sPattern%-8sPattern%-8sPattern%-8s%n", " A"," B"," C"," D");
-	  int height = 1;
-	  int counterA = 1;
-	  int counterB = 5;
-	  "* " "  "
-	  
-    for(int a=1,){
-      
-    }
-	  
-	  , counterA, counterB, counterA++, counterB--)
-	  
-	  if (counter % 6){
-	    System.out.print("\t");
-	    counter = 1;
-	    
+	  System.out.println("Pattern A\tPattern B\t Pattern C\tPattern D");
+	  for (int counterB = 1; counterB <= 6; counterB++){
+	    for(int counterA = 1; counterA <= 4; counterA++){
+	      if(counterA <= 1){
+	        System.out.print("* ".repeat(counterB));
+	        System.out.print("  ".repeat(6 - counterB));
+	      } else if (counterA <= 2){
+	        System.out.print("* ".repeat(7 - counterB));
+	        System.out.print("  ".repeat(counterB - 1));
+	      } else if (counterA <= 3){
+	        System.out.print("  ".repeat(6 - counterB));
+	        System.out.print(" *".repeat(counterB));
+	      } else{
+	        System.out.print("  ".repeat(counterB - 1));
+	        System.out.print(" *".repeat(7 - counterB));
+	      }
+	      System.out.print("\t");
+	    }
+      System.out.println();
 	  }
-	
-	
-	
-	
 	}
 }
