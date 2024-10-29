@@ -1,0 +1,13 @@
+step1:
+
+1. prompt user to enter the time taken by worker to complet a particular job
+2. collect and store value as timeTaken
+3. if timeTaken is between 2-3 hours
+	a. display "he is highty efficent"
+   else if timeTaken is between 3-4 hours
+    a. display "then he should improve speed"
+   else if timeTaken is between 4-5hrs, 
+    a. display "then is given training to improve speed"
+   else if timeTaken is greater 5 hrs
+    a. diplay "leave the company"
+

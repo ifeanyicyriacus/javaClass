@@ -1,0 +1,10 @@
+find the maximum between three numbers
+step1:
+1. collect the 1st number, 2nd number, 3rd number
+2. make the 1st number the maximum
+3. choice = "y"
+4.if 2nd number > maximum:
+	make 2nd number the maximum
+  else 3rd number > maximum
+	make 3rd number the maximum
+

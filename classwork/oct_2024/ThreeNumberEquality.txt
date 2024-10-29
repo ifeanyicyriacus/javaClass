@@ -1,0 +1,7 @@
+write a java program, that accept three number and checks all number are equal or not
+step1:
+1. prompt user to enter three number
+2. if number1 == number2 && number1 == number3 && number2 == number3:
+	display "they are all the same"
+   else 
+   	display "they are not all the same"

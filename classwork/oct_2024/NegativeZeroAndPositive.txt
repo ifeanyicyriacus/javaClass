@@ -1,0 +1,21 @@
+determine the positive , negative and zeros, in a loot tilll user want to terminate
+step1:
+1. choice = no
+2. do the following:.....
+	a. positivesCount, negativeCount, zeroCount = 0
+	b. counter = 1, 
+	c. while (counter <= 3 ) do the following:
+		1. prompt the user to enter 1st number
+		2. collect and store as number1
+		3. if number > 0:
+			increment positive
+			else if number <0:
+			increment negative
+			else:
+			increment zeros
+		4. increment counter
+	d. display the result to user
+	e. ask user to choose wether to continue
+.......while choice is "yes"
+
+
