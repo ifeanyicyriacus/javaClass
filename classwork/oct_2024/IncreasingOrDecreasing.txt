@@ -1,0 +1,10 @@
+steps:
+1. collect three numbers
+2. store as number1, number2 and number3 respectively
+
+3. if number1>number2>number3
+	a. display decreasing order
+   else if number1<number2<number3
+	a. display increasing order
+   else 
+	a. display no particular order

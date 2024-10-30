@@ -1,0 +1,18 @@
+if book is returned 5 days later, fine is 50 paise
+for 6-10, fine 1 rupee
+10 -30 days above 5 rupees
+if after 30 days, membership will be cancelled
+
+step1:
+1. prompt the user to enter the number of days the member is late to return the book
+2. collect and store as numberOfDays
+3. if numberOfDays >= 30:
+		the member's membership will be cancelled
+   else if numberOfDays >= 10:
+ 		they should be a 5 rupees fine for the member
+   else if numberOfDays >= 6:
+ 		they should be a 1 rupee fine for the member
+   else if numberOfDays == 5:
+   		they should be a 50 paise fine for the member
+   else:
+   		they should be no fine for the member
