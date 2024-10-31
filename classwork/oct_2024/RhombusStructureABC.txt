@@ -1,3 +1,4 @@
+method2 (unsuccessful)
 step:
 1. collect integer number from user
 2. store as charNumber
@@ -11,7 +12,7 @@ step:
 		increment charAlphabet by 1
 		counter +=1
 	}
-		while(counter != 0){
+	while(counter != 0){
 		print charAlphabet 
 		decrement charAlphabet by 1
 		counter -=1

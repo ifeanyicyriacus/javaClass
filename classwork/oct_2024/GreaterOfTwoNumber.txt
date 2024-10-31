@@ -1,0 +1,10 @@
+step1:
+1. collect two number from user
+2. save them as number1 and number2
+3. check if number1 is greater thajn number2
+	print grade
+print you are doing well
+sum both number
+if sum is greater than 50
+	print even sum is grearter
+

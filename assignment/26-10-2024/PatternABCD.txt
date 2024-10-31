@@ -1,5 +1,5 @@
 display this pattern:
-Pattern A	Pattern B	 Pattern C	Pattern D
+Pattern A		Pattern B		Pattern C		Pattern D
 *           	* * * * * * 	           *	 * * * * * *	
 * *         	* * * * *   	         * *	   * * * * *	
 * * *       	* * * *     	       * * *	     * * * *	

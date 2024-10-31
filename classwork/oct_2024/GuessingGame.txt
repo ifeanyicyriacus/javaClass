@@ -1,0 +1,11 @@
+Step1:
+1. set number to any integer value (70)
+2. prompt user to enter a number from (0-100)
+3. collect and store valus as guess
+4. if number < guess:
+	a. say number is too low
+   else if  number > guess:
+	a. say number is too high
+   else:
+   	a. say number is correct
+
