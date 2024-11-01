@@ -3,7 +3,6 @@ public class NokiaMenu{
 	public static void main(String[] main){
 	  Scanner input = new Scanner(System.in);
 	  
-	  for(;;) {
 		System.out.println("Menu:");
 		System.out.print("1.\tPhone book\n2.\tMessages\n3.\tChat\n4.\tCall register\n5.\tTones\n6.\tSettings\n7.\tCall divert\n8.\tGames\n9.\tCalculator\n10.\tReminders\n11.\tClock\n12.\tProfiles\n13.\tSIM services\n>>>> ");
 		int value = input.nextInt();
@@ -14,42 +13,42 @@ public class NokiaMenu{
         System.out.print("1.\tSearch\n2.\tService Nos.\n3.\tAdd name\n4.\tErase\n5.\tEdit\n6.\tAssign tone\n7.\tSend b'card\n8.\tOption\n9.\tSpeed dials\n10.\tVoice tags\n>>>> ");
         int phonebook = input.nextInt();
 		        
-		        switch (phonebook){
-			        case 1:
-				        System.out.println("Search");
-				        break;
-			        case 2:
-				        System.out.println("Service Nos.");
-				        break;
-			        case 3:
-				        System.out.println("Add name");
-				        break;
-				      case 4:
-				        System.out.println("Erase");
-				        break;
-				      case 5:
-				        System.out.println("Edit");
-				        break;
-				      case 6:
-				        System.out.println("Assign tone");
-				        break;
-				      case 7:
-				        System.out.println("Send b\'card");
-				        break;
-				      case 8:
-				        System.out.println("Options:");
-				        System.out.print("1.\tType of view\n2.\tMemory status\n>>>> ");
-                value = input.nextInt();
-		            switch (value){
-			            case 1:
-				            System.out.println("Type of view:");
-				            break;
-			            case 2:
-				            System.out.println("Memory status:");
-				            break;
-			            default:
-				            break;
-		            }
+	      switch (phonebook){
+		        case 1:
+			        System.out.println("Search");
+			        break;
+		        case 2:
+			        System.out.println("Service Nos.");
+			        break;
+		        case 3:
+			        System.out.println("Add name");
+			        break;
+			      case 4:
+			        System.out.println("Erase");
+			        break;
+			      case 5:
+			        System.out.println("Edit");
+			        break;
+			      case 6:
+			        System.out.println("Assign tone");
+			        break;
+			      case 7:
+			        System.out.println("Send b\'card");
+			        break;
+			      case 8:
+			        System.out.println("Options:");
+			        System.out.print("1.\tType of view\n2.\tMemory status\n>>>> ");
+              value = input.nextInt();
+	            switch (value){
+		            case 1:
+			            System.out.println("Type of view:");
+			            break;
+		            case 2:
+			            System.out.println("Memory status:");
+			            break;
+		            default:
+			            break;
+	            }
 				        break;
 				      case 9:
 				        System.out.println("Speed dials");
@@ -405,6 +404,6 @@ public class NokiaMenu{
 			default:
 				break;
 		}
-		}
+		
 }
 }
