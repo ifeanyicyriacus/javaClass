@@ -1,0 +1,8 @@
+Enter the maximum number to display: 4
+1
+12
+123
+1234
+123
+12
+1
