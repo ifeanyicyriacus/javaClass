@@ -90,8 +90,56 @@ public class MBTIPersonalityTest{
       personalityType += (totalAnswerInGroup[groupIndex] <= 2)?"A":"B";
 	  }
 	  
-	  System.out.print(personalityType);
-	  
+	  switch (personalityType){
+	    case "AAAA":
+	      System.out.println("Your personality type is: ESTJ");
+	      break;
+	    case "AAAB":
+	      System.out.println("Your personality type is: ESTP");
+	      break;
+	    case "AABA":
+	      System.out.println("Your personality type is: ESFJ");
+	      break;
+	    case "AABB":
+	      System.out.println("Your personality type is: ESFP");
+	      break;
+	    case "ABAA":
+	      System.out.println("Your personality type is: ENTJ");
+	      break;
+	    case "ABAB":
+	      System.out.println("Your personality type is: ENTP");
+	      break;
+	    case "ABBA":
+	      System.out.println("Your personality type is: ENFJ");
+	      break;
+	    case "ABBB":
+	      System.out.println("Your personality type is: ENFP");
+	      break;
+	    case "BAAA":
+	      System.out.println("Your personality type is: ISTJ");
+	      break;
+	    case "BAAB":
+	      System.out.println("Your personality type is: ISTP");
+	      break;
+	    case "BABA":
+	      System.out.println("Your personality type is: ISFJ");
+	      break;
+	    case "BABB":
+	      System.out.println("Your personality type is: ISFP");
+	      break;
+	    case "BBAA":
+	      System.out.println("Your personality type is: INTJ");
+	      break;
+	    case "BBAB":
+	      System.out.println("Your personality type is: INTP");
+	      break;
+	    case "BBBA":
+	      System.out.println("Your personality type is: INFJ");
+	      break;
+	    case "BBBB":
+	      System.out.println("Your personality type is: INFP");
+	      break;
+	  }
 	  
 	
 	
