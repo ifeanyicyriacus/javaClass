@@ -1,0 +1,18 @@
+collect two numbers from the user
+store as number1 and number2
+ensure number2 is bigger
+
+set firstNumberDivisibleby7And13 = 0;
+loop between the numbers within the range of the two numbers:
+	if number%7 ==0 and number%13 == 0:
+	store firstNumberDivisibleby7And13 = number
+	break;
+
+if firstNumberDivisibleby7And13 == 0:
+	display "no multiple of both 7 and 13 exist within range"
+else:
+	display number
+	
+
+
+

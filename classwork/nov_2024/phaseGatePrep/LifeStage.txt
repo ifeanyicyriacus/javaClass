@@ -1,0 +1,16 @@
+program to collect user age, evaluate it and determine their life stage
+
+child: 0-12
+teen: 13-17
+adult: 18 -64
+senior: 65 and above
+
+promp user to enter age
+if age is >= 65:
+	user is a senior
+else if age >= 18:
+	user is an adult
+else if age >= 13:
+	user is a teen
+else :
+	user is a child

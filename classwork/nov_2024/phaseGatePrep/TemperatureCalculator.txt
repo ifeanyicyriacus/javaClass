@@ -1,0 +1,5 @@
+write an application that prompt the user to enter a temperature in celcius
+use if- else to print message based on the temperature range
+cold if below 10 degree
+warm 10 - 25
+hot above 25 degree

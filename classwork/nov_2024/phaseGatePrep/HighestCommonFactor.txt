@@ -1,0 +1,12 @@
+the highest number that can devide both numbers
+
+collect first number and store in number1
+collect second number and store in number2
+
+lowerNumber
+default the value of hcf to 1
+
+for numbers between 1 and lowerNumber:
+	check if number can divide both numbner1 and number2
+	if yes assign it to hcf
+display the hcf

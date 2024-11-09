@@ -1,0 +1,8 @@
+program that collect integer input between (1 - 4)
+uses a switch case to determine the associated award
+the options should be displayed
+
+1: "Gold Medal"
+2: "Silver Medal"
+3: "Bronze Medal"
+4: "Participant Ribbon"

@@ -1,0 +1,33 @@
+collect user integer input
+store as number
+set startingPoint as 'A'
+
+do this for {index = 1} times up to {number}:
+	loop repeat space * {number- index}
+	
+	loop {index} times:
+		print character
+		character += 1
+		
+	character -= 1
+	
+	loop {index -1} times or until character = (character -1):
+		print character
+		character -= 1
+	
+	character += 1
+
+do this {index = (number-1)} times to 1:
+	loop repeat space * {number- index}
+
+	loop {index} times:
+		print character
+		character += 1
+	
+	character -= 1
+	
+	loop {index -1} times or until character = (character -1):
+		print character
+		character -= 1
+	
+	character += 1

@@ -1,0 +1,3 @@
+initialize letter to 'Z'
+decrement the character variable for 26 times until it reaches 'A'
+	print the current value of letter

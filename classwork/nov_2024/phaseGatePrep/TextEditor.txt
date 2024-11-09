@@ -1,0 +1,14 @@
+menue option:
+1. add
+2. view
+3. delete
+4. quit
+
+create an array variable to hold the user list items
+add should use the current index and the .append() method
+view sould use a loop to display the list item (up to array.lenght)
+delete case should also show you the list like view:
+	once you enter the a value it deleted the value from array (i think pop())
+	
+quit sends the sentinel value to the while loop
+

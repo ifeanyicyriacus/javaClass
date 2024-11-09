@@ -1,0 +1,9 @@
+application that prompts the user to enter their annual income and uses if-else to determine their tax bracket
+
+0 - 9,875: 10%
+9876 - 40,125: 12%
+40126 - 85,525:20
+85526 and above:24%
+
+display the applicable tax rate based on their income.
+nb not their tax.

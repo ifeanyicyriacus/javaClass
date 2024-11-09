@@ -1,0 +1,6 @@
+loop three time with index(beginning from 1):
+	print week: [index]
+	loop three with indexB (beginning from 2) times:
+		Days: indexB
+		increment indexB by 2
+	increment index by 1

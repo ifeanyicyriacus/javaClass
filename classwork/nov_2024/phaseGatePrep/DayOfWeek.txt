@@ -1,0 +1,4 @@
+collect number (1-7)
+use switch to print corresponding day of week
+if user enter 1 print Monday
+2 for Tuesday

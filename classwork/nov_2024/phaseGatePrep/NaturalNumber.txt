@@ -1,0 +1,6 @@
+program to  print all the  natural number in reverse
+collect user integer input
+in a loop do the following until the number is < 1
+display the number 
+decrement the number by 1
+

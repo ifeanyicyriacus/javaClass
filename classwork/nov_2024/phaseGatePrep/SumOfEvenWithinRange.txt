@@ -1,0 +1,11 @@
+collect two integer input
+ensure the second one is bigger 
+store numbers in number1 and number2
+
+sumOfEvenWithinRange = 0
+in a loop that moves from first number to largest number (both numbers inclusive) with index
+	if index % 2 == 0:
+		sumOfEvenWithinRange += index
+		
+display the sumOfEvenWithinRange to the user
+

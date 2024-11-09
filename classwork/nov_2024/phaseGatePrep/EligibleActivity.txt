@@ -1,0 +1,8 @@
+collect age
+determine if their there are elagible to vote, drive or drink based on these rule
+
+drive 16 and above
+vote 18 above
+drink 21 above
+
+for user age display the list of activity that the user can do

@@ -1,0 +1,17 @@
+collect the integer input from the user
+store it in number
+
+\\1 234 455
+
+create a cropA = 10
+create a cropB = 1
+create sumOfAllDigitInNumber = 0
+
+do the following while(number/number > 0):
+	digit = (number%cropA)/cropB
+	sum += digit
+	
+	increase cropA *= 10
+	increase cropB *= 10
+	
+display the sum of all digit in number as sumOfAllDigitInNumber

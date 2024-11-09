@@ -1,0 +1,14 @@
+collect a number from user
+set sumOfMultiples = 0
+
+in a loop with index while (counter <= number)
+	if number % counter == 0:
+		sumOfMultiples += counter;
+		
+if sumOfMultiples == number:
+	display number is a perfect number
+else:
+	number is not a perfect number
+	
+	
+	

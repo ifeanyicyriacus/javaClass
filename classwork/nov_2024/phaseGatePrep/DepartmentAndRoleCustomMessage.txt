@@ -1,0 +1,7 @@
+collect the user department
+compare that with with a switch menu
+within the appropriate department ask the user to entrer their role within the department
+print a custom message based on department and role
+
+IT, HR, Finance
+Manager, Analyst, Intern
