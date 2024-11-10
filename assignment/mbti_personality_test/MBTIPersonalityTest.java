@@ -63,12 +63,15 @@ public class MBTIPersonalityTest{
 	  }
 	  
 	  String personalityType = "";
+	  //make BOLD Extroverted(A) vs Introverted (B):
+	  //make ITALIC How you focus your attention and energy.
     String[] personalityGroup = {
-      "Extroverted(A) vs Introverted (B)",
-      "Sensing(A) vs Intuititive(B)",
-      "Thinking(A) vs Feeling(B)",
-      "Judging(A) vs Perceptive(B)"
+      "\033[4mExtroverted(A) vs Introverted (B): How you focus your attention and energy.\033[0m",
+      "\033[4mSensing(A) vs Intuititive(B): How you perceive and process information.\033[0m",
+      "\033[4mThinking(A) vs Feeling(B): How you make decisions.\033[0m",
+      "\033[4mJudging(A) vs Perceptive(B): How you approach structure and planning.\033[0m"
     };
+    char[][] personalityPreferences = {{'E', 'I'}, {'S', 'N'}, {'T', 'F'}, {'J', 'P'}};
     
 	  int[] totalAnswerInGroup = new int[4];
 
@@ -87,59 +90,16 @@ public class MBTIPersonalityTest{
       System.out.printf("Number of A selected: %d%n", (5 - totalAnswerInGroup[groupIndex]));
       System.out.printf("Number of B selected: %d%n", (totalAnswerInGroup[groupIndex]));
       System.out.println();
-      personalityType += (totalAnswerInGroup[groupIndex] <= 2)?"A":"B";
+      
+      
+      personalityType += (totalAnswerInGroup[groupIndex] <= 2 && groupIndex == 0)?
+        personalityPreferences[groupIndex][0]:
+        personalityPreferences[groupIndex][1];
 	  }
 	  
-	  switch (personalityType){
-	    case "AAAA":
-	      System.out.println("Your personality type is: ESTJ");
-	      break;
-	    case "AAAB":
-	      System.out.println("Your personality type is: ESTP");
-	      break;
-	    case "AABA":
-	      System.out.println("Your personality type is: ESFJ");
-	      break;
-	    case "AABB":
-	      System.out.println("Your personality type is: ESFP");
-	      break;
-	    case "ABAA":
-	      System.out.println("Your personality type is: ENTJ");
-	      break;
-	    case "ABAB":
-	      System.out.println("Your personality type is: ENTP");
-	      break;
-	    case "ABBA":
-	      System.out.println("Your personality type is: ENFJ");
-	      break;
-	    case "ABBB":
-	      System.out.println("Your personality type is: ENFP");
-	      break;
-	    case "BAAA":
-	      System.out.println("Your personality type is: ISTJ");
-	      break;
-	    case "BAAB":
-	      System.out.println("Your personality type is: ISTP");
-	      break;
-	    case "BABA":
-	      System.out.println("Your personality type is: ISFJ");
-	      break;
-	    case "BABB":
-	      System.out.println("Your personality type is: ISFP");
-	      break;
-	    case "BBAA":
-	      System.out.println("Your personality type is: INTJ");
-	      break;
-	    case "BBAB":
-	      System.out.println("Your personality type is: INTP");
-	      break;
-	    case "BBBA":
-	      System.out.println("Your personality type is: INFJ");
-	      break;
-	    case "BBBB":
-	      System.out.println("Your personality type is: INFP");
-	      break;
-	  }
+	  MBTIPersonalityInformation summary = new MBTIPersonalityInformation();
+	  System.out.println(summary.getPersonalityTypeSummary(personalityType));
+    System.out.println(summary.getSources());
 	  
 	
 	

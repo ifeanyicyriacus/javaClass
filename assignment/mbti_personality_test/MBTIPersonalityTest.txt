@@ -1,0 +1,23 @@
+Begin asking for user full name
+
+implement in switch, with only try again capability
+
+
+prompt the user 20 times with questions
+collect response at all times
+available options are A & B
+
+#20 nested switches
+the value of each switch is response[number] array
+
+20 question stored in a two dimentional array .
+that is question[2,3]
+
+
+
+
+
+
+(E/I) (S/N) (T/F) (J/P)
+ESTJ, ESTP, ES
+
