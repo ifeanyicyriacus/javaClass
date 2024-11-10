@@ -38,6 +38,7 @@ public class MBTIPersonalityTest{
 	  
 	   
 	  for(int index = 0; index < answers.length; ){
+	    System.out.printf("Question (%d of 20)%n", (index+1));
 	    System.out.printf("%s\n%s\n", questions[index][0], questions[index][1]);
 	    if (index != 0){
 	      System.out.println("0. previous question");
@@ -66,18 +67,18 @@ public class MBTIPersonalityTest{
 	  //make BOLD Extroverted(A) vs Introverted (B):
 	  //make ITALIC How you focus your attention and energy.
     String[] personalityGroup = {
-      "\033[4mExtroverted(A) vs Introverted (B): How you focus your attention and energy.\033[0m",
-      "\033[4mSensing(A) vs Intuititive(B): How you perceive and process information.\033[0m",
-      "\033[4mThinking(A) vs Feeling(B): How you make decisions.\033[0m",
-      "\033[4mJudging(A) vs Perceptive(B): How you approach structure and planning.\033[0m"
+      "\033[1mExtroverted(A) vs Introverted (B): \033[0mHow you focus your attention and energy.",
+      "\033[1mSensing(A) vs Intuititive(B): \033[0mHow you perceive and process information.",
+      "\033[1mThinking(A) vs Feeling(B): \033[0mHow you make decisions.",
+      "\033[1mJudging(A) vs Perceptive(B): \033[0mHow you approach structure and planning."
     };
     char[][] personalityPreferences = {{'E', 'I'}, {'S', 'N'}, {'T', 'F'}, {'J', 'P'}};
     
 	  int[] totalAnswerInGroup = new int[4];
 
-	  System.out.printf("Hello %s, you selected these options:%n", fullName);
+	  System.out.printf("Hello \033[1m%s\033[0m, you selected these options:%n", fullName);
 	  for (int groupIndex = 0; groupIndex <= 3; groupIndex += 1){
-	    System.out.printf("For %s you selected: %n", personalityGroup[groupIndex]);
+	    System.out.printf("%s you selected: %n", personalityGroup[groupIndex]);
 	    
 	    for (int answerIndex = groupIndex; answerIndex < answers.length; answerIndex += 4){
 	      totalAnswerInGroup[groupIndex] += answers[answerIndex];

@@ -1,7 +1,7 @@
 public class MBTIPersonalityInformation{
 
   private String sources = """
-\033[4m\033[4mLearn more:\033[0m
+\033[1m\033[4mLearn more:\033[0m
 \033[1m1. Myers-Briggs Type Indicator (MBTI):\033[0m The official MBTI website provides comprehensive insights into the 16 personality types, their traits and applications. (\033[4mhttps://www.myersbriggs.org/\033[0m)
 \033[1m2. 16Personalities:\033[0m This website offers in-depth profiles, articles and resources on the 16 personality types, including strengths, weaknesses and relationships. (\033[4mhttps://www.16personalities.com/\033[0m)
 """;
