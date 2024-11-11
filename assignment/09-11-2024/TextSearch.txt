@@ -1,0 +1,9 @@
+create an array of 7 seven strings
+
+collect input fron user
+store as testValue
+
+for each element in the array,do the following
+	check if element equals the testWord:
+		yes: display yes, value found in array
+		no: display value not found in array

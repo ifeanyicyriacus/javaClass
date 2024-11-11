@@ -1,0 +1,15 @@
+colllect an array of length 5  number from user
+
+
+make the first element the largest and lowest
+for each element 
+	compare with other element
+		if greater than current largest set as largest
+		if lesser than current smallest set as smallest
+
+
+ for (int indexB = (indexA + 1); indexB < (numbers.length-1); indexB += 1){
+		    if (numbers[indexA] > numbers[indexB]){
+		      
+		    
+		    }}

@@ -1,0 +1,13 @@
+create an array of integer of length 15
+store as ages
+
+set sum = 0
+counter = 0
+while counter < ages.length do these....
+	sum = sum + ages[counter]
+	counter += 1
+
+calculate sum/ages.lenght
+store as average
+display the average
+

@@ -1,0 +1,6 @@
+display the array to user 
+ask them to enter the index of element to change
+ask them to enter the new element
+
+perform the replacement
+display the new list to the user

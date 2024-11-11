@@ -1,0 +1,12 @@
+create an array of 7 seven strings
+
+collect input fron user
+store as testValue
+wordIndex = ""
+
+for each element in the array,do the following
+	check if element equals the testWord:
+		yes: save index into wordIndex
+		break;
+		
+display that the {testValue} can be found in {wordIndex}
