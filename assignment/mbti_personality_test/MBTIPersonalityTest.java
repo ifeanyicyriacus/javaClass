@@ -4,6 +4,7 @@ public class MBTIPersonalityTest{
 	  final int A = 0;
 	  final int B = 1;
 	  Scanner input = new Scanner(System.in);
+	  MBTIPersonalityInformation mbti = new MBTIPersonalityInformation();
 	  
 	  int[] answers = new int[20];
 	  String[][] questions = {{"A. expend energy, enjoy groups", "B. conserve energy, enjoy one-on-one"},
@@ -27,14 +28,14 @@ public class MBTIPersonalityTest{
 	    {"A. matter of fact, issue-oriented", "B. sensitive, people-oriented, compassionate"},
 	    {"A. control, govern", "B. latitude, freedom"}};
 	  
-
-	  
-	  System.out.println("The Myers-Briggs Type Indicator (MBTI) Personality Test");
-    System.out.println("Only 10 minutes to get a “freakishly accurate” description of who you are and why you do things the way you do.");
-	  System.out.print("What is your Full name? ");
+    System.out.print("\033[2J");
+	  System.out.println(mbti.getWelcomeMessage());
+	  System.out.print("\nEnter your Full name:\n>>> ");
 	  String fullName = input.nextLine();
+	  
+	  System.out.print("\033[2J");
     System.out.printf("%nHello %s, In this test, you will be presented with a series of 20 questions, and you must select the option (A or B) that best describes your personality.%n", (fullName.split(" ")[0]));
-	  System.out.println("-".repeat(60));
+	  System.out.println("-".repeat(180));
 	  
 	   
 	  for(int index = 0; index < answers.length; ){
@@ -57,6 +58,8 @@ public class MBTIPersonalityTest{
 	      break;
 	    case "0":
 	      if (index != 0) {index -= 1;}
+	      else {System.out.println("The expected response was A or B; I realise this is an error. Please try again.");}
+	      break;
 	    default:
 	      System.out.println("The expected response was A or B; I realise this is an error. Please try again.");
 	      break;
@@ -64,8 +67,6 @@ public class MBTIPersonalityTest{
 	  }
 	  
 	  String personalityType = "";
-	  //make BOLD Extroverted(A) vs Introverted (B):
-	  //make ITALIC How you focus your attention and energy.
     String[] personalityGroup = {
       "\033[1mExtroverted(A) vs Introverted (B): \033[0mHow you focus your attention and energy.",
       "\033[1mSensing(A) vs Intuititive(B): \033[0mHow you perceive and process information.",
@@ -93,14 +94,13 @@ public class MBTIPersonalityTest{
       System.out.println();
       
       
-      personalityType += (totalAnswerInGroup[groupIndex] <= 2 && groupIndex == 0)?
+      personalityType += (totalAnswerInGroup[groupIndex] <= 2)?
         personalityPreferences[groupIndex][0]:
         personalityPreferences[groupIndex][1];
 	  }
-	  
-	  MBTIPersonalityInformation summary = new MBTIPersonalityInformation();
-	  System.out.println(summary.getPersonalityTypeSummary(personalityType));
-    System.out.println(summary.getSources());
+
+	  System.out.println(mbti.getPersonalityTypeSummary(personalityType));
+    System.out.println(mbti.getSources());
 	  
 	
 	

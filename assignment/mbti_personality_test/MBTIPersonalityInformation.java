@@ -1,5 +1,21 @@
 public class MBTIPersonalityInformation{
-
+  
+  private String welcomeMessage = """
+\033[1mWelcome to the Myers-Briggs Type Indicator (MBTI) Assessment!\033[0m
+The MBTI is a widely used personality framework helping understand individual preferences, behaviors and motivations. This 7-minute assessment reveals valuable insights into your:
+ - Personality strengths and weaknesses
+ - Communication style
+ - Decision-making processes
+ - Interpersonal dynamics
+ - Career inclinations
+By completing this assessment, you'll gain a deeper understanding of yourself and why you interact with the world uniquely.
+\033[1mImportant Considerations\033[0m
+ - This assessment is not a scientifically validated psychological instrument but a tool for personal growth and self-awareness.
+ - Results are not definitive or absolute.
+ - Your responses reflect natural tendencies, not desired or aspirational traits.
+Begin your journey of self-discovery!
+  """;
+  
   private String sources = """
 \033[1m\033[4mLearn more:\033[0m
 \033[1m1. Myers-Briggs Type Indicator (MBTI):\033[0m The official MBTI website provides comprehensive insights into the 16 personality types, their traits and applications. (\033[4mhttps://www.myersbriggs.org/\033[0m)
@@ -343,6 +359,10 @@ ENTJs are commanding leaders, excelling in executive, entrepreneurial and innova
 3. Thinking: Logical, analytical, objective.
 4. Judging: Structured, decisive, results-driven.
 """};
+  
+  public String getWelcomeMessage(){
+    return welcomeMessage;
+  }
   
   public String getSources(){
     return sources;
