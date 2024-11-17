@@ -1,0 +1,11 @@
+Java program to reverse an array of integer values
+declare and initialise a variable with an an array initializer list
+
+//that first shall be the last and the last first, a merry go round
+calculate (int)((array length)/2)
+store as halfLength
+you need to perform a swap while (counter <= halfLength)
+	[0]1st swap with last[array_length-0]
+	[1]2nd swap with 2nd last[array_length-1]
+	[2]3rd swap with 3rd last[array_length-2]
+
