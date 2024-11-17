@@ -1,0 +1,26 @@
+program to merge two sorted list into a single sorted array
+assuming that the length of both are not known
+
+collect firstArray store as array1
+collect secondArray store as array2
+get array1 length, store as array1Length
+get array2 length, store as array2Length
+totalLength = array1Length + array2Length
+
+create a dynamic arraylist to add and resize as needed
+store as combinedArray
+
+for(int index = 0; index <totalLength; index += 1):
+	if(index < array1Length):
+		combinedArray.add(array1[index]);
+	else:
+		combinedArray.add(array2[index - array1Length]);
+
+trim the array incase it is over size
+return the combined array to user
+
+
+import java.util.ArrayList;
+ArrayList<String> items = new ArrayList<String>();
+items.add("red");
+itemstrimToSize();

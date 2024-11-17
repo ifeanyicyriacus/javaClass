@@ -1,0 +1,6 @@
+Maximum Element in an array:
+sort the array first in ascending order
+pick the element at the end
+store as maximum
+display maximum
+	

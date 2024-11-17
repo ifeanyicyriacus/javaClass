@@ -1,0 +1,11 @@
+
+collect the array list
+store sampleArray
+
+sort the array using the Array.sort method 
+loop through the loop while i < ((sampleArray.length) - 1)
+	if sampleArray[i] == sampleArray[i+1] and !(text.contain(sampleArray[i]))
+			text += sampleArray[i] + " "
+
+if its index 
+	continue;

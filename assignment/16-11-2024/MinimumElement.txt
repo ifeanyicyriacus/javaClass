@@ -1,0 +1,6 @@
+Minimum Element in an array:
+sort the array first in ascending order
+pick the element at the beginning
+store as minimum
+display minimum
+	

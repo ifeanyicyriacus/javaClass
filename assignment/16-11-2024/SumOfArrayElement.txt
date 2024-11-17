@@ -1,0 +1,11 @@
+sum of element in an array
+create an array oof integer
+store as sample
+
+create a variable to hold the sum ,called sum
+
+for every number in the sample array
+	increment sum by element
+
+display sum
+

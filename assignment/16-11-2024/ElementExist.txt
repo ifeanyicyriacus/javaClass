@@ -1,0 +1,11 @@
+program to test if an element esixt in an array
+collect the array of numbers
+store as haystack
+initilise needle to the search number
+
+test = false
+loop through the element of an haystack array
+	if element == needle
+		test = true
+		break
+return true to the user
