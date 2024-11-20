@@ -1,0 +1,14 @@
+collect user mark between 0 -10
+store as score
+
+if score is >= 0 and <= 33: fail
+else if score <= 39:pass
+else if score <= 59:second class
+else if score <= 79:first class
+else if score <= 100:distintion
+
+display the classification
+
+
+
+

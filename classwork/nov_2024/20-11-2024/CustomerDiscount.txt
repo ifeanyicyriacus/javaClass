@@ -1,0 +1,25 @@
+create a discount calculation system
+
+collect customer type ((r)regular/(p)premium)
+store as customerType
+collect amount
+store as purchaseAmount
+prompt the user( are you a repeat customer ((y)yes/ (n)no))
+collect y or n
+store as isRepeatCustomer (boolean y for true, n for false)
+set discount = 0
+
+if customerType = "p" and amount >= 500:
+	calculate amount * 10 / 100
+	store are discount
+	if isRepeatCustomer
+		discount += amount * 2/ 100
+else if customerType = "r" and amount >= 300:
+	calculate amount * 5 / 100
+	store are discount
+	if isRepeatCustomer
+		discount += amount * 2/ 100
+	
+amountDue = Amount - discount
+
+display "You are to pay ${amountDue}"

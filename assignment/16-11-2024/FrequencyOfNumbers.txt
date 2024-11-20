@@ -1,0 +1,19 @@
+Have a temp frequencyCounter 
+Keep record of previous element
+
+Outside the loop set frequencyCounter 
+
+//How to manage the first element
+When index ==0
+     Set currentElement as previousElement 
+     Continue
+     Set counter=1
+If previous element==current element
+      Increment counter
+Else
+      NewArraylist.add({previous Element, counter})
+      Set counter =1
+      Set previousElement = currentElement
+after the loop
+	NewArraylist.add({previous Element, counter})
+	to account for the last element

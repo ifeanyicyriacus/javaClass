@@ -1,0 +1,7 @@
+create a multiplication table
+
+indexA for 1 to 10 do
+	indexB from 1 to 10 do
+		"indexA * indexB" = indexA * indexB
+		print tab space
+	print new line

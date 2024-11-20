@@ -1,0 +1,6 @@
+Develop a ticket pricing system:
+- Customer age groups: Child (12)/Adult(20)/Senior(15)
+- Day of week: Weekday(+1)/Weekend(+4)
+- Time of show: Mmorning(+2)/Evening(-5)
+Calculate different ticket prices based on combinations
+
