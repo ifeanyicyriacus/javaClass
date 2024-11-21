@@ -1,0 +1,20 @@
+original value
+{23, 32, 10, 45, 19, 27, 59, 56, 99, 94, 101, 104, 139, 149, 172, 173, 174, 76, 87, 23, 33, 34, 100, 10, 297, 320, 720, 9}
+store as sample
+
+for each element in the original array, use counter controled for
+	if element >= 0 && element <= 20 -> store[index] = 10
+	else if element <= 40 -> store[index] = 30
+	else if element <= 60 -> store[index] = 50
+	else if element <= 80 -> store[index] = 70
+	else if element <= 100 -> store[index] = 90
+	else if element <= 120 -> store[index] = 110
+	else if element <= 140 -> store[index] = 130
+	else if element <= 160 -> store[index] = 150
+	else if element <= 180 -> store[index] = 170
+	else -> store[index] = 190
+		
+quantised value
+{30, 30, 10, 50, 10, 30, 50, 50, 90, 90, 110, 110, 130, 150, 170, 170, 170, 70, 90, 30, 70, 30, 90, 10, 190, 190, 190, 10}
+		
+

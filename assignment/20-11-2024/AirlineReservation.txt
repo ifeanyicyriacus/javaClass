@@ -1,0 +1,58 @@
+have a array of length 10 set to initialize it to false
+seatingChart[]
+available(ECONOMY_CLASS) available(FIRST_CLASS)
+availableSeatNumber;
+in a loop loop 10 times
+prompt user to choose betwen first class or economy
+
+
+
+if 1(first class):
+	availableSeatNumber = available(FIRST_CLASS)
+	if -1 != availableSeatNumber available//return a number or -1 if empty:
+		seatingChart[availableSeatNumber] = true
+		displayBoardingPass(availableSeatNumber) [boarding pass] with detail of class
+		continue;
+	else: //no first class seat available
+		availableSeatNumber = available(ECONOMY_CLASS)
+		if -1 != availableSeatNumber available//return a number or -1 if empty:
+			prompt and ask user if they will take an economy seat
+			yes:
+				seatingChart[availableSeatNumber] = true
+				displayBoardingPass(availableSeatNumber) [boarding pass] with detail of class
+				continue;
+	"say that "next flight will be by 3 hours"
+else 2(economy class):
+		availableSeatNumber = available(ECONOMY_CLASS)
+		if -1 != availableSeatNumber available//return a number or -1 if empty:
+		seatingChart[availableSeatNumber] = true
+		displayBoardingPass(availableSeatNumber) [boarding pass] with detail of class
+		continue;
+	else: //no economy class seat available
+		availableSeatNumber = available(FIRST_CLASS)
+		if -1 != availableSeatNumber available//return a number or -1 if empty:
+			prompt and ask user if they will take an economy seat
+			yes:
+				seatingChart[availableSeatNumber] = true
+				displayBoardingPass(availableSeatNumber) [boarding pass] with detail of class
+				continue;
+	"say that "next flight will be by 3 hours"
+
+default:
+	wrong choice try again
+	
+
+FIRST_CLASS = 1
+ECONOMY_CLASS = 2
+available(boolean[] seatingChart, int seatClass):
+	if seatClass = 1:
+		check from 0 -4
+		return number
+	elseif seatClass = 2:
+		check from 5-9
+		return number
+	return -1
+
+displayBoardingPass(seatNumber)
+	return (seatNumber < 5)? "You have been assigned seat number: "+ seatNumber+ "in First Class":
+	"You have been assigned seat number: "+ seatNumber+ "in Economy Class";

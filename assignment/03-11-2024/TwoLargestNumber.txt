@@ -1,0 +1,17 @@
+4.23: find the two largest number 
+from 10 numbers entered
+
+set the first as largest
+
+compare the first and second for second largest
+swap if necessary
+
+then loop 8 times:
+	if current value > largest:
+		swap current value with largest 
+		swap largest with second largest
+	else if current value > second largest
+		swap current value with second largest
+
+display largest
+display second largest

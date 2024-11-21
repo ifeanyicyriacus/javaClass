@@ -1,0 +1,51 @@
+
+employeeHourArray = {
+	{2, 4, 3, 4, 5, 8, 8},
+	{7, 3, 4, 3, 3, 4, 4},
+	{3, 3, 4, 3, 3, 2, 2},
+	{9, 3, 4, 7, 3, 4, 1},
+	{3, 5, 4, 3, 6, 3, 8},
+	{3, 4, 4, 6, 3, 4, 4},
+	{3, 7, 4, 8, 3, 8, 4},
+	{6, 3, 5, 9, 2, 7, 9}
+}
+
+new array {totalArray} of length (employeeHourArray.length)
+counter =0
+for each employee in employeeHourArray
+	sum = 0
+	for each employeeHour in employee
+		sum += employeeHour
+	totalArray[counter] = 0
+
+//sort the totalArray swap the totalArray and employeeHourArray similarly
+
+//use a sentinent control loop to sort
+if it swaps; swap and continue (set the parent loop index = 0);
+
+for (indexA = 0; indexA <= totalArray.length; indexA += 1){
+	for (indexB = 0; indexB < totalArray.length; indexB += 1){
+		if totalArray[indexA] > totalArray[indexB]:
+			continue;
+		else totalArray[indexA] < totalArray[indexB]:
+			temp = totalArray[indexB]
+			tempArray = employeeHourArray[indexB]
+			
+			totalArray[indexB] = totalArray[indexA]
+			employeeHourArray[indexB] = employeeHourArray[indexA]
+			
+			totalArray[indexA] = temp
+			employeeHourArray[indexA] = tempArray
+			
+			set indexA = 0
+			break;
+		else://if they are equal
+			continue	
+	}
+	//i expect this have sorted the employeeHourArray
+	
+	now return the list like a table
+	
+}
+
+

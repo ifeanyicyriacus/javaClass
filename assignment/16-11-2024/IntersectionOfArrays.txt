@@ -1,0 +1,12 @@
+Find the intersection of two arrays
+collect arrays store as array1 and array2
+
+create a variable to hold the arrayList
+called intersectionList
+
+for array1Element in array1
+	for array2Element in array2
+		if array1Element is equal to array2Element and Arraylist does not contain array1Element
+			Arraylist.add()
+		
+		display result to user
