@@ -242,13 +242,16 @@ public class NokiaMenuReturnQuitAndTryAgain{
                       System.out.println("Wrong Input - Try Again.");
                       level3 = 0;
                       continue;
-                  }    
+                  }
+                case 0://phone book last 3 cases
+                  level1 = 0; level2 = 0;
+                  continue;
 			          case -1:
                   sentinel = -1;
                   continue;
                 default:
                   System.out.println("Wrong Input - Try Again.");
-                  level3 = 0;
+                  level2 = 0;
                   continue;
 		          }
 			  case 2:
@@ -1490,7 +1493,7 @@ public class NokiaMenuReturnQuitAndTryAgain{
                       level4 = 0;
                       continue;
                   }
-					      case 6
+					      case 6:
 						      if (level4 == 0){
 						        message = "Change access codes\n\n0.\t ↩️  Previous menu\n-1.\t ❌ Quit\n>>>> ";
 			              System.out.print(message);
@@ -1770,7 +1773,7 @@ public class NokiaMenuReturnQuitAndTryAgain{
 				  if (level2 == 0){
             message = "SIM services\n\n0.\t ↩️  Previous menu\n-1.\t ❌ Quit\n>>>> ";
             System.out.print(message);
-            level2 = input.nextInt(); 
+            level2 = input.nextInt();
           }
           switch(level2){
             case 0:

@@ -10,7 +10,7 @@ then loop 8 times:
 	if current value > largest:
 		swap current value with largest 
 		swap largest with second largest
-	else if current value > second largest
+	else if current value > second largest:
 		swap current value with second largest
 
 display largest

@@ -1,0 +1,20 @@
+4.30 (Right-angled triangle)
+collect length of triangle base
+store as baseLength
+work with triangle base between 1 - 10
+
+*
+* *
+*  *
+*   *
+*    *
+*     *
+********
+or
+*
+***
+****
+*****
+******
+*******
+********

@@ -26,14 +26,19 @@ public class TicTacToe{
       if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner(ticTacToeBoard) == true){
         System.out.println(displayBoard(ticTacToeBoard));
         System.out.printf("GAME OVER\nPlayer-%s Wins\n", token );
-        break;
+        break;//playAgain
       }else if (index == 9){
         System.out.println(displayBoard(ticTacToeBoard));
         System.out.println("GAME OVER\nDRAW!!!");
-        break;
+        break;//playAgain
       }
     }
     
+  }
+  
+  public static void playAgain(String[][] board, ){
+  
+    //swap who starts // i might need to make X and O an object so that i could swap their reference before game begin
   }
   
   public static void collectNextMove(String[][] board, String token, Scanner input){

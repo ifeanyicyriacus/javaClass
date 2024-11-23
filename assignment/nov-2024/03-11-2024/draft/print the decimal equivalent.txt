@@ -1,0 +1,20 @@
+print the decimal equivalent of a binary number:
+collect a binary number 
+store as binaryNumber
+BASE = 2
+decimalNumber = 0
+counter = 0
+pluckA = 10; pluckB = 1;
+
+do the following....
+	calculate (binaryNumber % pluckA) / pluckB 
+	store as digit
+	calculate (digit * (BASE ^ counter))
+	and add result to decimalNumber
+
+
+	pluckA *= 10; pluckB = *=10
+	counter += 1
+.....while((binaryNumber /pluckB) > 0)
+
+display decimalNumber

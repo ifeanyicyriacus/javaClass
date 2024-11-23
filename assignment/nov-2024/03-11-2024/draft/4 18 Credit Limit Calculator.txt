@@ -1,0 +1,15 @@
+4.18 Credit Limit Calculator
+
+collect the following fact as integer:
+	collect account number
+	collect balance at the beginning of the month as initialBalance
+	collect total of all items charged byt the customer this month as charges
+	collect total of all credit applied to the customer's account this month as credits
+	allowed credit limit as creditLimit
+
+newBalance  = initialBalaance + charges - credits
+display new balance
+check if newBalance > creditLimit
+	display "Credit Limt exceeded"
+else:
+	display "Your balance is within limit"

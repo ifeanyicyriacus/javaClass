@@ -1,0 +1,23 @@
+4.20 (Tax calculator)
+
+BASIC_EARNINGS = 30000
+TAX_RATE_FOR_BASIC = 0.15
+TAX_RATE_FOR_EXCESS = 0.2
+totalTax = 0
+
+counter = 1
+do the following while counter <= 3:
+	prompt and collect citizen's name
+	store as name
+	prompt and collect citizen's annual earnings
+	store as annualEarning
+	
+	if BASIC_EARNINGS >= annualEarning:
+		totalTax = annualEarning * TAX_RATE_FOR_BASIC
+	else:
+		totalTax = BASIC_EARNINGS * TAX_RATE_FOR_BASIC
+		excessEarning = annualEarning - BASIC_EARNINGS
+		totalTax += excessEarning * TAX_RATE_FOR_EXCESS
+		
+	Display totalTax
+	counter += 1

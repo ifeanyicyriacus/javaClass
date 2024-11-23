@@ -1,0 +1,16 @@
+4.17 gas mileage
+sentinelValue = -1
+collect miles driven and gallon used (integers)
+totalMiles = miles
+totalGallonsUsed = gallonUsed
+display the (totalMiles/totalGallonsUsed) for this trip
+
+while(miles != sentinelValue)
+	collect another miles driven and gallon used (integers)
+	display the miles/gallon for each trip
+	totalMiles += miles
+	totalGallonsUsed += gallonUsed
+	
+print the combined miles/gallon of all trip combined
+nb: all averaging calculation produce floating point values
+

@@ -1,0 +1,5 @@
+4.36: (Creating a comperator)
+collect two numbers from user
+if both numbers are equal print 0
+if first is greater print 1
+if second is greater print -1

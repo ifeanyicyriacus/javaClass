@@ -1,0 +1,7 @@
+4.31 (Palindromes)
+read five-digit integer 
+determine wether it is a palindrome
+
+if it is not a five digit number:
+	print error "in valid input, try again"
+	ask for number again

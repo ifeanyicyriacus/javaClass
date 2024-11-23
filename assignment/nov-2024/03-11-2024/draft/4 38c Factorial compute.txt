@@ -1,0 +1,19 @@
+4.38c Factorial: compute the value of e^x
+
+collect the number of term
+store as noOfTerm
+collect the value of x
+store as x
+
+result = 1
+
+while noOfTerm > 0
+	nFactorial = 1
+	for int i = noOfTerm; i > 0; i -=1 .....
+		nFactorial *= i
+		
+	result += (x^noOfTerm)/nFactorial
+	noOfTerm -= 1
+	
+display result
+

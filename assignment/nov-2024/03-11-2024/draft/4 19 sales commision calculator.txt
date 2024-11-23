@@ -1,0 +1,14 @@
+4.19 sales commision calculator
+
+the salesperson receives $200 plus 9% of their gross sales for that week
+prompt the user to enter their gross weekly sales
+store as grossWeeklySales
+
+COMMISION_RATE = 0.09
+BASIC_EARNING = 200
+calculate grossWeeklySales * COMMISION_RATE
+store as commision
+calculate 
+salesPersonEarning
+
+

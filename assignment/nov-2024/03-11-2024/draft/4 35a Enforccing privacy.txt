@@ -1,0 +1,11 @@
+4.35a (Enforccing privacy with cryptography): encryption
+
+collect 4 digit integer
+for each digit:
+	perform encryption
+		replace each digit with ((digit + 7)%10)
+swap the 3rd with the 1st
+swap the 4th with the 2nd
+
+display the encrypted integer
+

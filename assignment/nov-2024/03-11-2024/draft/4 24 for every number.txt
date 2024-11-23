@@ -1,0 +1,6 @@
+4.24
+for every number entered:
+	if the value is other than 1 and 2
+		keep looping
+
+sentinel va

@@ -1,0 +1,12 @@
+4.37 (Distance between two points)
+collect for point1 its x and y coordinate
+store as x1 and y1 respectively
+collect for point2 its xand y coordinate
+store as x2 and y2 respectively
+
+if x1 == x2:
+	it is pependicular to the y axis
+if y1 == y2
+	it is perpendicular to the x axis
+if x1 == x2 && y1 == y2
+	they are the same point

@@ -1,6 +1,55 @@
 Develop a ticket pricing system:
 - Customer age groups: Child (12)/Adult(20)/Senior(15)
 - Day of week: Weekday(+1)/Weekend(+4)
-- Time of show: Mmorning(+2)/Evening(-5)
+- Time of show: Mmorning(+2)/Evening(+5)
 Calculate different ticket prices based on combinations
+
+display price list to user for Child (12)/Adult(20)/Senior(15)
+if Child
+	display price list Day of week: Weekday(+1)/Weekend(+4)
+	weekend:
+		Time of show: Mmorning(+2)/Evening(-5)
+		morning
+			calculate the total price
+		evening
+			calculate the total price
+	weekday
+	Time of show: Mmorning(+2)/Evening(-5)
+Adult
+...
+Senior
+....
+
+
+ticketPrice += 12.0;
+        System.out.print("""
+    Child > Day of week?
+    1. Weekday  (+ $1)
+    2. Weekend  (+ $4)
+    >>>
+    """);
+        choice = input.nextInt();
+        
+        
+
+System.out.print("""
+    Child > Weekday > Time of show?
+    1. Morning  (+ $2)
+    2. Evening  (+ $5)
+    >>>
+    """);
+            choice = input.nextInt();
+
+ticketPrice += 4;
+            System.out.print("""
+    Child > Weekday > Time of show?
+    1. Morning  (+ $2)
+    2. Evening  (+ $5)
+    >>>
+    """);
+            choice = input.nextInt();
+
+
+
+
 

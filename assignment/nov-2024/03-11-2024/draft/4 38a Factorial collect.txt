@@ -1,0 +1,10 @@
+4.38a Factorial
+collect a non negative number from user
+store as number
+product = 1
+
+while(number > 1) do. ....
+	product  *= number
+	number -= 1
+
+display product

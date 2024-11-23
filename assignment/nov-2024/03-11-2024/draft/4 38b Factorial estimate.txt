@@ -1,0 +1,13 @@
+4.38b Factorial: estimate the value of the mathematical constant e
+collect the number of term to calculate
+store as counter
+result = 1
+
+while counter > 0 ...
+	product = 1
+	for int i = counter; i > 0; i -=1 .....
+		product *= i
+		
+	result += (1/product)
+	counter -= 1
+display result
