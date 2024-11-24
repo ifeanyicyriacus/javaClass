@@ -1,0 +1,103 @@
+question 1
+1. to return the largest element
+collect array
+create a function to collect array:
+	make first element the largest
+	compare the the remaining element to the largest
+		if an element is larger let largest hold its value
+	return the largest
+	
+2. to reverse a list
+swap beginning and the end until you get to the middle then stop
+length is (array.length-1)
+the middle is array.length // 2
+the beginning is 0
+do until you get to middle
+temp = a[index]
+a[index] = a[end]
+a[end] = temp
+increase index
+reduce length
+
+3. to check wether element occur in a list
+collect list
+collect element to search for
+loop through to elements in list
+	if element is found, immediately return true
+if loops finishes return false
+
+4. print the elemrnt on odd position on a list
+collect list
+create an empty arraylist loop through the list
+	if element position is odd append it to the result arrayList
+convert array list to array
+return result
+
+5. function to return the element on even position
+collect list
+create an emptyarraylist then loop through list
+	if element position is even append it to the result arraylist
+convert array list to array
+return result
+
+6. function to return the running total of the a list
+	function receives the list as argument
+	total variable is initializes to 0
+	for each number in the array
+		add it to the total
+	return the total
+#####in python use recursion
+
+7. function to test wether a string is a palidrome
+just like the reverse function
+here
+a. split the string using the split function
+b. store as stringArray
+c. get the length of the string array
+d. get the middle by dividing the length by 2
+e. compare 1 and last for equality
+	if ever comapricm ks false return false
+f. if it finishes return true
+
+8. function to sum a list of number using for, while and do..while loop
+
+9.function that concatinate two lists asuming there are both integer list
+sum the length of both array atore in length
+get the length of the first, store in length1
+create a new array that is a copy of the first array and with expty spaces to exactly contain the 2nd array
+loop through the 2nd array:
+	add array2[index] to the new array at index[length1]
+	increment length by 1
+return newArray
+
+10. function that combines two list by alternatingly taking elements:
+array1 & array2
+totalLength = length1 + length2
+create new array of length {totalLength} called newArray
+if length1 > length2 {let maxLength = length1}
+	else {let maxLenght = length2}
+loop through the length of the array with max length:
+	count = 0;
+	for (int index=0; index < maxLenght; index += 1){
+		if (index < length1){
+		newArray[count++] = array1[index]}
+		if (index < length2){
+		newArray[count++] = array2[index]}
+	}
+	return newArray
+
+11. Write a function that takes a number and returns a list of its digits. So for 2342 it should return
+
+accept the number
+get the length of the number by checking the length of the string
+create a list of lenth{length of string}
+set crop1=10, crop2=1
+loop length of string number of times from length to one:
+	digit = calculate number%crop1/crop2
+	list[index] = digit
+	increment crop1 and crop2 by multiplying them by 10
+return list
+
+
+
+
