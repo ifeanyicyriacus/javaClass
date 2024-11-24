@@ -1,0 +1,68 @@
+1. isEven(integer) -> boolean:
+collect integer as number
+if number % 2 == 0
+	return true
+else return false
+
+2. isPrimeNumber(integer)-> boolean:
+collect integer as number
+if number == 1:
+	return False
+from test = 2 to the number(number not included)
+	if number % test == 0
+		return False
+return true
+test[1,2,3,4]
+
+
+3.subtract(integer, integer)-> integer:
+collect to integer as number1, number2
+calculate Math.abs(number1 - number2) as difference
+return difference
+test with 3,7 and 7,3
+
+4. divide(integer, integer)-> float:
+collects 2 integer as number1, number2
+if number2 == 0 return (float)0
+calculate (float)number1/number2 as quotient
+return quotient
+
+5. factorOf(integer)-> integer:
+set factorCount to 1
+loop through index=1 to number(number not inclusive)
+	if number%index == 0
+		increment factorCount by 1
+return factorCount
+
+6. isSquare(integer)->boolean:
+	calculate the squareroot of number as numberSqrt
+	cast numberSqrt to int as numberSqrtInt
+	compare if numberSqrt == numberSqrtInt:
+		return true
+	else
+		return false
+
+7. isPalindrome(integer)->boolean:
+numberStr = number+""
+char[] numberCharacters = numberStr.toCharArray()
+length = numberCharacters.length
+halfLength = length/2
+
+for index=0 to halfLength(halfLength not included):
+	rigthSide = numberCharacters[index]
+	leftSide = numberCharacters[length - index]
+	if rightSide != leftSide
+		return false
+return true
+
+8. factorialOf(integer)-> long:
+if number == 1 return (long)1
+return number * factorialOf(--number)
+
+9. squareOf(integer)->long
+return (long) integer*integer
+
+
+
+
+
