@@ -1,0 +1,11 @@
+collect number 7
+
+test 1, 2, 3, 4
+to test we run 
+
+how to perform
+
+arrayList check
+and append
+
+    
