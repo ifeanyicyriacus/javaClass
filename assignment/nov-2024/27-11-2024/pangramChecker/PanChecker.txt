@@ -1,0 +1,18 @@
+to check if the string has all the letters of the alphabet
+
+collect the string, store as text
+text = text.tolowerCase()
+if length < 26 return false
+
+letter = 'a'
+i = 0
+for char letter = 'a'; letter <= 'z; letter += 1:
+	if (text.contains(String.valueOf(letter)) == false) return false
+return true
+	
+
+
+
+
+
+
