@@ -1,0 +1,18 @@
+a = [5, 7, 0, 2, 4]
+i dont need to get the sum of everything, because the highest removed will result to the lowest sum and the lowest removed will cause the largest sum.
+therefore just find the highest and the lowast in the list
+
+int[] result = new int[2];
+highest = a[0]
+result[0] = 0
+lowest = a[0]
+result[1] = 0
+
+for index[1] to index < []length of input
+	if highest < a[index]:
+	    highest = numbers[index];
+		result[0] = index
+	if lowest >  a[index]:
+        lowest = numbers[index];
+		result[1] = index
+return result
