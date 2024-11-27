@@ -1,0 +1,12 @@
+collect a string capatilise each word
+
+collect string
+split into arrays
+loop arrays
+	for each element:
+	.substring(0,1) + .substring(1)
+		element = firstLetter.toUpperCase() + restLetter
+
+	String.join(" ", c)
+
+
