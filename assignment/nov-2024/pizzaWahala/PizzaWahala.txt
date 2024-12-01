@@ -1,0 +1,88 @@
+Pizza wahala
+
+collect number of guest
+collect pizza type
+
+process order:
+
+display how many boxes of pizza the user will buy (every guest will eat 1 slce)
+display how many will remain after all the guest have been served
+dow much the customer will pay for it.
+
+input:
+	number of people = 45
+	pizza type = Odogwu
+output:
+	Number of boxes of pizza to buy = 4 boxes (explanation: Odogwu size contains 12 slices per box, 4 boxes should be sufficient for 45 persons as it would contain 48 slices in all)
+	Number left over slices after serving = 3 slices (explanation:After serving 45 slices, you should have 3 slices left) 
+	Price = 20800 (explanation: 5200 per box for 4 boxes)
+
+
+
+
+pizzaTypes = ["Sapa size", "Small Money", "Big boys", "Odogwu"]
+no_of_slices = [4, 6, 8, 12]
+pricesPerBox = [2_500, 2_900, 4_000, 5_200]
+
+pizzaTypeIndex = 0;
+no_of_guest = 0
+pizza_type = ""
+do{
+	if (pizzaTypeIndex == -1){"wrong input: select pizza type from menue and guests must be at least 1, try Again"}
+	print(displayMenu(pizzaTypes, no_of_slices, pizza_type))
+	prompt and collect number of guest:
+	no_of_guest = 45
+	prompt and collect number of guest:
+	pizza_type = "odogwu"
+
+	pizzaTypeIndex = getIndexOfPizzaType(pizzaTypes, pizza_type)
+}while(pizzaTypeIndex = -1);
+
+slicePerPack = no_of_slices[pizzaTypeIndex]
+pricePerPack = pricesPerBox[pizzaTypeIndex]
+numberOfBox = determineNumberOfPack(no_of_guest, slicePerPack)
+
+
+
+
+output = prepareOutput(pizza_type, slicePerPack, numberOfBox, pricePerPack, no_of_guest);
+System.out.print(output);
+
+def prepareOutput(pizza_type, slicePerPack, numberOfBox, pricePerPack, no_of_guest) -> srt:
+	totalSlices = slicePerPack * numberOfBox
+	totalPrice = pricePerPack * numberOfBox
+	remainingSlice = totalSlices - no_of_guest
+
+	String numberOfBoxText = numberOfBox + (numberOfBox>1)? " boxes" : " box";
+	String numberOfGuestText = no_of_guest + (no_of_guest>1)? " persons" : " person";
+	String remainingSliceText = remainingSlice + (remainingSlice>1)? " slices" : " slice";
+	String slicesServedText = no_of_guest + (no_of_guest > 1)? " slices" : " slice";
+
+	output = String.format("Number of boxes of pizza to buy = %s ", numberOfBoxtext);
+	output += String.format("(explaination: %s size contains %d slices per box, %s should be sufficient for %s as it would contain %d slices in all)\n", pizza_type, slicePerPack, numberOfBoxText, numberOfGuestText, totalSlices); 
+
+	output += String.format("Number left over slices after serving = %s (explanation: After serving %s, you should have %s left)\n", remainingSliceText, slicesServedText, remainingSliceText);
+	output += String.format("Price = %d (explanation: %d per box for %s)\n", totalPrice, pricePerPack, numberOfBoxText);
+	return output
+		
+	
+
+def displayMenu(pizzaTypes, no_of_slices, pizza_type) -> void:
+	message += String.format("| %15s | %15s | %15s |","Pizza type", "Number of Slices", "Price per box")
+	message += String.format("+ %15s + %15s + %15s +", "-".repeat(15))
+	
+	for (i = 0; i < pizzaTypes.length; i += 1):
+		message += String.format("| %15s | %15d | %15d |",pizzaTypes[i], no_of_slices[i], pricesPerBox[i])
+		message += String.format("+ %15s + %15s + %15s +", "-".repeat(15))
+	return message
+	
+def getIndexOfPizzaType (int[] pizzaTypes, pizza_type) -> int:
+	for index = 0; index < pizzaTypes.length; index += 1:
+		if pizzaTypes[index].equals(pizza_type):
+			return index
+	return -1;
+	
+def determineNumberOfPack (guest_number, slicePerPack):
+	divide the guest_number(45) by slicePerPack(12) = 3.75
+	round value to celing value/round up to 4.0
+	return int(4.0)
