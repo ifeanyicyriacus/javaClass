@@ -38,16 +38,16 @@ public class StudentGrade{
 	  addPositionToSheet(scoreSheet);
 	  
     String output = divider("=");
-	  output += String.format("%15s  ", "STUDENT");
+	  output += String.format("%10s  ", "STUDENT");
 	  for(int index = 1; index <= numberOfSubject; index += 1){
-	    output += String.format("%5s  ","SUB "+index);
+	    output += String.format("%5s  ","SUB"+index);
 	  }
 	  output += String.format("%5s  %5s  %5s%n", "TOT", "AVE", "POS");
     output += divider("=");
 	  
 	  
 	  for(int studentIndex = 0; studentIndex < scoreSheet.length; studentIndex += 1){
-	    output += String.format("%15s  ", ("Student "+ (studentIndex+1)));
+	    output += String.format("%10s  ", ("Student "+ (studentIndex+1)));
 	    
 	    for(int subjectIndex = 0; subjectIndex <= numberOfSubject; subjectIndex += 1){
 	      output += String.format("%5.0f  ", scoreSheet[studentIndex][subjectIndex]);
@@ -284,7 +284,8 @@ public class StudentGrade{
         if (overallHighest < scoresheet[row][col]){
 	        result[0] = row;
 	        result[1] = col;
-	        result[2] = scoresheet[row][col];
+	        overallHighest = scoresheet[row][col];
+	        result[2] = overallHighest;
         }
       }
     }
@@ -300,7 +301,8 @@ public class StudentGrade{
         if (overallLowest > scoresheet[row][col]){
 	        result[0] = row;
 	        result[1] = col;
-	        result[2] = scoresheet[row][col];
+	        overallLowest = scoresheet[row][col];
+	        result[2] = overallLowest;
         }
       }
     }
