@@ -40,8 +40,23 @@ an array of the 3col index
 
 [11.50, 22.50]
 if you are the highest your position among rows without(0) pos value index++ = 1
-
-	  largest = last element from Arrays.sort
+	  
+	  sortedArray = Arrays.copyOf(array, array.length)
+	  Arrays.sort(sortedArray)
+	  highest = last element from sortedArray
+	  lowest = first element from sortedArray
+	  highestIndex;
+	  lowestIndex;
+	  for(int index = 0; index < sortedArray.length; index += 1){
+	  	if(highest == array[index]){
+	  		highestIndex = index
+	  	}
+	  	if(lowest == array[index]){
+	  		lowestIndex = index
+	  	}
+	  }
+	  return {highestIndex, lowestIndex} 
+	  
 	  find the index of the largest using normal loop searching for equality
 	  set the position at index to rank++
 	  

@@ -28,7 +28,7 @@ public class StudentGrade{
 	  System.out.println();
 	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
 	  System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
-	  System.out.println(displayClassSummary(scoreSheet, numberOfSubject));
+	  System.out.println(displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent));
 	
 	}
 	
@@ -146,21 +146,65 @@ public class StudentGrade{
 	  return result;
 	}
 	
-	public static int getIndexOfHighest(double[] column){
-	
-	
-	  return 1;
+	public static int getIndexOfHighest(double[] list){
+	  int listLength = list.length;
+		double[] sortedList = Arrays.copyOf(list, listLength);
+	  Arrays.sort(sortedList);
+	  double highest = sortedList[listLength - 1];
+	  int highestIndex = 0;
+	  for(int index = 0; index < listLength; index += 1){
+	  	if(highest == list[index]){
+	  	  highestIndex = index;
+	  	  break; 
+	  	}
+	  }
+	  return highestIndex;
 	}
 	
-	public static int getIndexOfLowest(double[] column){//TODO
-	  return 1;
-	}
-		public static int getIndexOfHighest(int[] column){//TODO
-	  return 1;
+  public static int getIndexOfHighest(int[] list){
+    int listLength = list.length;
+		int[] sortedList = Arrays.copyOf(list, listLength);
+	  Arrays.sort(sortedList);
+	  int highest = sortedList[listLength - 1];
+	  int highestIndex = 0;
+	  for(int index = 0; index < listLength; index += 1){
+	  	if(highest == list[index]){
+	  	  highestIndex = index;
+	  	  break; 
+	  	}
+	  }
+	  return highestIndex;
+  }
+  
+	public static int getIndexOfLowest(double[] list){
+	  int listLength = list.length;
+		double[] sortedList = Arrays.copyOf(list, listLength);
+	  Arrays.sort(sortedList);
+	  double lowest = sortedList[0];
+	  int lowestIndex = 0;
+	  for(int index = 0; index < listLength; index += 1){
+	  	if(lowest == list[index]){
+	  	  lowestIndex = index; 
+	  	  break; 
+	  	}
+	  }
+	  return lowestIndex;           
 	}
 	
-	public static int getIndexOfLowest(int[] column){//TODO
-	  return 1;
+	
+	public static int getIndexOfLowest(int[] list){
+	  int listLength = list.length;
+		int[] sortedList = Arrays.copyOf(list, listLength);
+	  Arrays.sort(sortedList);
+	  int lowest = sortedList[0];
+	  int lowestIndex = 0;
+	  for(int index = 0; index < listLength; index += 1){
+	  	if(lowest == list[index]){
+	    	lowestIndex = index; 
+	    	break; 
+	  	}
+	  }
+	  return lowestIndex;           
 	}
 	
 	public static int getNumbersThatPassed(double[] column, int passMark){
@@ -180,12 +224,12 @@ public class StudentGrade{
 	}
 	
 	
-	public static String displayClassSummary(double[][] scoreSheet, int numberOfSubject){
+	public static String displayClassSummary(double[][] scoreSheet, int numberOfSubject, int numberOfStudent){
 	
 	  int hardestSubjectIndex = getHardestSubject(scoreSheet, numberOfSubject);
 	  int easiestSubjectIndex = getEasiestSubject(scoreSheet, numberOfSubject);
     int[] passes = subjectToPassList(scoreSheet, numberOfSubject);
-    int hardestSubjectFails = numberOfSubject - passes[hardestSubjectIndex];
+    int hardestSubjectFails = numberOfStudent - passes[hardestSubjectIndex];
 	  int easiestSubjectPasses = passes[easiestSubjectIndex];
 	  
 	  
@@ -206,8 +250,8 @@ public class StudentGrade{
     double averageScore = getClassAverageScore(scoreSheet, totalColumn);
 
 
-	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex+1), hardestSubjectFails);
-	  result += String.format("The easiest subject is Subject %d with %d passes%n", easiestSubjectIndex, easiestSubjectPasses);
+	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex + 1), hardestSubjectFails);
+	  result += String.format("The easiest subject is Subject %d with %d passes%n", (easiestSubjectIndex + 1), easiestSubjectPasses);
 	  
 	  
 	  //result += String.format("The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
@@ -221,12 +265,12 @@ public class StudentGrade{
 	  result += divider("=");
 	  result += "\n";
 	  result += divider("!");
-	  result += String.format("Best Graduating Student is: Student %d scoring %.0f%n", (worstStudentIndex+1), worstStudentTotal);
+	  result += String.format("Worst Graduating Student is: Student %d scoring %.0f%n", (worstStudentIndex+1), worstStudentTotal);
 	  result += divider("!");	  
 	  result += "\n";
 	  result += divider("=");
 	  result += String.format("Class total score is: %.0f%n", totalScore);
-	  result += String.format("Class Average score is: %.0f%n", averageScore);
+	  result += String.format("Class Average score is: %.2f%n", averageScore);
 	  result += divider("=");
 	  return result;
 	}
