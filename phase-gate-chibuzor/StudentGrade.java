@@ -137,7 +137,7 @@ public class StudentGrade{
 	      
 	      result += String.format("Subject %d%n", (index+1));
 	      result += String.format("Highest scoring student is: Student %d scoring %.0f%n", (highestSubjectIndex + 1), highestSubjectScore);
-	      result += String.format("Highest scoring student is: Student %d scoring %.0f%n", (lowestSubjectIndex + 1), lowestSubjectScore);
+	      result += String.format("Lowest scoring student is: Student %d scoring %.0f%n", (lowestSubjectIndex + 1), lowestSubjectScore);
 	      result += String.format("The total score is: %.0f%n", totalSubjectScore);
 	      result += String.format("Average Score is: %.0f%n", totalSubjectScore);
 	      result += String.format("Number of passes: %d%n", numberThatPasses);
@@ -146,7 +146,9 @@ public class StudentGrade{
 	  return result;
 	}
 	
-	public static int getIndexOfHighest(double[] column){//TODO
+	public static int getIndexOfHighest(double[] column){
+	
+	
 	  return 1;
 	}
 	
@@ -204,11 +206,13 @@ public class StudentGrade{
     double averageScore = getClassAverageScore(scoreSheet, totalColumn);
 
 
-	  
 	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex+1), hardestSubjectFails);
 	  result += String.format("The easiest subject is Subject %d with %d passes%n", easiestSubjectIndex, easiestSubjectPasses);
+	  
+	  
 	  //result += String.format("The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
     //result += String.format("The overall Lowest score is scored by student %d in subject %d scoring %.0f%n", overallLowestScoreStudent, overallLowestScoreSubject, overallLowestScore);
+    
 	  result += divider("=");
 	  result += "\n";
 	  result += "CLASS SUMMARY\n";
@@ -226,8 +230,6 @@ public class StudentGrade{
 	  result += divider("=");
 	  return result;
 	}
-	
-	
 	
 	public static double[][] flipTable(double[][] table, int row, int col){
 	  double[][] flippedTable = new double[col][row];
