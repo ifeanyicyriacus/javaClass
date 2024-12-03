@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class StudentGrade{
 	public static void main(String[] args){
@@ -25,7 +26,7 @@ public class StudentGrade{
 	  }
 	  
 	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
-	  
+	  //System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
 	
 	
 	}
@@ -93,13 +94,28 @@ public class StudentGrade{
 	}
 	
 	public static void addPositionToSheet(double[][] scoreSheet){
-	  //int positionCol = scoreSheet[0].length - 1;
+	  int positionCol = scoreSheet[0].length - 1;
+	  int averageCol = scoreSheet[0].length - 2;
+	  double[] averages = new double[scoreSheet.length];
+	  for (int index = 0; index < scoreSheet.length; index += 1){
+	    averages[index] = scoreSheet[index][averageCol];
+	  }
+	  double sortedAverages = Arrays.copyOf(averages, averages.length);
+	  Arrays.sort(sortedAverages);
+	  int rank = averages.length;
 	  
-	  
-	  for first student total
-	    find position in an array of sorted totals
-	  
+	  for (int indexSorted = 0; index < sortedAverages.length; index += 1){
+	    for(int indexOriginal = 0; index < averages.length; index += 1){
+	      if (sortedAverages[index] == averages[indexOriginal]){
+	        scoreSheet[indexOriginal][positionCol] = rank--;
+	      }      
+	    }
+	  }
 	}
 	
+	public static String displaySubjectSummary(double[][] scoreSheet, int numberOfSubject){
+	
+	  return "";
+	}
 	
 }

@@ -24,3 +24,25 @@ subjectSummary function(array, subject_index)
 	foreach subject
 		highest scoring student is: 
 		
+for position
+	  strip the last 2 column avg and pos
+	  
+
+==================================================
+        STUDENT  SUB 1  SUB 2    TOT    AVE    POS
+==================================================
+      Student 1     11     12     23  11.50      0  
+      Student 2     22     23     45  22.50      0  
+==================================================
+==================================================
+
+an array of the 3col index
+
+[11.50, 22.50]
+if you are the highest your position among rows without(0) pos value index++ = 1
+
+	  largest = last element from Arrays.sort
+	  find the index of the largest using normal loop searching for equality
+	  set the position at index to rank++
+	  
+	  
