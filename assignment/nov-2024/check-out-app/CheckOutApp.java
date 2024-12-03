@@ -24,7 +24,7 @@ public class CheckOutApp{
     
     System.out.println("Enter you name to sign off: ");
     String cashierName = input.nextLine();
-    System.out.println("Enter discount amount: ");
+    System.out.println("Enter discount rate: ");
     double discountRate = input.nextDouble() / 100;
     
     double subTotal = calculateSubTotal(productQtyPriceAndTotalList);
@@ -69,7 +69,7 @@ public class CheckOutApp{
     String dashesEqual = "=".repeat(50) +"\n";
     String dashesMinus = "-".repeat(50) +"\n";
     
-    message += String.format("Date = %s%n", new Date());
+    message += String.format("Date: %s%n", new Date());
     message += String.format("Cashier: %s%n", cashierName);
     message += String.format("Customer name: %s%n", customerName);
     message += dashesEqual;

@@ -8,7 +8,7 @@ public class PrimeNumber{
 	  int index = 0;
 	  for (int indexA = 2; indexA < number; indexA += 1){
 	    for (int indexB = indexA; indexB < number; indexB += 1){
-        if (ifExistInArray(newList, indexB) && primeChecker(indexB)){
+        if (ifExistInArray(newList, indexB) && isPrime(indexB)){
           newList = Arrays.copyOf(newList, length++);
           newList[index] = indexB;
           index += 1;
@@ -19,7 +19,7 @@ public class PrimeNumber{
 	}
 	
 	
-	public static boolean primeChecker(int number){
+	public static boolean isPrime(int number){
 	  for (int index = 2; index < number; index += 1){
         if (number % index == 0)
             return false;
