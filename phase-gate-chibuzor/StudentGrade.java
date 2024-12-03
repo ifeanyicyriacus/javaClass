@@ -28,7 +28,7 @@ public class StudentGrade{
 	  System.out.println();
 	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
 	  System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
-	
+	  System.out.println(displayClassSummary(scoreSheet, numberOfSubject));
 	
 	}
 	
@@ -72,7 +72,7 @@ public class StudentGrade{
 	  }
 	}
 	
-	public static double getSumOfList(double[] list, int start = 0, int stop = list.length){//TODO
+	public static double getSumOfList(double[] list, int start, int stop){
 	  double sum = 0;
 	  for(int index = start; index < stop; index += 1){
 	    sum += list[index];
@@ -88,7 +88,7 @@ public class StudentGrade{
 	  }
 	}
 	
-	public static double getAverageOf(double[] list, int start = 0, int stop = list.length){//TODO
+	public static double getAverageOf(double[] list, int start, int stop){
 	  int noOfvalues = stop - start;
 	  double sum = getSumOfList(list, start, stop);
 	  return (sum / (double)noOfvalues);
@@ -124,36 +124,37 @@ public class StudentGrade{
 	  String result = "SUBJECT SUMMARY\n";
 	  int PASS_MARK = 50;
 
-    //loop through subjects
-	    result += String.format("Subject %d%n", (index+1));
-	    
 	    for (int index = 0; index < numberOfSubject; index += 1){
 	      double[] subjectScores = pluckDoubleColumn(scoreSheet, index);
 	      int highestSubjectIndex = getIndexOfHighest(subjectScores);
 	      int lowestSubjectIndex = getIndexOfLowest(subjectScores);
-	      double totalSubjectScore = getSumOfList(subjectScores);
-	      double subjectAverage = getAverageOf(subjectScores);
-	      int numberThatPassed = getNumbersThatPassed(subjectScores, passMark = PASS_MARK);
-	      int numberThatFailed = (subjectScores.length) - numberThatPassed;
+	      double totalSubjectScore = getSumOfList(subjectScores, 0, subjectScores.length);
+	      double subjectAverage = getAverageOf(subjectScores, 0, subjectScores.length);
+	      int numberThatPasses = getNumbersThatPassed(subjectScores, PASS_MARK);
+	      int numberThatFails = (subjectScores.length) - numberThatPasses;
+	      double highestSubjectScore = scoreSheet[highestSubjectIndex][index];
+	      double lowestSubjectScore = scoreSheet[lowestSubjectIndex][index];
 	      
-	    //make it modular
-	    //result += String.format("Highest scoring student is: Student %d scoring %.0f", subject[index][student], subject[index][score]);
-	    
+	      result += String.format("Subject %d%n", (index+1));
+	      result += String.format("Highest scoring student is: Student %d scoring %.0f%n", (highestSubjectIndex + 1), highestSubjectScore);
+	      result += String.format("Highest scoring student is: Student %d scoring %.0f%n", (lowestSubjectIndex + 1), lowestSubjectScore);
+	      result += String.format("The total score is: %.0f%n", totalSubjectScore);
+	      result += String.format("Average Score is: %.0f%n", totalSubjectScore);
+	      result += String.format("Number of passes: %d%n", numberThatPasses);
+	      result += String.format("Number of fails: %d%n%n", numberThatFails);
 	    }
-	  
-	  
 	  return result;
 	}
 	
-	public static int getIndexOfHighest(double[] column){
-	
+	public static int getIndexOfHighest(double[] column){//TODO
+	  return 1;
 	}
 	
-	public static int getIndexOfLowest(double[] column){
-	
+	public static int getIndexOfLowest(double[] column){//TODO
+	  return 1;
 	}
 	
-	public static int getNumbersThatPassed(double[] column, int passMark = 50){
+	public static int getNumbersThatPassed(double[] column, int passMark){
 	  int passCount = 0;
 	  for (double value: column){
 	    if (value >= passMark){ passCount += 1; }
@@ -168,5 +169,56 @@ public class StudentGrade{
 	  }
 	  return result;
 	}
+	
+	
+	public static String displayClassSummary(double[][] scoreSheet, int numberOfSubject){
+	
+	  int hardestSubjectIndex = getHardestSubject(scoreSheet);
+	  int hardestSubjectFails = scoreSheet[0].length - getNumbersThatPassed(scoreSheet[hardestSubjectIndex], 50)
+	  int easiestSubjectIndex = getEasiestSubject(scoreSheet)
+	  int easiestSubjectPasses = getNumbersThatPassed(scoreSheet[easiestSubjectIndex], 50)
+	  
+	  int[] overallHighest= getOverallHighestscore()
+	  highestSubjectScore = overallHighest[0]
+	  highestScore = overallHighest[0]
+	  double OverallHighestStudentScore = 
+	  getOverallLowestStudentIndex()
+	  double OverallLowestStudentScore = 
+	
+	  
+	  
+	  
+	  //printing
+	}
+	
+	
+	
+	public static double[][] flipTable(double[][] table, int startRow, int stopRow, int startCol, int stopCol){
+	  double[][] flippedTable = new double[startCol - stopCol][stopRow - startRow];
+	  int flipRowIndex = 0; int flipColIndex = 0;
+	  for (int rowIndex = startRow; rowIndex < stopRow; rowIndex += 1){
+	    for (int colIndex = startCol; colIndex < stopCol; stopCol += 1){
+	      flippedTable[flipColIndex][flipRowIndex] = table[rowIndex][colIndex];
+	      flipRowIndex += 1;
+	    }
+	    flipColIndex += 1;
+	  }
+	  return flippedTable;
+	}
+	
+	public static int getHardestSubject(double[][] scoreSheet,){
+	  flipTable(scoreSheet, 0, )
+	  array of passes wrt subjects
+	    that is for each subject get the passes
+	  getIndexOfLowest(array)
+	  return index
+	}
+	
+	public static int getEasiestSubject(double[][] scoreSheet){
+	  arrays of passes wrt subjects
+	  getIndexOfHighest(array)
+	  return index
+	}
+	
 	
 }
