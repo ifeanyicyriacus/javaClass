@@ -60,4 +60,28 @@ if you are the highest your position among rows without(0) pos value index++ = 1
 	  find the index of the largest using normal loop searching for equality
 	  set the position at index to rank++
 	  
-	  
+overall highest and lowest:(scoresheet)
+
+overallHighestRow = 0; overallHighestCol = 0
+first make overallHighest == scoresheet[overallHighestRow][overallHighestCol]
+loop through students(row)
+	loop through subjects(col)
+			if (overallHighest < scoresheet[row][col]){
+				overallHighest = scoresheet[row][col]
+				overallHighestRow = row
+				overallHighestCol = col
+			}
+			return {overallHighestRow, overallHighestCol, overallHighest}
+--------------------------------
+			
+		//for Lowest
+overallLowestRow = 0; overallLowestCol = 0
+first make overallLowest == scoresheet[overallLowestRow][overallLowestCol]
+loop through students(row)
+	loop through subjects(col)
+			if (overallLowest > scoresheet[row][col]){
+				overallLowest = scoresheet[row][col]
+				overallLowestRow = row
+				overallLowestCol = col
+			}
+			return {overallHighestRow, overallHighestCol, overallHighest}

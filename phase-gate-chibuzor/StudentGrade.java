@@ -232,14 +232,15 @@ public class StudentGrade{
     int hardestSubjectFails = numberOfStudent - passes[hardestSubjectIndex];
 	  int easiestSubjectPasses = passes[easiestSubjectIndex];
 	  
+	  double[] overallHighest = overallHighest(scoreSheet, numberOfSubject);
+	  int overallHighestScoreStudent = (int) overallHighest[0] + 1;
+	  int overallHighestScoreSubject = (int) overallHighest[1] + 1;
+	  double overallHighestScore = overallHighest[2];
 	  
-	  //let the overall function return a 1x3 array
-	  //overallHighestScore
-	  //overallHighestScoreSubject//add1
-	  //overallHighestScoreStudent//add1
-	  //overallLowestScore
-	  //overallLowestScoreSubject
-	  //overallLowestScoreStudent
+	  double[] overallLowest = overallLowest(scoreSheet, numberOfSubject);
+	  int overallLowestScoreStudent = (int) overallLowest[0] + 1;
+	  int overallLowestScoreSubject = (int) overallLowest[1] + 1;
+	  double overallLowestScore = overallLowest[2];
 	  
     int totalColumn = numberOfSubject; 
     int bestStudentIndex = getBestStudentIndex(scoreSheet, totalColumn);
@@ -253,9 +254,8 @@ public class StudentGrade{
 	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex + 1), hardestSubjectFails);
 	  result += String.format("The easiest subject is Subject %d with %d passes%n", (easiestSubjectIndex + 1), easiestSubjectPasses);
 	  
-	  
-	  //result += String.format("The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
-    //result += String.format("The overall Lowest score is scored by student %d in subject %d scoring %.0f%n", overallLowestScoreStudent, overallLowestScoreSubject, overallLowestScore);
+	  result += String.format("The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
+    result += String.format("The overall Lowest score is scored by student %d in subject %d scoring %.0f%n", overallLowestScoreStudent, overallLowestScoreSubject, overallLowestScore);
     
 	  result += divider("=");
 	  result += "\n";
@@ -274,6 +274,38 @@ public class StudentGrade{
 	  result += divider("=");
 	  return result;
 	}
+	
+	public static double[] overallHighest(double[][] scoresheet, int numberOfSubject){
+    int overallHighestRow = 0; int overallHighestCol = 0;
+    double[] result = new double[3];
+    double overallHighest = scoresheet[overallHighestRow][overallHighestCol];
+    for(int row = 0; row < scoresheet.length; row += 1){
+      for(int col = 0; col < numberOfSubject; col += 1){
+        if (overallHighest < scoresheet[row][col]){
+	        result[0] = row;
+	        result[1] = col;
+	        result[2] = scoresheet[row][col];
+        }
+      }
+    }
+    return result;
+	}
+	
+	public static double[] overallLowest(double[][] scoresheet, int numberOfSubject){
+    int overallLowestRow = 0; int overallLowestCol = 0;
+    double[] result = new double[3];
+    double overallLowest = scoresheet[overallLowestRow][overallLowestCol];
+    for(int row = 0; row < scoresheet.length; row += 1){
+      for(int col = 0; col < numberOfSubject; col += 1){
+        if (overallLowest > scoresheet[row][col]){
+	        result[0] = row;
+	        result[1] = col;
+	        result[2] = scoresheet[row][col];
+        }
+      }
+    }
+    return result;
+	}	
 	
 	public static double[][] flipTable(double[][] table, int row, int col){
 	  double[][] flippedTable = new double[col][row];
