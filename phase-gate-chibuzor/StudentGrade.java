@@ -153,6 +153,13 @@ public class StudentGrade{
 	public static int getIndexOfLowest(double[] column){//TODO
 	  return 1;
 	}
+		public static int getIndexOfHighest(int[] column){//TODO
+	  return 1;
+	}
+	
+	public static int getIndexOfLowest(int[] column){//TODO
+	  return 1;
+	}
 	
 	public static int getNumbersThatPassed(double[] column, int passMark){
 	  int passCount = 0;
@@ -173,22 +180,28 @@ public class StudentGrade{
 	
 	public static String displayClassSummary(double[][] scoreSheet, int numberOfSubject){
 	
-	  int hardestSubjectIndex = getHardestSubject(scoreSheet);
-	  int hardestSubjectFails = scoreSheet[0].length - getNumbersThatPassed(scoreSheet[hardestSubjectIndex], 50)
-	  int easiestSubjectIndex = getEasiestSubject(scoreSheet)
-	  int easiestSubjectPasses = getNumbersThatPassed(scoreSheet[easiestSubjectIndex], 50)
+	  int hardestSubjectIndex = getHardestSubject(scoreSheet, numberOfSubject);
+	  int easiestSubjectIndex = getEasiestSubject(scoreSheet, numberOfSubject);
+    int[] passes = subjectToPassList(scoreSheet, numberOfSubject);
+    int hardestSubjectFails = numberOfSubject - passes[hardestSubjectIndex];
+	  int easiestSubjectPasses = passes[easiestSubjectIndex];
 	  
-	  int[] overallHighest= getOverallHighestscore()
-	  highestSubjectScore = overallHighest[0]
-	  highestScore = overallHighest[0]
-	  double OverallHighestStudentScore = 
-	  getOverallLowestStudentIndex()
-	  double OverallLowestStudentScore = 
+	  
+	  //let the overall function return a 1x3 array
+	  //overallHighestScore
+	  //overallHighestScoreSubject
+	  //overallHighestScoreStudent
+	  //overallLowestScore
+	  //overall lowest scote subject
+	  //overall lowest score student
+	  
 	
 	  
+	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex+1), hardestSubjectFails);
+	  result += String.format("The easiest subject is Subject %d with %d passes%n", easiestSubjectIndex, easiestSubjectPasses);
+	  result += String.format("The overall Highest score is scored by student %d in");
 	  
-	  
-	  //printing
+	  return "";
 	}
 	
 	
@@ -206,19 +219,47 @@ public class StudentGrade{
 	  return flippedTable;
 	}
 	
-	public static int getHardestSubject(double[][] scoreSheet,){
-	  flipTable(scoreSheet, 0, )
-	  array of passes wrt subjects
-	    that is for each subject get the passes
-	  getIndexOfLowest(array)
-	  return index
+	public static int getHardestSubject(double[][] scoreSheet, int numberOfSubject){
+	  int[] passes = subjectToPassList(scoreSheet, numberOfSubject);
+	  return getIndexOfLowest(passes);
 	}
 	
-	public static int getEasiestSubject(double[][] scoreSheet){
-	  arrays of passes wrt subjects
-	  getIndexOfHighest(array)
-	  return index
+	public static int getEasiestSubject(double[][] scoreSheet, int numberOfSubject){    
+	  int[] passes = subjectToPassList(scoreSheet, numberOfSubject);
+	  return getIndexOfHighest(passes);
 	}
+	
+	public static int[] subjectToPassList(double[][] scoreSheet, int numberOfSubject){
+	  int numberOfStudent = scoreSheet.length;
+	  double[][] flippedTable = flipTable(scoreSheet, 0, numberOfSubject, 0, numberOfSubject);
+	  int[] passes = new int[numberOfSubject];
+	  int index = 0;
+	  for (double[] subjectScores : flippedTable){
+	    passes[index++] = getNumbersThatPassed(subjectScores, 50);
+	  }
+	  return passes;
+	}
+	
+	public static int getBestStudentIndex(double[][] scoreSheet, int colIndex){
+	  double[] totalsColumn = pluckDoubleColumn(scoreSheet, colIndex);
+	  return getIndexOfHighest(totalsColumn);
+	}
+	
+	public static int getWorstStudentIndex(double[][] scoreSheet, int colIndex){
+	  double[] totalsColumn = pluckDoubleColumn(scoreSheet, colIndex);
+	  return getIndexOfLowest(totalsColumn);
+	}
+	
+	public static double getClassTotalScore(double[][] scoreSheet, int colIndex){
+	  double[] totalsColumn = pluckDoubleColumn(scoreSheet, colIndex);
+	  return getSumOfList(totalsColumn, 0, totalsColumn.length);
+	}
+	
+	public static double getClassAverageScore(double[][] scoreSheet, int colIndex){
+	  double[] averageColumn = pluckDoubleColumn(scoreSheet, colIndex);
+	  return getAverageOf(averageColumn, 0, averageColumn.length);
+	}	
+	
 	
 	
 }
