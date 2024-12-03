@@ -25,8 +25,9 @@ public class StudentGrade{
 	    }
 	  }
 	  
+	  System.out.println();
 	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
-	  //System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
+	  System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
 	
 	
 	}
@@ -71,7 +72,7 @@ public class StudentGrade{
 	  }
 	}
 	
-	public static double getSumOfList(double[] list, int start, int stop){
+	public static double getSumOfList(double[] list, int start = 0, int stop = list.length){//TODO
 	  double sum = 0;
 	  for(int index = start; index < stop; index += 1){
 	    sum += list[index];
@@ -87,7 +88,7 @@ public class StudentGrade{
 	  }
 	}
 	
-	public static double getAverageOf(double[] list, int start, int stop){
+	public static double getAverageOf(double[] list, int start = 0, int stop = list.length){//TODO
 	  int noOfvalues = stop - start;
 	  double sum = getSumOfList(list, start, stop);
 	  return (sum / (double)noOfvalues);
@@ -96,26 +97,76 @@ public class StudentGrade{
 	public static void addPositionToSheet(double[][] scoreSheet){
 	  int positionCol = scoreSheet[0].length - 1;
 	  int averageCol = scoreSheet[0].length - 2;
-	  double[] averages = new double[scoreSheet.length];
+	  double[] averages = pluckDoubleColumn(scoreSheet, averageCol);
+
+	  int[] posRank = getRanks(averages);
 	  for (int index = 0; index < scoreSheet.length; index += 1){
-	    averages[index] = scoreSheet[index][averageCol];
-	  }
-	  double sortedAverages = Arrays.copyOf(averages, averages.length);
-	  Arrays.sort(sortedAverages);
-	  int rank = averages.length;
-	  
-	  for (int indexSorted = 0; index < sortedAverages.length; index += 1){
-	    for(int indexOriginal = 0; index < averages.length; index += 1){
-	      if (sortedAverages[index] == averages[indexOriginal]){
-	        scoreSheet[indexOriginal][positionCol] = rank--;
-	      }      
-	    }
+	    scoreSheet[index][positionCol] = posRank[index];
 	  }
 	}
 	
-	public static String displaySubjectSummary(double[][] scoreSheet, int numberOfSubject){
+	public static int[] getRanks(double[] numbers){
+	  double[] sortedNumbers = Arrays.copyOf(numbers, numbers.length);
+	  Arrays.sort(sortedNumbers);
+	  int rank = numbers.length;
+	  int[] result = new int[numbers.length];
+	  for (int indexSorted = 0; indexSorted < sortedNumbers.length; indexSorted += 1){
+	    for(int indexOriginal = 0; indexOriginal < numbers.length; indexOriginal += 1){
+	      if (sortedNumbers[indexSorted] == numbers[indexOriginal]){
+	        result[indexOriginal] = rank--;
+	      }
+	    }
+	  }
+	  return result;
+	}
 	
-	  return "";
+	public static String displaySubjectSummary(double[][] scoreSheet, int numberOfSubject){
+	  String result = "SUBJECT SUMMARY\n";
+	  int PASS_MARK = 50;
+
+    //loop through subjects
+	    result += String.format("Subject %d%n", (index+1));
+	    
+	    for (int index = 0; index < numberOfSubject; index += 1){
+	      double[] subjectScores = pluckDoubleColumn(scoreSheet, index);
+	      int highestSubjectIndex = getIndexOfHighest(subjectScores);
+	      int lowestSubjectIndex = getIndexOfLowest(subjectScores);
+	      double totalSubjectScore = getSumOfList(subjectScores);
+	      double subjectAverage = getAverageOf(subjectScores);
+	      int numberThatPassed = getNumbersThatPassed(subjectScores, passMark = PASS_MARK);
+	      int numberThatFailed = (subjectScores.length) - numberThatPassed;
+	      
+	    //make it modular
+	    //result += String.format("Highest scoring student is: Student %d scoring %.0f", subject[index][student], subject[index][score]);
+	    
+	    }
+	  
+	  
+	  return result;
+	}
+	
+	public static int getIndexOfHighest(double[] column){
+	
+	}
+	
+	public static int getIndexOfLowest(double[] column){
+	
+	}
+	
+	public static int getNumbersThatPassed(double[] column, int passMark = 50){
+	  int passCount = 0;
+	  for (double value: column){
+	    if (value >= passMark){ passCount += 1; }
+	  }
+	  return passCount;
+	}
+	
+	public static double[] pluckDoubleColumn(double[][] table, int columnNumber){
+	  double[] result = new double[table.length];
+	  for (int index = 0; index < table.length; index += 1){
+	    result[index] = table[index][columnNumber];
+	  }
+	  return result;
 	}
 	
 }
