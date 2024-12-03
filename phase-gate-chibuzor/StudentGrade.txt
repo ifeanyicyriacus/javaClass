@@ -1,0 +1,26 @@
+inrespective of number of student
+
+prompt the teacher to enter number of student
+prompt the teacher to enter number of subjects
+
+
+for each student
+	for each subject
+		collect score
+			prompt to collect score of student in this subject
+			only accept score between 0 and 100 else repeat prompt
+
+display class summary as follows
+
+add the total to the array
+add average to array
+
+sort the array according to total 
+add position to the array
+
+-------------
+subject summary (0 - numberOfSubject)
+subjectSummary function(array, subject_index)
+	foreach subject
+		highest scoring student is: 
+		
