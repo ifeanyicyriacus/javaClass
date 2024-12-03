@@ -37,13 +37,13 @@ public class StudentGrade{
 	  addAverageToSheet(scoreSheet, numberOfSubject);
 	  addPositionToSheet(scoreSheet);
 	  
-    String output = String.format("%s%n", "=".repeat(50));
+    String output = divider("=");
 	  output += String.format("%15s  ", "STUDENT");
 	  for(int index = 1; index <= numberOfSubject; index += 1){
 	    output += String.format("%5s  ","SUB "+index);
 	  }
 	  output += String.format("%5s  %5s  %5s%n", "TOT", "AVE", "POS");
-    output += String.format("%s%n", "=".repeat(50));
+    output += divider("=");
 	  
 	  
 	  for(int studentIndex = 0; studentIndex < scoreSheet.length; studentIndex += 1){
@@ -58,8 +58,8 @@ public class StudentGrade{
 	    
 	    output += "\n";
 	  }
-    output += String.format("%s%n", "=".repeat(50));
-    output += String.format("%s%n", "=".repeat(50));
+    output += divider("=");
+    output += divider("=");
 	  return output;
 	}
 	
@@ -189,32 +189,52 @@ public class StudentGrade{
 	  
 	  //let the overall function return a 1x3 array
 	  //overallHighestScore
-	  //overallHighestScoreSubject
-	  //overallHighestScoreStudent
+	  //overallHighestScoreSubject//add1
+	  //overallHighestScoreStudent//add1
 	  //overallLowestScore
-	  //overall lowest scote subject
-	  //overall lowest score student
+	  //overallLowestScoreSubject
+	  //overallLowestScoreStudent
 	  
-	
+    int totalColumn = numberOfSubject; 
+    int bestStudentIndex = getBestStudentIndex(scoreSheet, totalColumn);
+    double bestStudentTotal = scoreSheet[bestStudentIndex][totalColumn];
+    int worstStudentIndex = getWorstStudentIndex(scoreSheet, totalColumn);
+    double worstStudentTotal = scoreSheet[worstStudentIndex][totalColumn];
+    double totalScore = getClassTotalScore(scoreSheet, totalColumn);
+    double averageScore = getClassAverageScore(scoreSheet, totalColumn);
+
+
 	  
 	  String result = String.format("The hardest subject is Subject %d with %d failures%n", (hardestSubjectIndex+1), hardestSubjectFails);
 	  result += String.format("The easiest subject is Subject %d with %d passes%n", easiestSubjectIndex, easiestSubjectPasses);
-	  result += String.format("The overall Highest score is scored by student %d in");
-	  
-	  return "";
+	  //result += String.format("The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
+    //result += String.format("The overall Lowest score is scored by student %d in subject %d scoring %.0f%n", overallLowestScoreStudent, overallLowestScoreSubject, overallLowestScore);
+	  result += divider("=");
+	  result += "\n";
+	  result += "CLASS SUMMARY\n";
+	  result += divider("=");
+	  result += String.format("Best Graduating Student is: Student %d scoring %.0f%n", (bestStudentIndex+1), bestStudentTotal);
+	  result += divider("=");
+	  result += "\n";
+	  result += divider("!");
+	  result += String.format("Best Graduating Student is: Student %d scoring %.0f%n", (worstStudentIndex+1), worstStudentTotal);
+	  result += divider("!");	  
+	  result += "\n";
+	  result += divider("=");
+	  result += String.format("Class total score is: %.0f%n", totalScore);
+	  result += String.format("Class Average score is: %.0f%n", averageScore);
+	  result += divider("=");
+	  return result;
 	}
 	
 	
 	
-	public static double[][] flipTable(double[][] table, int startRow, int stopRow, int startCol, int stopCol){
-	  double[][] flippedTable = new double[startCol - stopCol][stopRow - startRow];
-	  int flipRowIndex = 0; int flipColIndex = 0;
-	  for (int rowIndex = startRow; rowIndex < stopRow; rowIndex += 1){
-	    for (int colIndex = startCol; colIndex < stopCol; stopCol += 1){
-	      flippedTable[flipColIndex][flipRowIndex] = table[rowIndex][colIndex];
-	      flipRowIndex += 1;
+	public static double[][] flipTable(double[][] table, int row, int col){
+	  double[][] flippedTable = new double[col][row];
+	  for (int rowIndex = 0; rowIndex < row; rowIndex += 1){
+	    for (int colIndex = 0; colIndex < col; colIndex += 1){
+	      flippedTable[colIndex][rowIndex] = table[rowIndex][colIndex];
 	    }
-	    flipColIndex += 1;
 	  }
 	  return flippedTable;
 	}
@@ -231,7 +251,7 @@ public class StudentGrade{
 	
 	public static int[] subjectToPassList(double[][] scoreSheet, int numberOfSubject){
 	  int numberOfStudent = scoreSheet.length;
-	  double[][] flippedTable = flipTable(scoreSheet, 0, numberOfSubject, 0, numberOfSubject);
+	  double[][] flippedTable = flipTable(scoreSheet, numberOfStudent, numberOfSubject);
 	  int[] passes = new int[numberOfSubject];
 	  int index = 0;
 	  for (double[] subjectScores : flippedTable){
@@ -259,7 +279,9 @@ public class StudentGrade{
 	  double[] averageColumn = pluckDoubleColumn(scoreSheet, colIndex);
 	  return getAverageOf(averageColumn, 0, averageColumn.length);
 	}	
-	
+	public static String divider(String character){
+	  return String.format("%s%n", character.repeat(50));
+	}
 	
 	
 }
