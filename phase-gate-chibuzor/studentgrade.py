@@ -7,27 +7,27 @@ def collectScores(scoreSheet:list, numberOfStudent:int, numberOfSubject:int) -> 
             print("Saving >>>>>>>>>>>>>>>>>>>>>>>>\nSaved Succesfully");
         scoreSheet.insert(studentIndex, temp_list)
     
-def displayTheScoreSheet(scoreSheet, numberOfSubject) -> str:
+def displayTheScoreSheet(scoreSheet:list, numberOfSubject:int) -> str:
     addTotalToSheet(scoreSheet, numberOfSubject)
     addAverageToSheet(scoreSheet, numberOfSubject)
-    addPositionToSheet(scoreSheet)
+    addPositionToSheet(scoreSheet, numberOfSubject)
     
     output = divider("=")
-    output += f"\n{'STUDENT':>10}"
+    output += f"\n{'STUDENT':<10}"
     for index in range(numberOfSubject):
-        output += f"SUB {index:<5}"
+        output += f"{'SUB' + str(index+1):>5}"
     
     output += f"{'TOT':>5}  {'AVE':>5}  {'POS':>5}\n"
     output += divider("=")
     
     for studentIndex in range(len(scoreSheet)):
-        output += f"\nStudent {studentIndex + 1:>10}"
-        for subjectIndex in range(numberOfSubject):
+        output += f"\n {'Student' + str(studentIndex + 1):<10}"
+        for subjectIndex in range(numberOfSubject+1):
             output += f"{scoreSheet[studentIndex][subjectIndex]:>5.0f}"
             
         length = len(scoreSheet[studentIndex])
-        output += f"{scoreSheet[studentIndex][length - 2]:>5.2f}  "
-        output += f"{scoreSheet[studentIndex][length - 1]:>5.2f}  "
+        output += f"  {scoreSheet[studentIndex][length - 2]:>5.2f}  "
+        output += f"{scoreSheet[studentIndex][length - 1]:>5.0f}  "
         output += "\n"
         
     output += divider("=")
@@ -55,9 +55,9 @@ def getAverageOf(num_list:list, start:int, stop:int) -> float:
     total = getSumOfList(num_list, start, stop)
     return total / float(noOfvalues)
 
-def addPositionToSheet(scoreSheet:list) -> None:
-    positionCol = len(scoreSheet[0]) - 1
-    averageCol = len(scoreSheet[0]) - 2
+def addPositionToSheet(scoreSheet:list, numberOfSubject:int) -> None:
+    positionCol = numberOfSubject + 2
+    averageCol = numberOfSubject + 1
     averages = pluckDoubleColumn(scoreSheet, averageCol)
 
     posRank = getRanks(averages)
@@ -147,26 +147,26 @@ def displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent) -> str:
     hardestSubjectFails = numberOfStudent - passes[hardestSubjectIndex]
     easiestSubjectPasses = passes[easiestSubjectIndex]
     
-    overallHighest = overallHighest(scoreSheet, numberOfSubject)
-    overallHighestScoreStudent = int(overallHighest[0]) + 1
-    overallHighestScoreSubject = int(overallHighest[1]) + 1
-    overallHighestScore = overallHighest[2]
+    overallHighestInfo = overallHighest(scoreSheet, numberOfSubject)
+    overallHighestScoreStudent = int(overallHighestInfo[0]) + 1
+    overallHighestScoreSubject = int(overallHighestInfo[1]) + 1
+    overallHighestScore = overallHighestInfo[2]
     
-    overallLowest = overallLowest(scoreSheet, numberOfSubject)
-    overallLowestScoreStudent = int(overallLowest[0]) + 1
-    overallLowestScoreSubject = int(overallLowest[1]) + 1
-    overallLowestScore = overallLowest[2]
+    overallLowestInfo = overallLowest(scoreSheet, numberOfSubject)
+    overallLowestScoreStudent = int(overallLowestInfo[0]) + 1
+    overallLowestScoreSubject = int(overallLowestInfo[1]) + 1
+    overallLowestScore = overallLowestInfo[2]
     
-    totalColumn = numberOfSubject; 
-    bestStudentIndex = getBestStudentIndex(scoreSheet, totalColumn);
-    bestStudentTotal = scoreSheet[bestStudentIndex][totalColumn];
-    worstStudentIndex = getWorstStudentIndex(scoreSheet, totalColumn);
-    worstStudentTotal = scoreSheet[worstStudentIndex][totalColumn];
-    totalScore = getClassTotalScore(scoreSheet, totalColumn);
-    averageScore = getClassAverageScore(scoreSheet, totalColumn);
+    totalColumn = numberOfSubject
+    bestStudentIndex = getBestStudentIndex(scoreSheet, totalColumn)
+    bestStudentTotal = scoreSheet[bestStudentIndex][totalColumn]
+    worstStudentIndex = getWorstStudentIndex(scoreSheet, totalColumn)
+    worstStudentTotal = scoreSheet[worstStudentIndex][totalColumn]
+    totalScore = getClassTotalScore(scoreSheet, totalColumn)
+    averageScore = getClassAverageScore(scoreSheet, totalColumn)
     
-    result = f"The hardest subject is Subject {hardestSubjectIndex + 1} with {hardestSubjectFails} failures%n"
-    result += f"The easiest subject is Subject {easiestSubjectIndex + 1} with {easiestSubjectPasses} passes%n"
+    result = f"The hardest subject is Subject {hardestSubjectIndex + 1} with {hardestSubjectFails} failures\n"
+    result += f"The easiest subject is Subject {easiestSubjectIndex + 1} with {easiestSubjectPasses} passes\n"
     result += f"The overall Highest score is scored by student {overallHighestScoreStudent} in subject {overallHighestScoreSubject} scoring {overallHighestScore:>.0f}\n"
     result += f"The overall Lowest score is scored by student {overallLowestScoreStudent} in subject {overallLowestScoreSubject} scoring {overallLowestScore:>.0f}\n"
     
@@ -183,7 +183,7 @@ def displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent) -> str:
     result += "\n"
     result += divider("=")
     result += f"Class total score is: {totalScore:>.0f}\n"
-    result += f"Class Average score is: {averageScore:>.2f}\n"
+    result += f"Class average score is: {averageScore:>.2f}\n"
     result += divider("=")
     return result;
     
@@ -208,7 +208,7 @@ def overallLowest(scoresheet, numberOfSubject) -> list:
     overallLowest = scoresheet[overallLowestRow][overallLowestCol]
     for row in range(len(scoresheet)):
         for col in range(numberOfSubject):
-            if overallLowest < scoresheet[row][col]:
+            if overallLowest > scoresheet[row][col]:
                 result.insert(0, row)
                 result.insert(1, col)
                 overallLowest = scoresheet[row][col]
@@ -217,13 +217,16 @@ def overallLowest(scoresheet, numberOfSubject) -> list:
     
 def flipTable(table:list, row:int, col:int) -> list:
     flippedTable = []
+    hasGeneratedRequiredCol = False
     for rowIndex in range(row):
-        temp = []
         for colIndex in range(col):
-            temp.append(table[rowIndex][colIndex])
-        flippedTable.insert(colIndex, temp)
-            
+            if hasGeneratedRequiredCol == False:
+                flippedTable.insert(colIndex, [table[rowIndex][colIndex]])
+            else:
+                flippedTable[colIndex].append(table[rowIndex][colIndex])
+        hasGeneratedRequiredCol = True 
     return flippedTable
+
 
 def getHardestSubject(scoreSheet:list, numberOfSubject:int) -> int:
     passes = subjectToPassList(scoreSheet, numberOfSubject)
@@ -247,20 +250,20 @@ def getBestStudentIndex(scoreSheet:list, colIndex:int) -> int:
     totalsColumn = pluckDoubleColumn(scoreSheet, colIndex)
     return getIndexOfHighest(totalsColumn)
     
-def getWorstStudentIndex(scoreSheet:list) -> int:
+def getWorstStudentIndex(scoreSheet:list, colIndex:int) -> int:
     totalsColumn = pluckDoubleColumn(scoreSheet, colIndex)
     return getIndexOfLowest(totalsColumn)
 
 def getClassTotalScore(scoreSheet:list, colIndex:int) -> float:
     totalsColumn = pluckDoubleColumn(scoreSheet, colIndex)
-    return getSumOfList(totalsColumn, 0, totalsColumn.length)
+    return getSumOfList(totalsColumn, 0, len(totalsColumn))
     
 def getClassAverageScore(scoreSheet:list, colIndex:int) -> float:
     averageColumn = pluckDoubleColumn(scoreSheet, colIndex)
-    return getAverageOf(averageColumn, 0, averageColumn.length)
+    return getAverageOf(averageColumn, 0, len(averageColumn))
     
 def divider(character:str) -> str:
-    return character * 50
+    return f"{character * 50}\n"
 
 NUMBER_OF_COLUMN_NEEDED = 3
 print("Lagbaja Schools")
@@ -273,7 +276,6 @@ print("Saving >>>>>>>>>>>>>>>>>>>>>>>>\nSaved Succesfully")
 scoreSheet = []
 collectScores(scoreSheet, numberOfStudent, numberOfSubject)
 print()
-print(scoreSheet)
 print(displayTheScoreSheet(scoreSheet, numberOfSubject))
 print(displaySubjectSummary(scoreSheet, numberOfSubject))
 print(displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent))
