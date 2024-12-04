@@ -13,11 +13,18 @@ public class StudentGrade{
 		int numberOfStudent = input.nextInt();
 		System.out.print("Enter number of subjects: ");
 		int numberOfSubject = input.nextInt();
-		
 		System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>>>\nSaved Succesfully");
 		
 		double[][] scoreSheet = new double[numberOfStudent][NUMBER_OF_COLUMN_NEEDED + numberOfSubject];
-	  
+	  collectScores(input, scoreSheet, numberOfStudent, numberOfSubject);
+	  System.out.println();
+	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
+	  System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
+	  System.out.println(displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent));
+	
+	}
+	
+	public static void collectScores(Scanner input, double[][] scoreSheet, int numberOfStudent, int numberOfSubject){
 	  for(int studentIndex = 0; studentIndex < numberOfStudent; studentIndex += 1){
 	    for(int subjectIndex = 0; subjectIndex < numberOfSubject; subjectIndex += 1){
 	      System.out.printf("Entering score for student %d\n", (studentIndex + 1));
@@ -26,12 +33,6 @@ public class StudentGrade{
 	      System.out.println("Saving >>>>>>>>>>>>>>>>>>>>>>>>\nSaved Succesfully");
 	    }
 	  }
-	  
-	  System.out.println();
-	  System.out.println(displayTheScoreSheet(scoreSheet, numberOfSubject));
-	  System.out.println(displaySubjectSummary(scoreSheet, numberOfSubject));
-	  System.out.println(displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent));
-	
 	}
 	
 	public static String displayTheScoreSheet(double[][] scoreSheet, int numberOfSubject){
