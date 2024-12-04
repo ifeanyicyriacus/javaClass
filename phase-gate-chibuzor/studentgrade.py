@@ -58,6 +58,86 @@ def addTotalToSheet(scoreSheet:list, numberOfSubject:int) -> None:
         total = getSumOfList(studentScores, 0, numberOfSubject)
         studentScores.insert(studentIndex).append(total)
              
-def getSumOfList(num_list, ) -> float:
-    
+def getSumOfList(num_list:list, start:int, stop:int) -> float:
+    return sum(num_list[start: stop])
+
+def addAverageToSheet(scoreSheet:list, numberOfSubject:int) -> None:
+    averageCol = numberOfSubject + 1
+    for studentScores in scoreSheet:
+        average = getAverageOf(studentScores, 0, numberOfSubject)
+        studentScores.insert(averageCol).append(average)
+               
+def getAverageOf(num_list:list, start:int, stop:int) -> float:
+    noOfvalues = stop - start
+    total = getSumOfList(num_list, start, stop)
+    return total / float(noOfvalues)
+
+def addPositionToSheet(scoreSheet:list) -> None:
+    positionCol = len(scoreSheet[0]) - 1
+    averageCol = len(scoreSheet[0]) - 2
+    averages = pluckDoubleColumn(scoreSheet, averageCol)
+
+    posRank = getRanks(averages)
+    index = 0
+    for studentScores in scoreSheet:
+        studentScores.insert(positionCol).append(posRank[index])
+        index += 1
         
+def getRanks(numbers:list) -> int:
+    sortedNumbers = numbers
+    sortedNumbers.sort()
+    rank = len(numbers)
+    result = numbers
+    for indexSorted in range(len(sortedNumbers)):
+        for indexOriginal in range(len(numbers)):
+            if sortedNumbers[indexSorted] == numbers[indexOriginal]:
+                result[indexOriginal] = rank
+                rank -= 1
+    return result
+    
+def displaySubjectSummary(scoreSheet:list, numberOfSubject:int) -> str:
+    result = "SUBJECT SUMMARY\n"
+    PASS_MARK = 50
+    
+    for index in range(numberOfSubject):
+        subjectScores = pluckDoubleColumn(scoreSheet, index)
+        highestSubjectIndex = getIndexOfHighest(subjectScores)
+        lowestSubjectIndex = getIndexOfLowest(subjectScores)
+        totalSubjectScore = getSumOfList(subjectScores, 0, len(subjectScores))
+        subjectAverage = getAverageOf(subjectScores, 0, len(subjectScores))
+        numberThatPasses = getNumbersThatPassed(subjectScores, PASS_MARK)
+        numberThatFails = len(subjectScores) - numberThatPasses
+        highestSubjectScore = scoreSheet[highestSubjectIndex][index]
+        lowestSubjectScore = scoreSheet[lowestSubjectIndex][index]
+
+        result += f"Subject {index+1}\n"
+        result += f"Highest scoring student is: Student {highestSubjectIndex + 1} scoring {highestSubjectScore:>.0f}\n"
+        result += f"Lowest scoring student is: Student {lowestSubjectIndex + 1} scoring {lowestSubjectScore:>.0f}\n"
+        result += f"The total score is: %.0f%n", totalSubjectScore
+        result += f"Average Score is: {totalSubjectScore:>.0f}\n"
+        result += f"Number of passes: {numberThatPasses}\n"
+        result += f"Number of fails: {numberThatFails}\n\n"
+    return result
+    
+
+def getIndexOfHighest(numlist:list) -> int:
+    listLength = len(numList)
+    sortedList = numlist
+    sortedList.sort()
+    highest = sortedList[listLength - 1]
+    highestIndex = 0
+    for index in range(listLength):
+        if highest == numlist[index]:
+            highestIndex = index
+            break
+    return highestIndex
+    
+def getIndexOfHighest(numlist:list) -> 
+
+
+
+
+
+
+
+
