@@ -22,7 +22,7 @@ def collectScores(scoreSheet:list, numberOfStudent:int, numberOfSubject:int) -> 
             score = float(input())
             temp_list.append(score)
             print("Saving >>>>>>>>>>>>>>>>>>>>>>>>\nSaved Succesfully");
-        scoreSheet.insert(studentIndex).append(temp_list)
+        scoreSheet.insert(studentIndex, temp_list)
         
 def displayTheScoreSheet(scoreSheet, numberOfSubject) -> str:
     addTotalToSheet(scoreSheet, numberOfSubject)
@@ -56,7 +56,7 @@ def addTotalToSheet(scoreSheet:list, numberOfSubject:int) -> None:
     totalCol = numberOfSubject
     for studentScores in scoreSheet:
         total = getSumOfList(studentScores, 0, numberOfSubject)
-        studentScores.insert(studentIndex).append(total)
+        studentScores.insert(studentIndex, total)
              
 def getSumOfList(num_list:list, start:int, stop:int) -> float:
     return sum(num_list[start: stop])
@@ -65,7 +65,7 @@ def addAverageToSheet(scoreSheet:list, numberOfSubject:int) -> None:
     averageCol = numberOfSubject + 1
     for studentScores in scoreSheet:
         average = getAverageOf(studentScores, 0, numberOfSubject)
-        studentScores.insert(averageCol).append(average)
+        studentScores.insert(averageCol, average)
                
 def getAverageOf(num_list:list, start:int, stop:int) -> float:
     noOfvalues = stop - start
@@ -80,7 +80,7 @@ def addPositionToSheet(scoreSheet:list) -> None:
     posRank = getRanks(averages)
     index = 0
     for studentScores in scoreSheet:
-        studentScores.insert(positionCol).append(posRank[index])
+        studentScores.insert(positionCol, posRank[index])
         index += 1
         
 def getRanks(numbers:list) -> int:
@@ -132,7 +132,65 @@ def getIndexOfHighest(numlist:list) -> int:
             break
     return highestIndex
     
-def getIndexOfHighest(numlist:list) -> 
+def getIndexOfLowest(numlist:list) -> int:
+    listLength = len(numList)
+    sortedList = numlist
+    sortedList.sort()
+    lowest = sortedList[0]
+    lowestIndex = 0
+    for index in range(listLength):
+        if lowest == numlist[index]:
+            lowestIndex = index
+            break
+    return lowestIndex        
+    
+def getNumbersThatPassed(column:list, passMark:int) -> int:
+    passCount = 0
+    for value in column:
+        if value >= passMark:
+            passCount += 1
+    return passCount
+    
+def pluckDoubleColumn(table:list, columnNumber:int) -> list:
+    result = []
+    for index in range(len(table)):
+        result.insert(index, table[index][columnNumber])
+    return result
+    
+def displayClassSummary(scoreSheet, numberOfSubject, numberOfStudent) -> str:
+    hardestSubjectIndex = getHardestSubject(scoreSheet, numberOfSubject)
+    easiestSubjectIndex = getEasiestSubject(scoreSheet, numberOfSubject)
+    passes = subjectToPassList(scoreSheet, numberOfSubject)
+    hardestSubjectFails = numberOfStudent - passes[hardestSubjectIndex]
+    easiestSubjectPasses = passes[easiestSubjectIndex]
+    
+    overallHighest = overallHighest(scoreSheet, numberOfSubject)
+    overallHighestScoreStudent = int(overallHighest[0]) + 1
+    overallHighestScoreSubject = int(overallHighest[1]) + 1
+    overallHighestScore = overallHighest[2]
+    
+    overallLowest = overallLowest(scoreSheet, numberOfSubject)
+    overallLowestScoreStudent = int(overallLowest[0]) + 1
+    overallLowestScoreSubject = int(overallLowest[1]) + 1
+    overallLowestScore = overallLowest[2]
+    
+    totalColumn = numberOfSubject; 
+    bestStudentIndex = getBestStudentIndex(scoreSheet, totalColumn);
+    bestStudentTotal = scoreSheet[bestStudentIndex][totalColumn];
+    worstStudentIndex = getWorstStudentIndex(scoreSheet, totalColumn);
+    worstStudentTotal = scoreSheet[worstStudentIndex][totalColumn];
+    totalScore = getClassTotalScore(scoreSheet, totalColumn);
+    averageScore = getClassAverageScore(scoreSheet, totalColumn);
+    
+result = f"The hardest subject is Subject {} with {} failures%n", (hardestSubjectIndex + 1), hardestSubjectFails)
+result += f"The easiest subject is Subject {} with {} passes%n", (easiestSubjectIndex + 1), easiestSubjectPasses);
+
+result += f"The overall Highest score is scored by student %d in subject %d scoring %.0f%n", overallHighestScoreStudent, overallHighestScoreSubject, overallHighestScore);
+result += f"The overall Lowest score is scored by student %d in subject %d scoring %.0f%n", overallLowestScoreStudent, overallLowestScoreSubject, overallLowestScore);
+
+
+
+
 
 
 
