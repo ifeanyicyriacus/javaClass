@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class StudentGrade{
+  public static boolean isExist(){ return true;}
+  
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
 		int NUMBER_OF_COLUMN_NEEDED = 3; 
