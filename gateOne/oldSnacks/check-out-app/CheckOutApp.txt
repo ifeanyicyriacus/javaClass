@@ -1,0 +1,52 @@
+client: Semicolon Ecommerce Store
+project: Ecommerce checkout system
+
+stores sells a variety of products
+each product has a name and price
+
+subTotal = 0
+discount = 0
+VAT = 7.5
+
+def calculateSubTotal(int[] totals)
+	return sum(itemsAndQuantity)
+	
+def calculateDiscountAmount(subTotal, discount)
+	return subTotal * discount / 100
+
+def calculateVATAmount(subTotal, tax)
+	return subTotal * tax / 100
+	
+
+
+def calculateBillTotal(subTotal, discount, VAT) -> 
+	return subTotal - ((discount/100) * subTotal) + (VAT * subTotal)
+
+def processPayment(BillTotal, paymentAmount) -> 
+	return paymentAmount - BillTotal
+
+datetime stamp:
+	return String.format()
+	
+collect customer name 
+
+enter each invoice item detail 
+	- product
+	- quantity purchased
+	- price
+	- total
+
+
+after all product has been entered:
+	- casher will enter name
+	- and enter discount 
+
+display generated invoice:
+- i could be creating the invoice in real-time
+- with option to add/remove item
+
+
+compute total, discount, VAT of 7.5% of total price
+
+
+

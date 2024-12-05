@@ -1,0 +1,15 @@
+Prototype
+DASHBOARD (above menu)
+
+(showing: countdown to next period, fertile window & ovulation, safe period)
+
+- MENU
+- record period
+- register
+- show menstural cycle history
+-show current cycle calender
+-show yearly cycle calender
+- settings (language, theme, app lock ...)
+
+
+
