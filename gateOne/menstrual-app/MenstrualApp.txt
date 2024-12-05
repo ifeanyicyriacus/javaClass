@@ -12,4 +12,17 @@ DASHBOARD (above menu)
 - settings (language, theme, app lock ...)
 
 
+0 - 7  period
+8 - 19 fertile stage
+19 - 28 pre period stage (safe stage)
 
+
+ovulation = 28 - 14
+
+when it is 29 there are 7,11,11
+
+when it is 34 days  8, 12, 12
+
+when it is 20 days
+
+Math.round(a*userday/appaverage)
