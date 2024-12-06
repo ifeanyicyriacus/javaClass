@@ -1,0 +1,93 @@
+phone Book App
+                                                                
+contact = [fname:str, lname:str, tel:str, address:str, email:str]
+
+use ArrayList<String[]> contactList = new ArrayList<String[5]>();
+
+addContact(ArrayList<String[]> contactList, contact:String[]) -> bool:
+	collect name, address, telephoneNumber, email
+	store in an contactDraft
+	append contactDraft to contactList
+	return true if succesful or false if unsuccessful
+	
+	
+findContactBy(ArrayList<String[]> contactList, String phoneNumber) -> int:
+	int phoneNumberColumn = 2
+	int searchResultIndex = getIndexOfElement(contactList, phoneNumberColumn, phoneNumber)
+	if(searchResultIndex != -1):
+		System.out.println(displayContact(contactList.get(searchResultIndex)));
+	else:
+		System.out.printf("(%s) not found in contact list\n", phoneNumber);
+	
+			
+findContactBy(ArrayList<String[]> contactList, String firstName)
+	int firstNameColumn = 0
+	int searchResultIndex = getIndexOfElement(contactList, firstNameColumn, firstName)
+	if(searchResultIndex != -1):
+		System.out.println(displayContact(contactList.get(searchResultIndex)));
+	else:
+		System.out.printf("(%s) not found in contact list\n", firstName);
+		
+	
+	
+findContactBy(ArrayList<String[]> contactList, String lastName)
+	int lastNameColumn = 1
+	int searchResultIndex = getIndexOfElement(contactList, lastNameColumn, lastName)
+	if(searchResultIndex != -1):
+		System.out.println(displayContact(contactList.get(searchResultIndex)));
+	else:
+		System.out.printf("(%s) not found in contact list\n", lastName);
+		
+	
+	
+return getIndexOfElement(ArrayList<String[]> contactList, field, keyword) -> int:
+	loop index through contactList.size()
+		if contactList.get(index)[field].toLowerCase().contains(keyword.toLowerCase())
+			return index
+	return -1
+	
+if contactList.get(index)[field].toLowerCase().contains(keyword.toLowerCase())
+
+removeContact(ArrayList<String[]> contactList, int contactIndex) -> boolean: // this should be done after you have found a contact by fname,lname or phoneNumber
+	if((contactIndex - 1) >= contactList.size() || (contactIndex - 1) < 0):
+		System.out.printf("No contact exist at index (%d) in contact list\n", contactIndex);
+	else:
+		contactList.remove(contactIndex);
+		
+editContact(ArrayList<String[]> contactList, int contactIndex)-> boolean:
+	if((contactIndex - 1) >= contactList.size() || (contactIndex - 1) < 0):
+		System.out.printf("No contact exist at index (%d) in contact list\n", contactIndex);
+		return false
+	else:
+		contact = contactList.get(contactIndex)[] = input.nextLine() 
+		"Enter new first name to replace (contact[0]): "
+			contactList.get(contactIndex)[0] = input.nextLine() 
+		"Enter new last name to replace (contact[1]): "
+			contactList.get(contactIndex)[1] = input.nextLine() 
+		"Enter new phone number name to replace (contact[2]): "
+			contactList.get(contactIndex)[2] = input.nextLine() 
+		"Enter new address to replace (contact[3]): "
+			contactList.get(contactIndex)[3] = input.nextLine() 
+		"Enter new email to replace (contact[4]): "
+			contactList.get(contactIndex)[4] = input.nextLine()
+		return true
+
+displayContact(String[] contact):
+	int name = 0
+	int address = 1
+	int telephone = 2
+	int email = 3
+
+	f"Name: {contact[name]}\n"
+	f"Address: {contact[address]}"
+	f"Telephone: {contact[telephone]}"
+	f"Email: {contact[email]}"
+			----------------------------
+			
+displayAllContact(ArrayList<String[]> contactList) ->None:
+	for (String[] contact: contactList):
+		displayContact(contact)
+		"----------------------------"
+
+
+

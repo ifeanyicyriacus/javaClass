@@ -1,6 +1,5 @@
-import org.junit.Test;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestStudentGrade {
   int[][] sampleIntTable1 = {{2, 4, 5}, {10, 12, 15}, {15, 9, 14}};
@@ -15,7 +14,7 @@ public class TestStudentGrade {
   
   @Test
   public void testStudentGradeExists() {
-    assertTrue("failure - should be true", StudentGrade.isExist());
+    assertTrue(StudentGrade.isExist());
   }
   
   @Test
