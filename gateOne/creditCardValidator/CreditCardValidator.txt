@@ -1,0 +1,7 @@
+credit card number has 13 - 16 digit
+it starts with:
+	4 for Visa Cards
+	5 for MasterCard ,
+	37 for American Express Cards
+	6 for Discover cards.
+
