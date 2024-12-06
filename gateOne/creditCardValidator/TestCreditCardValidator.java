@@ -2,11 +2,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCreditCardValidator{
-  String sample1 = "4388576018402626";//invalid
-  String sample2 = "5399831619690403";//valid
-  String sample3 = "5399831619690404";//invalid
-  String sample4 = "234319283049582";//invalid
-  String sample5 = "634319283049";//invalid
+  String sample1 = "4388576018402626";
+  String sample2 = "5399831619690403";
+  String sample3 = "5399831619690404";
+  String sample4 = "234319283049582";
+  String sample5 = "634319283049";
   
   @Test
   public void testCreditCardValidatorExists(){
@@ -49,13 +49,13 @@ public class TestCreditCardValidator{
   @Test
   public void testReturnCardType(){
     String actual = CreditCardValidator.returnCardType(sample1);
-    String expected = "Visa";
+    String expected = "Visa Card";
     assertEquals(actual, expected);
     actual = CreditCardValidator.returnCardType(sample2);
-    expected = "MasterCard";
+    expected = "MasterCard Card";
     assertEquals(actual, expected);
-    actual = CreditCardValidator.returnCardType(sample5);
-    expected = "Discover";
+    actual = CreditCardValidator.returnCardType(sample4);
+    expected = "Invalid Card";
     assertEquals(actual, expected);
   }
   

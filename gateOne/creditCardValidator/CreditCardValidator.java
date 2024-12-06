@@ -1,7 +1,19 @@
+import java.util.Scanner;
+
 public class CreditCardValidator{
   public static boolean isExist(){return true;}
-  public static void main(String[] args){ 
   
+  public static void main(String[] args){
+    Scanner input = new Scanner(System.in);
+    System.out.println("Hello, kindly Enter Card details to verify");
+    String cardNumber = input.next();
+    
+    String result = String.format("Credit Card Type: %s%n", returnCardType(cardNumber));
+    result += String.format("Credit Card Number: %s%n", cardNumber);
+    result += String.format("Credit Card Digit Length: %d%n", cardNumber.length());
+    String cardStatus = (isNumberCombinationCorrect(cardNumber)) ? "Valid": "Invalid";
+    result += String.format("Credit Card Validity Status: %s%n", cardStatus);
+    System.out.print(result);
   }
   
   
@@ -33,16 +45,15 @@ public class CreditCardValidator{
     return isNumberDivisibleBy10(sum);
   }
   
-  
   public static boolean isLengthValid(String cardNumber){
     return (cardNumber.length() >= 13) && (cardNumber.length() <= 16);
   }
   public static String returnCardType(String cardNumber){
-    if (cardNumber.startsWith("4")){ return "Visa";}
-    else if (cardNumber.startsWith("5")){ return "MasterCard";}
-    else if (cardNumber.startsWith("37")){ return "American Express";}
-    else if (cardNumber.startsWith("6")){ return "Discover";}
-    else return "";
+    if (cardNumber.startsWith("4")){ return "Visa Card";}
+    else if (cardNumber.startsWith("5")){ return "MasterCard Card";}
+    else if (cardNumber.startsWith("37")){ return "American Express Card";}
+    else if (cardNumber.startsWith("6")){ return "Discover Card";}
+    else return "Invalid Card";
   }
   public static int sumDigitsInTwoDigitNumber(int number){
     return ((number / 10) + (number % 10));
