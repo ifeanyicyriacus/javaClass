@@ -2,14 +2,15 @@ ATM machine
 
 Banke Bank AT(M) Machine
 
- accounts = [fname:str, lname:str, accountNumber:str, pin:str, balance:str]
+accounts = [fname:str, lname:str, accountNumber:str, pin:str, balance:str]
 ArrayList<String[]> accounts = new ArrayList<String[]>();
 
-Create an account with their first name and last name and pin,  generate unique account number prefix with (3851) dont use random as it unnecessary.
+Create an account with their first name and last name and pin,  generate unique account number prefix with (3851) dont use random as it unnecessary. similar to RC incoperation numbers
+
 def createAccount(firstName:str, lastName:str)
 
 
-Close account.
+Close account. "ask do you really want to (yes/no)"
 Deposit money.
 Withdraw money.
 Check Account balance
