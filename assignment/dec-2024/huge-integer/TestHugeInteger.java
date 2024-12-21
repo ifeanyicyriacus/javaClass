@@ -32,9 +32,15 @@ public class TestHugeInteger{
     String numberStr = "7066003851";
     HugeInteger number = new HugeInteger(numberStr);
     assertEquals("7066003851", number.toString());
-    
-    
   }
   
-  
-}
+  @Test
+  public void testTheAddFunctionReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    
+    HugeInteger actual = HugeInteger.add(number1, number2);
+    HugeInteger expected = new HugeInteger("22446667912289685768");
+    assertEquals(expected.toString(), actual.toString());
+  }
+}//add
