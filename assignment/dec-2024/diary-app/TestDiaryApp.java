@@ -51,29 +51,32 @@ public class TestDiaryApp{
     Diary newDiary = new Diary(diaryName);
     String subject = "Time and Money";
     String body = "I think money or its abstraction should be a fundamental quantity like mass and time";
-    newDiary.unlock();
-    assertNotNull(newDiary.addEntry(subject, body));    
+    newDiary.setIsLocked(false);
+    newDiary.addEntry(subject, body);
+    newDiary.addEntry(subject, body);
+    assertNotNull(newDiary.addEntry(subject, body));
+    assertEquals(newDiary.getEntries().size(), 3);
   }
   
   @Test
   public void testThatFindEntryByIdReturnsCorrectValue(){
     String diaryName = "Dietel Old Testament";
     Diary newDiary = new Diary(diaryName);
-    newDiary.unlock();
+    newDiary.setIsLocked(false);
     
-    Entry expected1 = newDiary.addEntry("Mathematics", "What you cant measure dont exist");
-    Entry expected2 = newDiary.addEntry("Computer Science", "It all boils down to zeros(0) and Ones(1)");
-    Entry actual1 = newDiary.findEntryById(expected1.getId());
-    Entry actual2 = newDiary.findEntryById(expected2.getId());
+    Entry actual1 = newDiary.addEntry("Mathematics", "What you cant measure dont exist");
+    Entry actual2 = newDiary.addEntry("Computer Science", "It all boils down to zeros(0) and Ones(1)");
+    Entry expected1 = newDiary.findEntryById(actual1.getId());
+    Entry expected2 = newDiary.findEntryById(actual2.getId());
     assertEquals(actual1, expected1);
-    assertEquals(actual2, expected2);
+    assertEquals(actual2, expected2);    
   }
   
   @Test
   public void testThatDeleteEntryWorks(){
-    String diaryName = "Joke Collection";
+    String diaryName = "Movie Collection";
     Diary newDiary = new Diary(diaryName);
-    newDiary.unlock();
+    newDiary.setIsLocked(false);
     
     Entry entry1 = newDiary.addEntry("Kevin Hart", "JUMANJI Director cut");
     Entry entry2 = newDiary.addEntry("Chris Rock", "Everybody loves Chris");
@@ -91,7 +94,7 @@ public class TestDiaryApp{
   public void testThatUpdateEntryReturnsCorrectvalue(){
     String diaryName = "Favourite Movies";
     Diary newDiary = new Diary(diaryName);
-    newDiary.unlock();
+    newDiary.setIsLocked(false);
     
     Entry entry1 = newDiary.addEntry("Christmas movie", "It's A Wonderful Life");  
     assertEquals(entry1.getEntryBody(), "It's A Wonderful Life");

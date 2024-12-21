@@ -11,20 +11,22 @@ public class Diary{
   public Diary(String name){
     this.setName(name);
     this.entries = new ArrayList<Entry>();
-    this.lock();
+    this.setIsLocked(true);
     diaryCount += 1;
   }
   
-  public String getName(){ return this.name; }
-  public boolean getIsLocked(){ return this.islocked; }
-  public ArrayList<Entry> getEntries(){ return this.entries; }
   public static int getDiaryCount(){ return diaryCount; }
-  
-  public void unlock(){ this.islocked = false; }
-  public void lock(){ this.islocked = true; }
+  public String getName(){ return this.name; }
   public void setName(String name){ this.name = name; }
-  //public void setEntries(ArrayList<Entry> entries){ this.entries = entries; }
   
+  public boolean getIsLocked(){ return this.islocked; }
+  public void setIsLocked(boolean islocked){
+    this.islocked = islocked;
+  }
+  
+  
+  public ArrayList<Entry> getEntries(){ return this.entries; }
+  //public void setEntries(ArrayList<Entry> entries){ this.entries = entries; }  
   public Entry addEntry(String entrySubject, String entryBody){
     if (getIsLocked()){ return null; }
     else {
@@ -59,15 +61,17 @@ public class Diary{
   
   
   public String toString(){
-    String diary = String.format("\033[Diary: %s\033[0m%n", getName());
-    diary += displayDiariesEntries();
+    int size = getEntries().size();
+    String noOfEntries = (size > 1) ? String.format("%2d entries", size) : String.format("%2d entry", size);
+    String diary = String.format("\033[Diary: %s - %s\033[0m%n", getName(), noOfEntries);
+    diary += displayDiaryEntries();
     return diary;
   }
   
-  private String displayDiariesEntries(){
+  private String displayDiaryEntries(){
     String entries = "";
     for(Entry entry: getEntries()){
-      entries += String.format("\033[(%2d)\t%s\033[0m%n", entry.getId(), entry.getEntrySubject());
+      entries += String.format("\033[1m(%2d)\t%s\033[0m%n", entry.getId(), entry.getEntrySubject());
       entries += String.format("\033[3m%s\033[0m%n", entry.getTimeStamp());
       entries += String.format("%s%n", entry.getEntryBody());
       entries += String.format("-----------------------------------------------------%n");
