@@ -35,7 +35,7 @@ public class TestHugeInteger{
   }
   
   @Test
-  public void testTheAddFunctionReturnCorrectValue(){
+  public void testThatAddFunctionReturnCorrectValue(){
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     
@@ -43,4 +43,24 @@ public class TestHugeInteger{
     HugeInteger expected = new HugeInteger("22446667912289685768");
     assertEquals(expected.toString(), actual.toString());
   }
-}//add
+  
+  @Test
+  public void testThatSubtractFunctionReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    
+    HugeInteger actual = HugeInteger.subtract(number1, number2);
+    HugeInteger expected = new HugeInteger("1979796958401221124");
+    assertEquals(expected.toString(), actual.toString());
+    
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+}
