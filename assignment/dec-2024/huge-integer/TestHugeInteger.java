@@ -52,15 +52,28 @@ public class TestHugeInteger{
     HugeInteger actual = HugeInteger.subtract(number1, number2);
     HugeInteger expected = new HugeInteger("1979796958401221124");
     assertEquals(expected.toString(), actual.toString());
-    
-    
-    
   }
   
   
+  @Test
+  public void testThatIsEqualToFunctionReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number2Copy = new HugeInteger("10233435476944232322");
+    
+    assertFalse(number1.isEqualTo(number2));
+    assertTrue(number2.isEqualTo(number2Copy));
+  }
   
-  
-  
+  @Test
+  public void testThatIsNotEqualToFunctionReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number2Copy = new HugeInteger("10233435476944232322");
+    
+    assertTrue(number1.isNotEqualTo(number2));
+    assertFalse(number2.isNotEqualTo(number2Copy));
+  }
   
   
 }

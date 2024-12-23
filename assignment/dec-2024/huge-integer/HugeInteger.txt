@@ -5,6 +5,7 @@ Create a class HugeInteger
 	
 Provide methods: 
 	parse: receive a String, extract each digit using method charAt and place the integer equivalent of each digit into the integer array.
+		-parse should handle negative number too
 	toString: 
 		- it might handle out of bound, same with setNumber
 		- find the first occurance of 1-9
@@ -13,7 +14,9 @@ Provide methods:
 			+ break 
 		- substring(form first occurance to end)
 	add
+		add should handle negative number, perhaps call the substract function
 	subtract.
+		substract should handle negative number pehaps call add
 	
 For comparing HugeInteger objects, provide the following methods: 
 	isEqualTo

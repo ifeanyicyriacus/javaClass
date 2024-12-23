@@ -40,7 +40,7 @@ public class HugeInteger{
         result += numberArray[index];
       }
     }
-    return result;
+    return (result.equals("")) ? "0": result;
   }
   
   public static HugeInteger add(HugeInteger number1, HugeInteger number2){
@@ -88,8 +88,19 @@ public class HugeInteger{
     return new HugeInteger(result);
   }
 
+  public boolean isEqualTo(HugeInteger alternativeNumber){
+  HugeInteger difference = subtract(this, alternativeNumber);
+    if (difference.toString().equals("0")){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   
-  
+  public boolean isNotEqualTo(HugeInteger alternativeNumber){
+    return !(isEqualTo(alternativeNumber));  
+  }
   
   
 }
