@@ -11,7 +11,8 @@ public class TestHugeInteger{
   public void testParseFunction(){
     String numberStr = "12345";
     int numberStrLength = numberStr.length();
-    int[] numberArray = HugeInteger.parse(numberStr);
+    HugeInteger number = new HugeInteger(numberStr);
+    int[] numberArray = number.parse(numberStr);
     int numberArrayLength = numberArray.length;
     assertEquals(numberArrayLength, 40);
     int emptyRange = numberArrayLength - numberStrLength;
@@ -29,9 +30,9 @@ public class TestHugeInteger{
   
   @Test
   public void testToStringFunction(){
-    String numberStr = "7066003851";
+    String numberStr = "-7066003851";
     HugeInteger number = new HugeInteger(numberStr);
-    assertEquals("7066003851", number.toString());
+    assertEquals("-7066003851", number.toString());
   }
   
   @Test
@@ -52,11 +53,15 @@ public class TestHugeInteger{
     HugeInteger actual = HugeInteger.subtract(number1, number2);
     HugeInteger expected = new HugeInteger("1979796958401221124");
     assertEquals(expected.toString(), actual.toString());
+    
+    actual = HugeInteger.subtract(number2, number1);
+    expected = new HugeInteger("-1979796958401221124");
+    assertEquals(expected.toString(), actual.toString());
   }
   
   
   @Test
-  public void testThatIsEqualToFunctionReturnCorrectValue(){
+  public void testThatIsEqualToMethodReturnCorrectValue(){
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     HugeInteger number2Copy = new HugeInteger("10233435476944232322");
@@ -66,7 +71,7 @@ public class TestHugeInteger{
   }
   
   @Test
-  public void testThatIsNotEqualToFunctionReturnCorrectValue(){
+  public void testThatIsNotEqualToMethodReturnCorrectValue(){
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     HugeInteger number2Copy = new HugeInteger("10233435476944232322");
@@ -75,5 +80,15 @@ public class TestHugeInteger{
     assertFalse(number2.isNotEqualTo(number2Copy));
   }
   
+  @Test
+  public void testThatIsGreaterThanMethodReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number2Copy = new HugeInteger("10233435476944232322");
+    assertTrue(number1.isGreaterThan(number2));
+    assertFalse(number2.isGreaterThan(number2Copy));
+    assertFalse(number2.isGreaterThan(number1));
+    
+  }
   
 }

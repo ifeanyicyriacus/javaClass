@@ -1,14 +1,22 @@
 public class HugeInteger{
   private static final int HUGE_INTEGER_SIZE = 40;
   private int[] number;
+  private boolean isNegative = false;
   public static boolean isExist(){ return true; }
   
   public HugeInteger(String number){
     setNumber(parse(number));
   }
+  private boolean getIsNegative(){ return this.isNegative; }
+  private void setIsNegative(boolean isNegative) { this.isNegative = isNegative; }
   
-  public static int[] parse(String numberStr){
+  public int[] parse(String numberStr){
     numberStr = numberStr.replace("_", "");
+    if(numberStr.substring(0,1).equals("-")){
+      numberStr = numberStr.replace("-", "");
+      setIsNegative(true);
+    }
+    
     int length = numberStr.length();
     int numberArraySize = HUGE_INTEGER_SIZE;
     int[] newNumber = new int[numberArraySize];
@@ -32,13 +40,15 @@ public class HugeInteger{
     boolean isAllDigitZero = true;
     String result = "";
     for (int index = 0; index < numberArray.length; index += 1){
-      //if (numberArray[index] > 0 && isAllDigitZero){
-      if (numberArray[index] != 0 && isAllDigitZero){//to cater for negative numbers
+      if (numberArray[index] != 0 && isAllDigitZero){
         isAllDigitZero = false;
       }
       if(!isAllDigitZero){
         result += numberArray[index];
       }
+    }
+    if (getIsNegative()){
+      result = "-" + result;
     }
     return (result.equals("")) ? "0": result;
   }
@@ -102,5 +112,22 @@ public class HugeInteger{
     return !(isEqualTo(alternativeNumber));  
   }
   
+  public boolean isGreaterThan(HugeInteger alternativeNumber){
+  
+    System.out.println(subtract(this, alternativeNumber));
+    
+    
+    if (isEqualTo(alternativeNumber)){
+      return false;
+    }
+    int difference = Integer.valueOf(subtract(this, alternativeNumber).toString().substring(1, 2));
+    if (difference >= 0){
+      return true;
+    } else {
+      return false;
+    }
+  
+  
+  }
   
 }
