@@ -140,4 +140,18 @@ public class HugeInteger{
     return false;
   }
   
+  public boolean isLessThan(HugeInteger alternativeNumber){
+    if (isEqualTo(alternativeNumber)) { return false; }
+    else if (isGreaterThan(alternativeNumber)){ return false; }
+    else { return true; }
+  }
+  
+  public boolean isGreaterThanOrEqualTo(HugeInteger alternativeNumber){
+    return !isLessThan(alternativeNumber);
+  }
+  
+  public boolean isLessThanOrEqualTo(HugeInteger alternativeNumber){
+    return !isGreaterThan(alternativeNumber);
+  }
+  
 }

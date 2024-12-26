@@ -49,13 +49,13 @@ public class TestHugeInteger{
     assertEquals(expected.toString(), actual.toString());
   }
   
-  //@Test
+  @Test
   public void testThatSubtractFunctionReturnCorrectValue(){
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     
     HugeInteger actual = HugeInteger.subtract(number1, number2);
-    HugeInteger expected = new HugeInteger("1979796958401221124 ");
+    HugeInteger expected = new HugeInteger("1979796958401221124");
     assertEquals(expected.toString(), actual.toString());
     
     actual = HugeInteger.subtract(number2, number1);
@@ -106,9 +106,80 @@ public class TestHugeInteger{
     assertFalse(number1Neg.isGreaterThan(number1Short));
     assertTrue(number1.isGreaterThan(number2));
     assertFalse(number2.isGreaterThan(number1));
-    
-    
-    
   }
+  
+  @Test
+  public void testThatIsLessThanMethodReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number1Neg = new HugeInteger("-12213232435345453446");
+    HugeInteger number2Neg = new HugeInteger("-10233435476944232322");
+    HugeInteger number1Short = new HugeInteger("5232435345453446");
+
+    assertFalse(number1.isLessThan(number1));
+    assertFalse(number1Neg.isLessThan(number1Neg));
+    assertFalse(number1.isLessThan(number1Neg));
+    assertTrue(number1Neg.isLessThan(number1));
+
+    assertFalse(number2.isLessThan(number2));
+    assertFalse(number2Neg.isLessThan(number2Neg));
+    assertFalse(number2.isLessThan(number2Neg));
+    assertTrue(number2Neg.isLessThan(number2));
+
+    assertFalse(number1.isLessThan(number1Short));
+    assertTrue(number1Neg.isLessThan(number1Short));
+    assertFalse(number1.isLessThan(number2));
+    assertTrue(number2.isLessThan(number1));
+  
+  }
+  
+  @Test
+  public void testThatIsGreaterThanOrEqualToReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number1Neg = new HugeInteger("-12213232435345453446");
+    HugeInteger number2Neg = new HugeInteger("-10233435476944232322");
+    HugeInteger number1Short = new HugeInteger("5232435345453446");
+    
+    assertTrue(number1.isGreaterThanOrEqualTo(number1));
+    assertTrue(number1Neg.isGreaterThanOrEqualTo(number1Neg));
+    assertTrue(number1.isGreaterThanOrEqualTo(number1Neg));
+    assertFalse(number1Neg.isGreaterThanOrEqualTo(number1));
+    
+    assertTrue(number2.isGreaterThanOrEqualTo(number2));
+    assertTrue(number2Neg.isGreaterThanOrEqualTo(number2Neg));
+    assertTrue(number2.isGreaterThanOrEqualTo(number2Neg));
+    assertFalse(number2Neg.isGreaterThanOrEqualTo(number2));
+    
+    assertTrue(number1.isGreaterThanOrEqualTo(number1Short));
+    assertFalse(number1Neg.isGreaterThanOrEqualTo(number1Short));
+    assertTrue(number1.isGreaterThanOrEqualTo(number2));
+    assertFalse(number2.isGreaterThanOrEqualTo(number1));    
+  }
+  
+  @Test
+  public void testThatIsLessThanOrEqualToReturnsCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number1Neg = new HugeInteger("-12213232435345453446");
+    HugeInteger number2Neg = new HugeInteger("-10233435476944232322");
+    HugeInteger number1Short = new HugeInteger("5232435345453446");
+    
+    assertTrue(number1.isLessThanOrEqualTo(number1));
+    assertTrue(number1Neg.isLessThanOrEqualTo(number1Neg));
+    assertFalse(number1.isLessThanOrEqualTo(number1Neg));
+    assertTrue(number1Neg.isLessThanOrEqualTo(number1));
+    
+    assertTrue(number2.isLessThanOrEqualTo(number2));
+    assertTrue(number2Neg.isLessThanOrEqualTo(number2Neg));
+    assertFalse(number2.isLessThanOrEqualTo(number2Neg));
+    assertTrue(number2Neg.isLessThanOrEqualTo(number2));
+    
+    assertFalse(number1.isLessThanOrEqualTo(number1Short));
+    assertTrue(number1Neg.isLessThanOrEqualTo(number1Short));
+    assertFalse(number1.isLessThanOrEqualTo(number2));
+    assertTrue(number2.isLessThanOrEqualTo(number1));    
+  }
+  
   
 }
