@@ -21,7 +21,17 @@ Provide methods:
 For comparing HugeInteger objects, provide the following methods: 
 	isEqualTo
 	isNotEqualTo
-	isGreaterThan
+	isGreaterThan:
+		if isEqual return false
+		if A is -ve and B +ve false:
+			else if A is +ve and B is -ve true
+			else if polarity is thesame:
+				if length A is greater than B true else false
+				if length is the same:
+					start looping through digit to compare their digits begining from the first index (40 - length) or go through all
+						if ever A[] < B[] return false
+					if loop finishes return true
+					
 	isLessThan
 	isGreaterThanOrEqualTo
 	isLessThanOrEqualTo

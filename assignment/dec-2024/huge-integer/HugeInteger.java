@@ -1,14 +1,13 @@
 public class HugeInteger{
   private static final int HUGE_INTEGER_SIZE = 40;
   private int[] number;
-  private boolean isNegative = false;
+  private boolean isNegative;
+  private int length;
   public static boolean isExist(){ return true; }
   
   public HugeInteger(String number){
     setNumber(parse(number));
   }
-  private boolean getIsNegative(){ return this.isNegative; }
-  private void setIsNegative(boolean isNegative) { this.isNegative = isNegative; }
   
   public int[] parse(String numberStr){
     numberStr = numberStr.replace("_", "");
@@ -18,22 +17,28 @@ public class HugeInteger{
     }
     
     int length = numberStr.length();
+    setLength(length);
     int numberArraySize = HUGE_INTEGER_SIZE;
     int[] newNumber = new int[numberArraySize];
-    for (int index = (length - 1); index >= 0; index -= 1){
+    for (int index = (getLength() - 1); index >= 0; index -= 1){
       int digit = Integer.valueOf(String.valueOf(numberStr.charAt(index)));
       newNumber[--numberArraySize] = digit;
     }
     return newNumber;
   }
   
-  private int[] getNumber(){ return this.number; }
-  
+  public int[] getNumber(){ return this.number; }
   private void setNumber(int[] number){
     if (number.length <= HUGE_INTEGER_SIZE){
       this.number = number;
     }
   }
+  
+  public boolean getIsNegative(){ return this.isNegative; }
+  private void setIsNegative(boolean isNegative) { this.isNegative = isNegative; }
+
+  public int getLength(){ return this.length; }
+  private void setLength(int length){ this.length = length; }
   
   public String toString(){
     int[] numberArray = this.getNumber();
@@ -70,15 +75,19 @@ public class HugeInteger{
   
   public static HugeInteger subtract(HugeInteger number1, HugeInteger number2){
     String result = "";
+    boolean isResultNegative = false;
+    
+    if(number2.isGreaterThan(number1)){
+      HugeInteger temp = number1;
+      number1 = number2;
+      number2 = temp;
+      isResultNegative = true;
+    }
+    
     final int BASE_10 = 10;
     int[] number1Array = number1.getNumber();
     int[] number2Array = number2.getNumber();
     int carryOver = 0;
-    
-    //do this basic substraction when number1 is greater or equal to number2
-    //after i have completed the comparison function i could then compare two BigInt numbers
-    //if(number1.isGreaterThanOrEqualTo(number2))
-    //else swap and multiply the first digit by -1
     
     for (int index = (HUGE_INTEGER_SIZE - 1); index >= 0; index -= 1){
       int digit1 = (carryOver + number1Array[index]);
@@ -95,39 +104,40 @@ public class HugeInteger{
       }
       result = digitDifference + result;
     }
+    result = (isResultNegative) ? "-"+result : result;
     return new HugeInteger(result);
   }
 
   public boolean isEqualTo(HugeInteger alternativeNumber){
-  HugeInteger difference = subtract(this, alternativeNumber);
-    if (difference.toString().equals("0")){
-      return true;
-    }
-    else {
-      return false;
-    }
+    if (this.getIsNegative() != alternativeNumber.getIsNegative()) { return false; }
+    if (this.getLength() != alternativeNumber.getLength()) { return false; }
+    
+    int[] numberArray = this.getNumber();
+    int[] alternativeNumberArray = alternativeNumber.getNumber();
+    for (int index = 0; index < HUGE_INTEGER_SIZE; index += 1) {
+      if(numberArray[index] != alternativeNumberArray[index]) { return false; }
+    } return true;
   }
   
   public boolean isNotEqualTo(HugeInteger alternativeNumber){
-    return !(isEqualTo(alternativeNumber));  
+    return !(isEqualTo(alternativeNumber));
   }
   
   public boolean isGreaterThan(HugeInteger alternativeNumber){
-  
-    System.out.println(subtract(this, alternativeNumber));
+    if (isEqualTo(alternativeNumber)){ return false; }
+    if ((this.getIsNegative() == false) && (alternativeNumber.getIsNegative() == true)) { return true; }
+    if ((this.getIsNegative() == true) && (alternativeNumber.getIsNegative() == false)) { return false; }
+    if (this.getLength() > alternativeNumber.getLength()) { return true; }
+    if (this.getLength() < alternativeNumber.getLength()) { return false; }
     
-    
-    if (isEqualTo(alternativeNumber)){
-      return false;
+    int[] numberArray = this.getNumber();
+    int[] alternativeNumberArray = alternativeNumber.getNumber();
+    for (int index = 0; index < HUGE_INTEGER_SIZE; index += 1) {
+      if (numberArray[index] == alternativeNumberArray[index] ) { continue; }
+      else if (numberArray[index] > alternativeNumberArray[index]) { return true; }
+      else { return false; }
     }
-    int difference = Integer.valueOf(subtract(this, alternativeNumber).toString().substring(1, 2));
-    if (difference >= 0){
-      return true;
-    } else {
-      return false;
-    }
-  
-  
+    return false;
   }
   
 }
