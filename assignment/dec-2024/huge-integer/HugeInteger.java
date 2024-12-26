@@ -11,7 +11,7 @@ public class HugeInteger{
   
   public int[] parse(String numberStr){
     numberStr = numberStr.replace("_", "");
-    if(numberStr.substring(0,1).equals("-")){
+    if(numberStr.length() >= 1 && numberStr.substring(0,1).equals("-")){
       numberStr = numberStr.replace("-", "");
       setIsNegative(true);
     }
@@ -75,8 +75,7 @@ public class HugeInteger{
   
   public static HugeInteger subtract(HugeInteger number1, HugeInteger number2){
     String result = "";
-    boolean isResultNegative = false;
-    
+    boolean isResultNegative = false;  
     if(number2.isGreaterThan(number1)){
       HugeInteger temp = number1;
       number1 = number2;
@@ -87,24 +86,24 @@ public class HugeInteger{
     final int BASE_10 = 10;
     int[] number1Array = number1.getNumber();
     int[] number2Array = number2.getNumber();
-    int carryOver = 0;
+    int borrow = 0;
     
     for (int index = (HUGE_INTEGER_SIZE - 1); index >= 0; index -= 1){
-      int digit1 = (carryOver + number1Array[index]);
+      int digit1 = (borrow + number1Array[index]);
       int digit2 = number2Array[index];
       int digitDifference;
 
       if (digit1 >= digit2){
         digitDifference = digit1 - digit2;
-        carryOver = 0;
+        borrow = 0;
       } else {
         digit1 += BASE_10; 
-        carryOver = -1;
+        borrow = -1;
         digitDifference = digit1 - digit2;
       }
       result = digitDifference + result;
     }
-    result = (isResultNegative) ? "-"+result : result;
+    result = (isResultNegative) ? ("-" + result) : result;
     return new HugeInteger(result);
   }
 
@@ -153,5 +152,16 @@ public class HugeInteger{
   public boolean isLessThanOrEqualTo(HugeInteger alternativeNumber){
     return !isGreaterThan(alternativeNumber);
   }
+  
+  public static HugeInteger multiply (HugeInteger number, int multiplier){
+    HugeInteger product = new HugeInteger("0");
+    for (int count = 1; count <= multiplier; count += 1){
+      product = add(product, number);
+    }
+    return product;
+  }
+  
+  
+  
   
 }

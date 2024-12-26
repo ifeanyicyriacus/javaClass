@@ -45,8 +45,8 @@ public class TestHugeInteger{
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     
     HugeInteger actual = HugeInteger.add(number1, number2);
-    HugeInteger expected = new HugeInteger("22446667912289685768");
-    assertEquals(expected.toString(), actual.toString());
+    String expected = "22446667912289685768";
+    assertEquals(expected, actual.toString());
   }
   
   @Test
@@ -55,12 +55,12 @@ public class TestHugeInteger{
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     
     HugeInteger actual = HugeInteger.subtract(number1, number2);
-    HugeInteger expected = new HugeInteger("1979796958401221124");
-    assertEquals(expected.toString(), actual.toString());
+    String expected = "1979796958401221124";
+    assertEquals(expected, actual.toString());
     
     actual = HugeInteger.subtract(number2, number1);
-    expected = new HugeInteger("-1979796958401221124");
-    assertEquals(expected.toString(), actual.toString());
+    expected = "-1979796958401221124";
+    assertEquals(expected, actual.toString());
   }
   
   
@@ -181,5 +181,21 @@ public class TestHugeInteger{
     assertTrue(number2.isLessThanOrEqualTo(number1));    
   }
   
+  @Test
+  public void testThatMultiplyFunctionReturnCorrectValue(){
+    HugeInteger number1 = new HugeInteger("12213232435345453446");
+    HugeInteger number2 = new HugeInteger("10233435476944232322");
+    HugeInteger number1Neg = new HugeInteger("-12213232435345453446");
+    HugeInteger number2Neg = new HugeInteger("-10233435476944232322");
+    
+    int multiplier1 = 10; int multiplier2 = 5; int multiplier3 = 2;
+    int multiplier4 = 1; int miltiplier5 = 0;
+    int multiplier1Neg = -10; int multiplier2Neg = -5; int multiplier3Neg = -2;
+    int multiplier4Neg = -1; int miltiplier5Neg = -0;
+    
+    HugeInteger expected = HugeInteger.multiply(number1, multiplier1);
+    assertEquals(expected.toString(), "122132324353454534460");
+    
+  }
   
 }
