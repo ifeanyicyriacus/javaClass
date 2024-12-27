@@ -141,8 +141,7 @@ public class HugeInteger{
   
   public boolean isLessThan(HugeInteger alternativeNumber){
     if (isEqualTo(alternativeNumber)) { return false; }
-    else if (isGreaterThan(alternativeNumber)){ return false; }
-    else { return true; }
+    else return !isGreaterThan(alternativeNumber);
   }
   
   public boolean isGreaterThanOrEqualTo(HugeInteger alternativeNumber){
@@ -160,7 +159,58 @@ public class HugeInteger{
     }
     return product;
   }
-  
+
+//  public static HugeInteger divide (HugeInteger number, int divisor){
+//    HugeInteger remainder = number;
+//    HugeInteger count = new HugeInteger("0");
+//    final HugeInteger ONE = new HugeInteger("1");
+//    HugeInteger hugeDivisor = new HugeInteger("" + divisor);
+//
+//    while (remainder.toString().charAt(0) != '-'){
+//      remainder = subtract(remainder, hugeDivisor);
+//      count = add(count, ONE);
+//    }
+//    return subtract(remainder, ONE);
+//  }
+
+  //  public static HugeInteger remainder (HugeInteger number, int divisor){}
+
+
+//  public static HugeInteger multiply (HugeInteger number, HugeInteger multiplier){
+//    int[] numberArray = number.getNumber();
+//    int[] multiplierArray = multiplier.getNumber();
+//    String[] additionLines = new String[multiplier.getLength()];
+//    final int BASE_10 = 10;
+//
+//    int carryOver = 0; int lineCount = 0;
+//
+//    for (int multiplierIndex = (HUGE_INTEGER_SIZE - 1); multiplierIndex > (HUGE_INTEGER_SIZE - multiplier.getLength()); multiplierIndex -= 1){
+//      for (int numberIndex = (HUGE_INTEGER_SIZE - 1); numberIndex > (HUGE_INTEGER_SIZE - number.getLength()); numberIndex -= 1){
+//        int digitProduct = (carryOver + (multiplierArray[multiplierIndex] * numberArray[numberIndex]));
+//        additionLines[lineCount] = (digitProduct % BASE_10) + additionLines[lineCount];
+//        carryOver = digitProduct / BASE_10;
+//        if (carryOver != 0 && numberIndex == (HUGE_INTEGER_SIZE - number.getLength() + 1)){
+//          additionLines[lineCount] = carryOver + additionLines[lineCount];
+//          carryOver = 0;
+//        }
+//      }
+//      additionLines[lineCount] += "0".repeat(lineCount);
+//      lineCount++;
+//    }
+//
+//    HugeInteger product = new HugeInteger("0");
+//    for (String additionLine:  additionLines){
+//      System.out.println(additionLine);
+//      HugeInteger additionLineNumber = new HugeInteger(additionLine);
+//      product = add(product, additionLineNumber);
+//    }
+//    return product;
+//  }
+
+
+//  public static HugeInteger divide (HugeInteger number, HugeInteger divisor){}
+
+//  public static HugeInteger remainder (HugeInteger number, HugeInteger divisor){}
   
   
   

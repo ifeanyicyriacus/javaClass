@@ -1,0 +1,16 @@
+i could overload with (int, int) argument for my static method but all return are HugeInteger
+Todo 1: multiply support for two HugeInteger operands
+Todo 2: divide support for two HugeInteger operands
+Todo 3: remainder support for two HugeInteger operands
+TODO 4: add support for negative operands
+TODO 5: subtract support for negative operands
+
+
+          4   5
+          3   4
+        --------
+        (16) (20)    20(1)+16(10)
+   (12) (15)   0     0(1)+15(10)+12(100)
+   --------------
+    15      3     0  =>  1530
+
