@@ -1,21 +1,21 @@
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class CompoundInterestCalculator {
     private BigDecimal initialInvestment;
     private BigDecimal monthlyContribution;
     private int        durationInYears;
     private BigDecimal estimatedInterestRate;
-    private BigDecimal interestRateVarianceRange;
-    private int        compoundFrequency;
+    private int          compoundFrequency;
+    private BigDecimal[] yearlyChangesInInvestmentValue = new BigDecimal[durationInYears];
 
     public CompoundInterestCalculator(BigDecimal initialInvestment, BigDecimal monthlyContribution,
-                                      int durationInYears, BigDecimal estimatedInterestRate,
-                                      BigDecimal interestRateVarianceRange, int compoundFrequency) {
+                                      int durationInYears, BigDecimal estimatedInterestRate, int compoundFrequency) {
         setInitialInvestment(initialInvestment);
         setMonthlyContribution(monthlyContribution);
         setDurationInYears(durationInYears);
         setEstimatedInterestRate(estimatedInterestRate);
-        setInterestRateVarianceRange(interestRateVarianceRange);
         setCompoundFrequency(compoundFrequency);
     }
 
@@ -41,37 +41,26 @@ public class CompoundInterestCalculator {
     public BigDecimal getEstimatedInterestRate() {
         return estimatedInterestRate;
     }
-    public void setEstimatedInterestRate(BigDecimal estimatedInterestRate) { this.estimatedInterestRate = estimatedInterestRate; }
-
-    public BigDecimal getInterestRateVarianceRange() {
-        return interestRateVarianceRange;
+    public void setEstimatedInterestRate(BigDecimal estimatedInterestRate) {
+        this.estimatedInterestRate = estimatedInterestRate.divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP);
     }
-    public void setInterestRateVarianceRange(BigDecimal interestRateVarianceRange) { this.interestRateVarianceRange = interestRateVarianceRange; }
 
     public int getCompoundFrequency() { return compoundFrequency; }
     public void setCompoundFrequency(int compoundFrequency) { this.compoundFrequency = compoundFrequency; }
+
+    public BigDecimal[] getYearlyChangesInInvestmentValue() { return yearlyChangesInInvestmentValue; }
+    public void setYearlyChangesInInvestmentValue(BigDecimal[] yearlyChangesInInvestmentValue) { this.yearlyChangesInInvestmentValue = yearlyChangesInInvestmentValue; }
+
 
     public BigDecimal calculateCompoundInterest() {
         return calculateCompoundInterestOnPrincipal().add(calculateCompoundInterestOnMonthlyDeposits());
     }
     private BigDecimal calculateCompoundInterestOnPrincipal(){
-        return getInitialInvestment().multiply(BigDecimal.ONE.add((getEstimatedInterestRate().divide(BigDecimal.valueOf(getCompoundFrequency())))).pow(getCompoundFrequency() * getDurationInYears()));
+        MathContext mathContext = new MathContext(28, RoundingMode.HALF_UP);
+        return getInitialInvestment().multiply(BigDecimal.ONE.add((getEstimatedInterestRate().divide(BigDecimal.valueOf(getCompoundFrequency()), mathContext))).pow(getCompoundFrequency() * getDurationInYears()));
     }
     private BigDecimal calculateCompoundInterestOnMonthlyDeposits(){
         return BigDecimal.ZERO;
     }
-
-//    A = P (1 + r/n)^(nt) + ∑[PMT × ((1 + r/n)^(nt-i) - 1) / (r/n)]
-//    assuming all variable are provided
-//    first calculate the compound interest based on variable amount of compounding frequency
-//    then, calculate the compound interest on all the monthly deposit, also apply other varaible like compounding frequency
-
-//    A = the future value of the investment/loan, including interest
-//    P = principal investment amount (the initial deposit or loan amount)
-//    r = annual interest rate (in decimal form - e.g., 4% = 0.04)
-//    n = number of times that interest is compounded per year
-//               t = time the money is invested or borrowed for, in years
-//    PMT = monthly deposit amount
-//                  i = month number (from 1 to nt)
 
 }
