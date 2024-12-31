@@ -8,7 +8,7 @@ public class CompoundInterestCalculator {
     private int        durationInYears;
     private BigDecimal estimatedInterestRate;
     private int          compoundFrequency;
-    private BigDecimal[] yearlyChangesInInvestmentValue = new BigDecimal[durationInYears];
+    private BigDecimal[] yearlyChangesInInvestmentValue;
 
     public CompoundInterestCalculator(BigDecimal initialInvestment, BigDecimal monthlyContribution,
                                       int durationInYears, BigDecimal estimatedInterestRate, int compoundFrequency) {
@@ -17,6 +17,7 @@ public class CompoundInterestCalculator {
         setDurationInYears(durationInYears);
         setEstimatedInterestRate(estimatedInterestRate);
         setCompoundFrequency(compoundFrequency);
+        setYearlyChangesInInvestmentValue(new BigDecimal[durationInYears]);
     }
 
     public BigDecimal getInitialInvestment() {
@@ -53,14 +54,43 @@ public class CompoundInterestCalculator {
 
 
     public BigDecimal calculateCompoundInterest() {
-        return calculateCompoundInterestOnPrincipal().add(calculateCompoundInterestOnMonthlyDeposits());
-    }
-    private BigDecimal calculateCompoundInterestOnPrincipal(){
+        BigDecimal pv = getInitialInvestment();
+        BigDecimal pmt = getMonthlyContribution();
+        int t = getDurationInYears();
+        BigDecimal r = getEstimatedInterestRate();
+        int n = getCompoundFrequency();
         MathContext mathContext = new MathContext(28, RoundingMode.HALF_UP);
-        return getInitialInvestment().multiply(BigDecimal.ONE.add((getEstimatedInterestRate().divide(BigDecimal.valueOf(getCompoundFrequency()), mathContext))).pow(getCompoundFrequency() * getDurationInYears()));
+
+        BigDecimal[] values = getYearlyChangesInInvestmentValue();
+        //int yearsIndex = getDurationInYears() - 1;
+        for (int year = 1; year <= t; year++ ) {
+            values[year - 1] = calculateCompoundInterestOnPrincipal(pv, year, r, n, mathContext).
+                            add(calculateCompoundInterestOnMonthlyDeposits(pmt, year, r, n, mathContext));
+        }
+        setYearlyChangesInInvestmentValue(values);
+        return values[t-1];
     }
-    private BigDecimal calculateCompoundInterestOnMonthlyDeposits(){
-        return BigDecimal.ZERO;
+
+    private BigDecimal calculateCompoundInterestOnPrincipal(BigDecimal pv, int yearNumber, BigDecimal r, int n, MathContext mathContext) {
+        BigDecimal temp = BigDecimal.ONE.add(r.divide(BigDecimal.valueOf(n), mathContext));
+        temp = temp.pow(n * yearNumber);
+        return pv.multiply(temp);
+    }
+
+    private BigDecimal calculateCompoundInterestOnMonthlyDeposits(BigDecimal pmt, int yearNumber, BigDecimal r, int n, MathContext mathContext) {
+        final BigDecimal periodicInterestRate = r.divide(BigDecimal.valueOf(n), mathContext);
+
+        BigDecimal temp = BigDecimal.ONE.add(periodicInterestRate);
+        temp = (temp.pow(yearNumber * n)).subtract(BigDecimal.ONE);
+        temp = temp.divide(periodicInterestRate, mathContext);
+        //since pmt is monthly
+        switch (n) {
+            case 1 -> pmt = pmt.multiply(BigDecimal.valueOf(12));
+            case 2 -> pmt = pmt.multiply(BigDecimal.valueOf(6));
+            case 4 -> pmt = pmt.multiply(BigDecimal.valueOf(3));
+            case 365 -> pmt = pmt.divide(BigDecimal.valueOf(30), mathContext);
+        }
+        return pmt.multiply(temp);
     }
 
 }
