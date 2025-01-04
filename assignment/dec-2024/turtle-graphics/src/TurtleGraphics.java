@@ -93,10 +93,10 @@ public class TurtleGraphics {
 
         for (int i = 1; i <= noOfSpaces; i++) {
             switch (orientation) {
-                case NORTH -> move(turtle, currentPosX, --currentPosY);
-                case SOUTH -> move(turtle, currentPosX, ++currentPosY);
-                case EAST -> move(turtle, ++currentPosX, currentPosY);
-                case WEST -> move(turtle, --currentPosX, currentPosY);
+                case NORTH -> turtle.move(currentPosX, --currentPosY);
+                case SOUTH -> turtle.move(currentPosX, ++currentPosY);
+                case EAST -> turtle.move(++currentPosX, currentPosY);
+                case WEST -> turtle.move(--currentPosX, currentPosY);
                 default -> throw new IllegalStateException("Unexpected value: " + orientation);
             }
             if (penState.equals(Turtle.PenState.DOWN)) {
@@ -104,10 +104,4 @@ public class TurtleGraphics {
             }
         }
     }
-
-    private static void move(Turtle turtle, int newPosX, int newPosY) {
-        turtle.setX(newPosX);
-        turtle.setY(newPosY);
-    }
-
 }

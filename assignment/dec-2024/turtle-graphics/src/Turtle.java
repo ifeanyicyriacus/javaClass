@@ -11,7 +11,7 @@ public class Turtle {
         return x;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
     }
 
@@ -19,8 +19,13 @@ public class Turtle {
         return y;
     }
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
+    }
+
+    public void move(int x, int y) {
+        setX(x);
+        setY(y);
     }
 
     public PenState getPenState() {
@@ -39,7 +44,7 @@ public class Turtle {
         return this.orientation;
     }
 
-    public void setOrientation(Orientation orientation) {
+    private void setOrientation(Orientation orientation) {
         this.orientation = orientation;
     }
 
