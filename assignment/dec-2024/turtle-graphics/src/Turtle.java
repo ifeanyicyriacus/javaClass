@@ -1,5 +1,5 @@
 public class Turtle {
-    public static final String TOKEN = "🐢";
+    public static final String TOKEN = "1";
 
     private int         x;
     private int         y;
@@ -59,8 +59,6 @@ public class Turtle {
     public enum PenState {
         UP, DOWN
     }
-
-    ;
 
     public enum Orientation {
         NORTH, EAST, SOUTH, WEST

@@ -33,7 +33,6 @@ public class TurtleGraphics {
             switch (command) {
                 case "1", "2", "3", "4" -> {
                     colourCommandTextGreen(command);
-                    //commands.add(command);
                     parser(command, turtle, floor);
                 }
                 case "6" -> {
@@ -48,7 +47,6 @@ public class TurtleGraphics {
                     String[] temp = command.split(",");
                     if ((temp.length == 2) && temp[0].equals("5") && (Integer.parseInt(temp[1]) >= 1)) {
                         colourCommandTextGreen(command);
-                        //commands.add(command);
                         parser(command, turtle, floor);
                     } else {
                         System.out.print("\033[A\033[K");
@@ -67,7 +65,7 @@ public class TurtleGraphics {
         StringBuilder output = new StringBuilder();
         for (String[] row : floor) {
             output.append(
-                    Arrays.toString(row).replace("1", "*").replace("0", " z"));
+                    Arrays.toString(row).replace("1", "🐢").replace("0", "  "));
             output.append("\n");
         }
         return output.toString();
@@ -91,15 +89,12 @@ public class TurtleGraphics {
         Turtle.Orientation orientation = turtle.getOrientation();
         int currentPosX = turtle.getX();
         int currentPosY = turtle.getY();
-
         String token = Turtle.TOKEN;
-        if (penState.equals(Turtle.PenState.DOWN)) {
-            floor[currentPosY][currentPosX] = token;
-        }
+
         for (int i = 1; i <= noOfSpaces; i++) {
             switch (orientation) {
-                case NORTH -> move(turtle, currentPosX, ++currentPosY);
-                case SOUTH -> move(turtle, currentPosX, --currentPosY);
+                case NORTH -> move(turtle, currentPosX, --currentPosY);
+                case SOUTH -> move(turtle, currentPosX, ++currentPosY);
                 case EAST -> move(turtle, ++currentPosX, currentPosY);
                 case WEST -> move(turtle, --currentPosX, currentPosY);
                 default -> throw new IllegalStateException("Unexpected value: " + orientation);
