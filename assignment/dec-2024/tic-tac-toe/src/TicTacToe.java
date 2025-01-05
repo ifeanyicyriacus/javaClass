@@ -1,12 +1,13 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToe {
-    private final int        noOfPlayers;
-    private final int difficultLevel;
-    private final String  X     = CellValues.X.value;
-    private final String  O     = CellValues.O.value;
-    private final String[][][] gameBoard;
-    private final static Scanner input = new Scanner(System.in);
+    private final        int          noOfPlayers;
+    private final        int          difficultLevel;
+    private final        String       X     = CellValues.X.value;
+    private final        String       O     = CellValues.O.value;
+    private final        String[][][] gameBoard;
+    private final static Scanner      input = new Scanner(System.in);
 
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
@@ -26,8 +27,9 @@ public class TicTacToe {
         DANGEROUS(3);
 
         private final String[][][] board;
+
         BoardTypes(int i) {
-            this.board  = switch (i) {
+            this.board = switch (i) {
                 case 1 -> new String[1][3][3];
                 case 2 -> new String[1][4][4];
                 case 3 -> new String[4][4][4];
@@ -42,6 +44,7 @@ public class TicTacToe {
         EMPTY("");
 
         private final String value;
+
         CellValues(String value) {
             this.value = value;
         }
@@ -51,32 +54,31 @@ public class TicTacToe {
         final int NO_OF_CELLS_IN_BOARD = 9;
         final int MIN_NO_OF_MOVES_FOR_A_WIN = 5;
 
-        String[][] ticTacToeBoard = {
-                {"", "", ""},
-                {"", "", ""},
-                {"", "", ""}
-        };
+        reset(gameBoard);
         String token;
-
-        System.out.println("Tic-Tac-Toe Game");
-        System.out.println("Enter Row(1-3) and column(1-3) number.\nGAME ON");
+        System.out.println("""
+                +-----------------------+
+                |   Tic-Tac-Toe Game    |
+                |       GAME ON!!       |
+                +-----------------------+
+                """);
 
         for (int index = 1; index <= NO_OF_CELLS_IN_BOARD; index += 1) {
-            System.out.println(displayBoard(ticTacToeBoard));
+            System.out.println(displayBoard(gameBoard));
             if (index % 2 == 0) {
                 token = X;
-                collectNextMove(ticTacToeBoard, token, input);
+                collectNextMove(gameBoard, token, input);
             } else {
                 token = O;
-                collectNextMove(ticTacToeBoard, token, input);
+                collectNextMove(gameBoard, token, input);
             }
 
-            if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner(ticTacToeBoard)) {
-                System.out.println(displayBoard(ticTacToeBoard));
+            if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner(gameBoard)) {
+                System.out.println(displayBoard(gameBoard));
                 System.out.printf("GAME OVER\nPlayer%s Wins\n", token);
                 break;//playAgain
             } else if (index == 9) {
-                System.out.println(displayBoard(ticTacToeBoard));
+                System.out.println(displayBoard(gameBoard));
                 System.out.println("GAME OVER\nDRAW!!!");
                 break;//playAgain
             }
@@ -84,33 +86,61 @@ public class TicTacToe {
 
     }
 
+    private void reset(String[][][] gameBoard) {
+        for (String[][] layer : gameBoard) {
+            for (String[] row : layer) {
+                Arrays.fill(row, CellValues.EMPTY.value);
+            }
+        }
+    }
 
-    public static void collectNextMove(String[][] board, String token, Scanner input) {
+
+    public static void collectNextMove(String[][][] board, String token) {
         int retry = 0;
         int row;
         int column;
+        int layer = 1;
         do {
             if (retry != 0) {
                 System.out.println("Position has been filled, try again!");
             }
+            if (board.length > 1) {
+                System.out.printf("Player %s: enter board layer (A, B, C, D) >> ", token);
+                layer = collectLayer();
+            }
             System.out.printf("Player %s: enter row >> ", token);
-            row = collectRowOrColumn(input);
+            row = collectRowOrColumn();
             System.out.printf("Player %s: enter column >> ", token);
-            column = collectRowOrColumn(input);
+            column = collectRowOrColumn();
             retry += 1;
-        } while (!addToken(board, token, row, column));
+        } while (!addToken(board, token, layer, row, column));
     }
 
-    public static boolean addToken(String[][] board, String token, int row, int column) {
-        if (board[row - 1][column - 1].isEmpty()) {
-            board[row - 1][column - 1] = token;
+    public static boolean addToken(String[][][] board, String token, int layer, int row, int column) {
+        if (board[layer - 1][row - 1][column - 1].equals(CellValues.EMPTY.value)) {
+            board[layer - 1][row - 1][column - 1] = token;
             return true;
-        } else {
+        }else {
             return false;
         }
     }
 
-    public static int collectRowOrColumn(Scanner input) {
+    private static int collectLayer() {
+        int number = 0;
+        do {
+            String layer = input.next();
+            switch (layer.toUpperCase()) {
+                case "A" -> number = 1;
+                case "B" -> number = 2;
+                case "C" -> number = 3;
+                case "D" -> number = 4;
+                default -> System.out.print("Invalid input, Enter (A, B, C, or D) try again!\n>> ");
+            }
+        } while (number == 0);
+        return number;
+    }
+
+    public static int collectRowOrColumn() {
         int number = 0;
         do {
             if (number != 0) {
@@ -121,7 +151,7 @@ public class TicTacToe {
         return number;
     }
 
-    public static boolean checkForWinner(String[][] board) {
+    public static boolean checkForWinner(String[][][] board) {
         if (!board[0][0].isEmpty() && board[0][0].equals(board[0][1]) && board[0][1].equals(board[0][2])) {
             highlightWinCells(board, 0, 0, 0, 1, 0, 2);
             return true;
@@ -169,7 +199,7 @@ public class TicTacToe {
   }*/
 
 
-    public static String displayBoard(String[][] board) {
+    public static String displayBoard(String[][][] board) {
         return String.format("      col 1 col 2 col 3 %n     +-----+-----+-----+%nrow 1|%5s|%5s|%5s|%n     +-----+-----+-----+%nrow 2|%5s|%5s|%5s|%n     +-----+-----+-----+%nrow 3|%5s|%5s|%5s|%n     +-----+-----+-----+%n",
                 board[0][0], board[0][1], board[0][2], board[1][0], board[1][1], board[1][2], board[2][0], board[2][1], board[2][2]);
     }
