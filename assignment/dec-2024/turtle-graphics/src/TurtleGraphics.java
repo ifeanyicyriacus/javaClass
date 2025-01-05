@@ -37,23 +37,15 @@ public class TurtleGraphics {
     }
 
     private void moveForward(int noOfSpaces) {
-        Turtle.PenState penState = turtle.getPenState();
-        Turtle.Orientation orientation = turtle.getOrientation();
-        int currentPosX = turtle.getX();
-        int currentPosY = turtle.getY();
-        String token = Turtle.TOKEN;
-
         for (int i = 1; i <= noOfSpaces; i++) {
-            switch (orientation) {
-                case NORTH -> turtle.move(currentPosX, --currentPosY);
-                case SOUTH -> turtle.move(currentPosX, ++currentPosY);
-                case EAST -> turtle.move(++currentPosX, currentPosY);
-                case WEST -> turtle.move(--currentPosX, currentPosY);
-                default -> throw new IllegalStateException("Unexpected value: " + orientation);
-            }
-            if (penState.equals(Turtle.PenState.DOWN)) {
-                floor[currentPosY][currentPosX] = token;
-            }
+            turtle.moveForwardOneStep();
+            drawOrPass();
+        }
+    }
+
+    private void drawOrPass() {
+        if (turtle.getPenState().equals(Turtle.PenState.DOWN)) {
+            floor[turtle.getY()][turtle.getX()] = Turtle.TOKEN;
         }
     }
 }

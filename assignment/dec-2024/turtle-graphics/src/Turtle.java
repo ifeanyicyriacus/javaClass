@@ -1,11 +1,24 @@
 public class Turtle {
     public static final String TOKEN = "1";
 
+    public enum PenState {
+        UP, DOWN
+    }
+    public enum Orientation {
+        NORTH, EAST, SOUTH, WEST
+    }
+
     private int         x;
     private int         y;
     private PenState    penState;
     private Orientation orientation;
 
+    public Turtle() {
+        this.x = 0;
+        this.y = 0;
+        this.penState = PenState.UP;
+        this.orientation = Orientation.EAST;
+    }
 
     public int getX() {
         return x;
@@ -53,7 +66,6 @@ public class Turtle {
         index = (index + 1) % Orientation.values().length;
         setOrientation(Orientation.values()[index]);
     }
-
     public void turnLEFT() {
         int index = getOrientation().ordinal();
         int orientationLength = Orientation.values().length;
@@ -61,20 +73,16 @@ public class Turtle {
         setOrientation(Orientation.values()[index]);
     }
 
-    public enum PenState {
-        UP, DOWN
+    public void moveForwardOneStep() {
+        int currentPosX = getX();
+        int currentPosY = getY();
+
+        switch (getOrientation()) {
+            case NORTH -> move(currentPosX, --currentPosY);
+            case SOUTH -> move(currentPosX, ++currentPosY);
+            case EAST -> move(++currentPosX, currentPosY);
+            case WEST -> move(--currentPosX, currentPosY);
+            default -> throw new IllegalStateException("Unexpected value: " + orientation);
+        }
     }
-
-    public enum Orientation {
-        NORTH, EAST, SOUTH, WEST
-    }
-
-    public Turtle() {
-        this.x = 0;
-        this.y = 0;
-        this.penState = PenState.UP;
-        this.orientation = Orientation.EAST;
-    }
-
-
 }
