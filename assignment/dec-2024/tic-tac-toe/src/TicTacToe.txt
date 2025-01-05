@@ -1,0 +1,47 @@
+tick-tack-toe
+display empty board
+if a loop that iterate index in 10 times
+	if index % 2 != 0:
+		prompt playerX and collect row number
+		prompt playerX and collect column number
+	else:
+		prompt playerO and collect row number
+		prompt playerO and collect column number
+	
+	for 5th iteration and above:
+		check for winner, if false and iteration < 10
+			continue
+		check for winner, if false and iteration == 10
+			draw
+			ask do you want to continue:
+			yes: clear array
+			no: end game
+		check forwinner, if true:
+			display player {board[row][column]} wins
+			
+check for winner function, accept boardArray return boolean
+check if board match the possible win combination
+	 if board[0][0]!= " " and board[0][0] == board[0][1] and board[0][1] == board[0][2]: true
+else if board[1][0]!= " " and board[1][0] == board[1][1] and board[1][1] == board[1][2]: true
+else if board[2][0]!= " " and board[2][0] == board[2][1] and board[2][1] == board[2][2]: true
+else if board[0][0]!= " " and board[0][0] == board[1][0] and board[1][0] == board[2][0]: true
+else if board[0][1]!= " " and board[0][1] == board[1][1] and board[1][1] == board[2][1]: true
+else if board[0][2]!= " " and board[0][2] == board[1][2] and board[1][2] == board[2][2]: true
+else if board[0][0]!= " " and board[0][0] == board[1][1] and board[1][1] == board[2][2]: true
+else if board[0][2]!= " " and board[0][2] == board[1][1] and board[1][1] == board[2][0]: true
+else false
+
+
+display board accept boardArray a
+return String.format("
++-----+-----+-----+%n
+|  %s  |  %s  |  %s  |%n
++-----+------+-----+%n
+|  %s  |  %s  |  %s  |%n
++-----+------+-----+%n
+|  %s  |  %s  |  %s  |%n
++-----+------+-----+%n
+", 
+a[0][0], a[0][1], a[0][2],
+a[1][0], a[1][1], a[1][2], 
+a[2][0], a[2][1], a[2][2]);
