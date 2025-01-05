@@ -9,6 +9,9 @@ public class TicTacToe {
     private final        String[][][] gameBoard;
     private final static Scanner      input = new Scanner(System.in);
 
+    private final int NO_OF_CELLS_IN_BOARD;
+    private final int MIN_NO_OF_MOVES_FOR_A_WIN;
+    private final int LENGTH_OF_BOARD_SIDE;
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
         this.noOfPlayers = noOfPlayers;
@@ -19,6 +22,10 @@ public class TicTacToe {
             case 3 -> BoardTypes.DANGEROUS.board;
             default -> throw new IllegalStateException("Unexpected value: " + difficultLevel);
         };
+        int layers = this.gameBoard.length;
+        this.LENGTH_OF_BOARD_SIDE = this.gameBoard[0].length;
+        this.NO_OF_CELLS_IN_BOARD = (int) (layers * Math.pow(LENGTH_OF_BOARD_SIDE, 2));
+        this.MIN_NO_OF_MOVES_FOR_A_WIN = (this.LENGTH_OF_BOARD_SIDE * 2) - 1;
     }
 
     private enum BoardTypes {
@@ -51,9 +58,6 @@ public class TicTacToe {
     }
 
     public void startGame() {
-        final int NO_OF_CELLS_IN_BOARD = 9;
-        final int MIN_NO_OF_MOVES_FOR_A_WIN = 5;
-
         reset(gameBoard);
         String token;
         System.out.println("""
@@ -67,20 +71,20 @@ public class TicTacToe {
             System.out.println(displayBoard(gameBoard));
             if (index % 2 == 0) {
                 token = X;
-                collectNextMove(gameBoard, token, input);
+                collectNextMove(gameBoard, token);
             } else {
                 token = O;
-                collectNextMove(gameBoard, token, input);
+                collectNextMove(gameBoard, token);
             }
 
             if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner(gameBoard)) {
                 System.out.println(displayBoard(gameBoard));
                 System.out.printf("GAME OVER\nPlayer%s Wins\n", token);
-                break;//playAgain
-            } else if (index == 9) {
+                break;
+            } else if (index == NO_OF_CELLS_IN_BOARD) {
                 System.out.println(displayBoard(gameBoard));
                 System.out.println("GAME OVER\nDRAW!!!");
-                break;//playAgain
+                break;
             }
         }
 
@@ -95,7 +99,7 @@ public class TicTacToe {
     }
 
 
-    public static void collectNextMove(String[][][] board, String token) {
+    public void collectNextMove(String[][][] board, String token) {
         int retry = 0;
         int row;
         int column;
@@ -116,7 +120,7 @@ public class TicTacToe {
         } while (!addToken(board, token, layer, row, column));
     }
 
-    public static boolean addToken(String[][][] board, String token, int layer, int row, int column) {
+    public boolean addToken(String[][][] board, String token, int layer, int row, int column) {
         if (board[layer - 1][row - 1][column - 1].equals(CellValues.EMPTY.value)) {
             board[layer - 1][row - 1][column - 1] = token;
             return true;
@@ -125,7 +129,7 @@ public class TicTacToe {
         }
     }
 
-    private static int collectLayer() {
+    private int collectLayer() {
         int number = 0;
         do {
             String layer = input.next();
@@ -140,18 +144,18 @@ public class TicTacToe {
         return number;
     }
 
-    public static int collectRowOrColumn() {
+    public int collectRowOrColumn() {
         int number = 0;
         do {
             if (number != 0) {
                 System.out.print("Invalid input, try again!>> ");
             }
             number = input.nextInt();
-        } while (number < 1 || number > 3);
+        } while (number < 1 || number > this.LENGTH_OF_BOARD_SIDE);
         return number;
     }
 
-    public static boolean checkForWinner(String[][][] board) {
+    public boolean checkForWinner(String[][][] board) {
         if (!board[0][0].isEmpty() && board[0][0].equals(board[0][1]) && board[0][1].equals(board[0][2])) {
             highlightWinCells(board, 0, 0, 0, 1, 0, 2);
             return true;
@@ -185,7 +189,7 @@ public class TicTacToe {
 //
 //    }
 
-    public static void highlightWinCells(String[][] board, int row1, int col1, int row2, int col2, int row3, int col3) {
+    public void highlightWinCells(String[][] board, int row1, int col1, int row2, int col2, int row3, int col3) {
         board[row1][col1] = "\033[47m" + board[row1][col1];
         board[row2][col2] = "\033[47m" + board[row2][col2];
         board[row3][col3] = "\033[47m" + board[row3][col3];
@@ -200,8 +204,18 @@ public class TicTacToe {
 
 
     public static String displayBoard(String[][][] board) {
-        return String.format("      col 1 col 2 col 3 %n     +-----+-----+-----+%nrow 1|%5s|%5s|%5s|%n     +-----+-----+-----+%nrow 2|%5s|%5s|%5s|%n     +-----+-----+-----+%nrow 3|%5s|%5s|%5s|%n     +-----+-----+-----+%n",
-                board[0][0], board[0][1], board[0][2], board[1][0], board[1][1], board[1][2], board[2][0], board[2][1], board[2][2]);
+        return String.format(
+                "      col 1 col 2 col 3 %n" +
+                "     +-----+-----+-----+%n" +
+                "row 1|%5s|%5s|%5s|%n" +
+                "     +-----+-----+-----+%n" +
+                "row 2|%5s|%5s|%5s|%n" +
+                "     +-----+-----+-----+%n" +
+                "row 3|%5s|%5s|%5s|%n" +
+                "     +-----+-----+-----+%n",
+                board[0][0], board[0][1], board[0][2],
+                board[1][0], board[1][1], board[1][2],
+                board[2][0], board[2][1], board[2][2]);
     }
 
 
