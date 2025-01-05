@@ -1,0 +1,51 @@
+Create a class HugeInteger 
+	which uses a 40-element array of digits to store integers 40 digits large
+	
+	
+	
+Provide methods: 
+	parse: receive a String, extract each digit using method charAt and place the integer equivalent of each digit into the integer array.
+		-parse should handle negative number too
+	toString: 
+		- it might handle out of bound, same with setNumber
+		- find the first occurance of 1-9
+			+ for each element check to see if reater than 0 if yes
+			+ set as substring start index
+			+ break 
+		- substring(form first occurance to end)
+	add
+		add should handle negative number, perhaps call the substract function
+	subtract.
+		substract should handle negative number pehaps call add
+	
+For comparing HugeInteger objects, provide the following methods: 
+	isEqualTo
+	isNotEqualTo
+	isGreaterThan:
+		if isEqual return false
+		if A is -ve and B +ve false:
+			else if A is +ve and B is -ve true
+			else if polarity is thesame:
+				if length A is greater than B true else false
+				if length is the same:
+					start looping through digit to compare their digits begining from the first index (40 - length) or go through all
+						if ever A[] < B[] return false
+					if loop finishes return true
+					
+	isLessThan
+	isGreaterThanOrEqualTo
+	isLessThanOrEqualTo
+
+Provide a predicate method
+	isZero
+
+provide methods: (i recommend you overload them to work on both int and HugeInteger)
+	multiply
+	divide
+	remainder
+
+
+
+
+
+

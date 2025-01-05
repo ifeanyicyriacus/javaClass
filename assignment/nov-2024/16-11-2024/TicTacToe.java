@@ -36,7 +36,7 @@ public class TicTacToe{
     
   }
   
-  public static void playAgain(String[][] board, ){
+  public static void playAgain(String[][] board){
   
     //swap who starts // i might need to make X and O an object so that i could swap their reference before game begin
   }
