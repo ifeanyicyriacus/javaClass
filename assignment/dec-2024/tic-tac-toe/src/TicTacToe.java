@@ -155,11 +155,64 @@ public class TicTacToe {
             for (String[][] board : boards) {
                 if (checkBoardForComplete(board)) { return true; }
             }
+            for (int i = 0; i < LENGTH_OF_BOARD_SIDE; i += 1) {
+                for (int j = 0; j < LENGTH_OF_BOARD_SIDE; j += 1) {
+                    if(checkUpDownVerticals(boards, i, j)) { return true; }
+                }
+            }
+
+            if(checkSidesDiagonalsOnYAxis(boards)) { return true; }
+            if(checkSidesDiagonalsOnXAxis(boards)) { return true; }
+
+//            if(checkEdgeDiagonals(boards)) { return true; }
 
         }
 
 //        transposing a cube
         return false;
+    }
+
+    private boolean checkSidesDiagonalsOnYAxis(String[][][] boards) {
+        boolean backwardSlash =
+                boards[0][0][0].equals(boards[1][1][0]) &&
+                boards[0][0][0].equals(boards[2][2][0]) &&
+                boards[0][0][0].equals(boards[3][3][0]);
+
+        boolean forwardSlash =
+                boards[0][3][0].equals(boards[1][2][1]) &&
+                boards[0][3][0].equals(boards[2][1][1]) &&
+                boards[0][3][0].equals(boards[3][0][1]);
+
+        return backwardSlash || forwardSlash;
+    }
+
+
+    private boolean checkSidesDiagonalsOnXAxis(String[][][] boards) {
+        boolean backwardSlash = boards[0][0][1].equals(boards[1][1][1]) &&
+                boards[0][0][0].equals(boards[2][2][1]) &&
+                boards[0][0][0].equals(boards[3][3][1]);
+
+        boolean forwardSlash = boards[0][3][1].equals(boards[1][2][1]) &&
+                boards[0][3][1].equals(boards[2][1][1]) &&
+                boards[0][3][1].equals(boards[3][0][1]);
+
+        return backwardSlash || forwardSlash;
+    }
+
+
+//    todo
+//    todo too good that you cant be ignored
+//    todo self assessment - log book doc
+//    todo draft a plan for January target -> ensure to plan it today to avoid time spilling
+//    todo do it like an Excel sheet
+//    todo battle procrastination
+//    todo dont be too conformable with a single language, avoid preference
+//    todo three idiot money will pursuit excellence - pants down
+
+    private boolean checkUpDownVerticals(String[][][] boards, int row, int col) {
+        return  boards[0][row][col].equals(boards[1][row][col]) &&
+                boards[0][row][col].equals(boards[2][row][col]) &&
+                boards[0][row][col].equals(boards[3][row][col]);
     }
 
     private boolean checkBoardForComplete(String[][] board) {
@@ -174,8 +227,7 @@ public class TicTacToe {
             if (checkRowForComplete(column)){ return true; }
         }
         if (checkRowForComplete(forwardSlashDiagonal)){ return true; }
-        if (checkRowForComplete(backwardSlashDiagonal)){ return true; }
-        return false;
+        return checkRowForComplete(backwardSlashDiagonal);
     }
 
     private String[][] transpose(String[][] board) {
@@ -217,42 +269,55 @@ public class TicTacToe {
 //        board[row3][col3] = "\033[47m" + board[row3][col3];
 //    }
 
-  /*public static void highlightWinCells(
-          String[][] board, int row1, int col1, int row2, int col2, int row3, int col3, int row4, int col4) {
-    board[row1][col1] = "\033[47m" + board[row1][col1];
-    board[row2][col2] = "\033[47m" + board[row2][col2];
-    board[row3][col3] = "\033[47m" + board[row3][col3];
-    board[row4][col4] = "\033[47m" + board[row4][col4];
-  }*/
 
 
     public String displayBoard(String[][][] boards) {
         char boardCount = 'A';
-        String boardsString = "";
+        StringBuilder boardsString = new StringBuilder();
         System.out.print("\033[2J");
         for (String[][] board : boards) {
             if (LAYERS > 1){
-                boardsString += "Board " + boardCount++ + ":";
+                boardsString.append("Board ").append(boardCount++).append(":\n");
             }
-            boardsString += displayOneBoard(board) + "\n";
+            boardsString.append(displayOneBoard(board)).append("\n");
         }
-        return boardsString;
+        return boardsString.toString();
     }
 
-    public static String displayOneBoard(String[][] board) {
-        return String.format(
-                "      col 1 col 2 col 3 %n" +
-                        "     +-----+-----+-----+%n" +
-                        "row 1|%5s|%5s|%5s|%n" +
-                        "     +-----+-----+-----+%n" +
-                        "row 2|%5s|%5s|%5s|%n" +
-                        "     +-----+-----+-----+%n" +
-                        "row 3|%5s|%5s|%5s|%n" +
-                        "     +-----+-----+-----+%n",
-                board[0][0], board[0][1], board[0][2],
-                board[1][0], board[1][1], board[1][2],
-                board[2][0], board[2][1], board[2][2]
-        );
+    public String displayOneBoard(String[][] board) {
+        if (LENGTH_OF_BOARD_SIDE == 3){
+            return String.format(
+                    "      col 1 col 2 col 3 %n" +
+                            "     +-----+-----+-----+%n" +
+                            "row 1|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+%n" +
+                            "row 2|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+%n" +
+                            "row 3|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+%n",
+                    board[0][0], board[0][1], board[0][2],
+                    board[1][0], board[1][1], board[1][2],
+                    board[2][0], board[2][1], board[2][2]
+            );
+        } else if (LENGTH_OF_BOARD_SIDE == 4) {
+            return String.format(
+                    "      col 1 col 2 col 3 col 4 %n" +
+                            "     +-----+-----+-----+-----+%n" +
+                            "row 1|%5s|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+-----+%n" +
+                            "row 2|%5s|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+-----+%n" +
+                            "row 3|%5s|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+-----+%n" +
+                            "row 4|%5s|%5s|%5s|%5s|%n" +
+                            "     +-----+-----+-----+-----+%n",
+                    board[0][0], board[0][1], board[0][2], board[0][3],
+                    board[1][0], board[1][1], board[1][2], board[1][3],
+                    board[2][0], board[2][1], board[2][2], board[2][3],
+                    board[3][0], board[3][1], board[3][2], board[3][3]
+            );
+        }
+        return "Board of (`"+ LENGTH_OF_BOARD_SIDE + " X " + LENGTH_OF_BOARD_SIDE + ") not supported. Yet!";
     }
 
 
