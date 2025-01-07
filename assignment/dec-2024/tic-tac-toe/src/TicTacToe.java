@@ -11,7 +11,7 @@ public class TicTacToe {
 
     private final int NO_OF_CELLS_IN_BOARD;
     private final int MIN_NO_OF_MOVES_FOR_A_WIN;
-    private final int LENGTH_OF_BOARD_SIDE;
+    private final int LENGTH_OF_BOARD_SIDES;
     private final int LAYERS;
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
@@ -24,9 +24,9 @@ public class TicTacToe {
             default -> throw new IllegalStateException("Unexpected value: " + difficultLevel);
         };
         this.LAYERS = this.gameBoard.length;
-        this.LENGTH_OF_BOARD_SIDE = this.gameBoard[0].length;
-        this.NO_OF_CELLS_IN_BOARD = (int) (this.LAYERS * Math.pow(LENGTH_OF_BOARD_SIDE, 2));
-        this.MIN_NO_OF_MOVES_FOR_A_WIN = (this.LENGTH_OF_BOARD_SIDE * 2) - 1;
+        this.LENGTH_OF_BOARD_SIDES = this.gameBoard[0].length;
+        this.NO_OF_CELLS_IN_BOARD = (int) (this.LAYERS * Math.pow(LENGTH_OF_BOARD_SIDES, 2));
+        this.MIN_NO_OF_MOVES_FOR_A_WIN = (this.LENGTH_OF_BOARD_SIDES * 2) - 1;
     }
 
     private enum BoardTypes {
@@ -144,78 +144,91 @@ public class TicTacToe {
                 System.out.print("Invalid input, try again!>> ");
             }
             number = input.nextInt();
-        } while (number < 1 || number > this.LENGTH_OF_BOARD_SIDE);
+        } while (number < 1 || number > this.LENGTH_OF_BOARD_SIDES);
         return number;
     }
 
     public boolean checkForWinner(String[][][] boards) {
         if (boards.length == 1){
-            return checkBoardForComplete(boards[0]);
+            return checkIndividualBoardsForWinner(boards[0]);
         } else {
             for (String[][] board : boards) {
-                if (checkBoardForComplete(board)) { return true; }
+                if (checkIndividualBoardsForWinner(board)) { return true; }
             }
-            for (int i = 0; i < LENGTH_OF_BOARD_SIDE; i += 1) {
-                for (int j = 0; j < LENGTH_OF_BOARD_SIDE; j += 1) {
-                    if(checkUpDownVerticals(boards, i, j)) { return true; }
+            for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
+                for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
+                    if(checkUpDownVerticals(boards, row, col)) { return true; }
                 }
             }
 
-            if(checkSidesDiagonalsOnYAxis(boards)) { return true; }
-            if(checkSidesDiagonalsOnXAxis(boards)) { return true; }
+            for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
+                if(checkSideToSideForwardDiagonalOnYAxis(boards, col)) { return true; }
+                if(checkSideToSideBackwardDiagonalOnYAxis(boards, col)) { return true; }
+            }
 
-//            if(checkEdgeDiagonals(boards)) { return true; }
-
+            for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
+                if(checkSideToSideForwardDiagonalOnXAxis(boards, row)) { return true; }
+                if(checkSideToSideBackwardDiagonalOnXAxis(boards, row)) { return true; }
+            }
+            return checkEdgeToEdgeDiagonals(boards);
         }
-
-//        transposing a cube
-        return false;
     }
 
-    private boolean checkSidesDiagonalsOnYAxis(String[][][] boards) {
-        boolean backwardSlash =
-                boards[0][0][0].equals(boards[1][1][0]) &&
-                boards[0][0][0].equals(boards[2][2][0]) &&
-                boards[0][0][0].equals(boards[3][3][0]);
-
-        boolean forwardSlash =
-                boards[0][3][0].equals(boards[1][2][1]) &&
-                boards[0][3][0].equals(boards[2][1][1]) &&
-                boards[0][3][0].equals(boards[3][0][1]);
-
-        return backwardSlash || forwardSlash;
+    private boolean checkEdgeToEdgeDiagonals(String[][][] boards) {
+        return
+        (boards[0][0][0].equals(boards[1][1][1]) && boards[0][0][0].equals(boards[2][2][2]) && boards[0][0][0].equals(boards[3][3][3])) ||
+        (boards[0][3][3].equals(boards[1][2][2]) && boards[0][3][3].equals(boards[2][1][1]) && boards[0][3][3].equals(boards[3][0][0])) ||
+        (boards[0][0][3].equals(boards[1][1][2]) && boards[0][0][3].equals(boards[2][2][1]) && boards[0][0][3].equals(boards[3][3][0])) ||
+        (boards[0][3][0].equals(boards[1][2][1]) && boards[0][3][0].equals(boards[2][1][2]) && boards[0][3][0].equals(boards[3][0][3]));
     }
 
-
-    private boolean checkSidesDiagonalsOnXAxis(String[][][] boards) {
-        boolean backwardSlash = boards[0][0][1].equals(boards[1][1][1]) &&
-                boards[0][0][0].equals(boards[2][2][1]) &&
-                boards[0][0][0].equals(boards[3][3][1]);
-
-        boolean forwardSlash = boards[0][3][1].equals(boards[1][2][1]) &&
-                boards[0][3][1].equals(boards[2][1][1]) &&
-                boards[0][3][1].equals(boards[3][0][1]);
-
-        return backwardSlash || forwardSlash;
+    private boolean checkSideToSideBackwardDiagonalOnXAxis(String[][][] boards, int row) {
+        if(boards[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) { return false; }
+        for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS; layer += 1, col -= 1){
+            if (!boards[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(boards[layer][row][col])){
+                return false;
+            }
+        } return true;
     }
 
+    private boolean checkSideToSideForwardDiagonalOnXAxis(String[][][] boards, int row) {
+        if (boards[0][row][0].equals(CellValues.EMPTY.value)) { return false; }
+        for (int layer = 1, col = 1; layer < LAYERS; layer += 1, col += 1) {
+            if (!boards[0][row][0].equals(boards[layer][row][col])){
+                return false;
+            }
+        } return true;
+    }
 
-//    todo
-//    todo too good that you cant be ignored
-//    todo self assessment - log book doc
-//    todo draft a plan for January target -> ensure to plan it today to avoid time spilling
-//    todo do it like an Excel sheet
-//    todo battle procrastination
-//    todo dont be too conformable with a single language, avoid preference
-//    todo three idiot money will pursuit excellence - pants down
+    private boolean checkSideToSideForwardDiagonalOnYAxis(String[][][] boards, int col) {
+        if(boards[0][0][col].equals(CellValues.EMPTY.value)) { return false; }
+        for(int layer = 1, row = 1; layer < LAYERS; layer += 1, row += 1){
+            if (!boards[0][0][col].equals(boards[layer][row][col])) {
+                return false;
+            }
+        } return true;
+    }
+
+    private boolean checkSideToSideBackwardDiagonalOnYAxis(String[][][] boards, int col) {
+        if(boards[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) { return false; }
+        for(int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS; layer += 1, row -= 1){
+            if (!boards[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(boards[layer][row][col])) {
+                return false;
+            }
+        } return true;
+    }
+
 
     private boolean checkUpDownVerticals(String[][][] boards, int row, int col) {
-        return  boards[0][row][col].equals(boards[1][row][col]) &&
-                boards[0][row][col].equals(boards[2][row][col]) &&
-                boards[0][row][col].equals(boards[3][row][col]);
+        if(boards[0][row][col].equals(CellValues.EMPTY.value)) { return false; };
+        for (int layer = 1; layer < LAYERS; layer += 1) {
+            if (!boards[0][row][col].equals(boards[layer][row][col])) {
+                return false;
+            }
+        } return true;
     }
 
-    private boolean checkBoardForComplete(String[][] board) {
+    private boolean checkIndividualBoardsForWinner(String[][] board) {
         String[][] columns = transpose(board);
         String[] backwardSlashDiagonal = extractDiagonals(board)[0];
         String[] forwardSlashDiagonal = extractDiagonals(board)[1];
@@ -231,9 +244,9 @@ public class TicTacToe {
     }
 
     private String[][] transpose(String[][] board) {
-        String[][] result = new String[LENGTH_OF_BOARD_SIDE][LENGTH_OF_BOARD_SIDE];
-        for (int i = 0; i < LENGTH_OF_BOARD_SIDE; i++) {
-            for (int j = 0; j < LENGTH_OF_BOARD_SIDE; j++) {
+        String[][] result = new String[LENGTH_OF_BOARD_SIDES][LENGTH_OF_BOARD_SIDES];
+        for (int i = 0; i < LENGTH_OF_BOARD_SIDES; i++) {
+            for (int j = 0; j < LENGTH_OF_BOARD_SIDES; j++) {
                 result[j][i] = board[i][j];
             }
         }
@@ -241,20 +254,20 @@ public class TicTacToe {
     }
 
     private String[][] extractDiagonals(String[][] board) {
-        String[][] diagonals = new String[2][LENGTH_OF_BOARD_SIDE];
+        String[][] diagonals = new String[2][LENGTH_OF_BOARD_SIDES];
         int index = 0;
         for (String[] row : board) {
             diagonals[0][index] = row[index];
-            diagonals[1][index] = row[(LENGTH_OF_BOARD_SIDE - 1) - index];
+            diagonals[1][index] = row[(LENGTH_OF_BOARD_SIDES - 1) - index];
             index += 1;
         }
         return diagonals;
     }
 
     private boolean checkRowForComplete(String[] column) {
-        String[] rowOfXs = new String[LENGTH_OF_BOARD_SIDE];
+        String[] rowOfXs = new String[LENGTH_OF_BOARD_SIDES];
         Arrays.fill(rowOfXs, X);
-        String[] rowOfOs = new String[LENGTH_OF_BOARD_SIDE];
+        String[] rowOfOs = new String[LENGTH_OF_BOARD_SIDES];
         Arrays.fill(rowOfOs, O);
 
         return Arrays.equals(rowOfXs, column) || Arrays.equals(rowOfOs, column);
@@ -268,8 +281,6 @@ public class TicTacToe {
 //        board[row2][col2] = "\033[47m" + board[row2][col2];
 //        board[row3][col3] = "\033[47m" + board[row3][col3];
 //    }
-
-
 
     public String displayBoard(String[][][] boards) {
         char boardCount = 'A';
@@ -285,9 +296,9 @@ public class TicTacToe {
     }
 
     public String displayOneBoard(String[][] board) {
-        if (LENGTH_OF_BOARD_SIDE == 3){
+        if (LENGTH_OF_BOARD_SIDES == 3){
             return String.format(
-                    "      col 1 col 2 col 3 %n" +
+                            "      col 1 col 2 col 3 %n" +
                             "     +-----+-----+-----+%n" +
                             "row 1|%5s|%5s|%5s|%n" +
                             "     +-----+-----+-----+%n" +
@@ -299,9 +310,9 @@ public class TicTacToe {
                     board[1][0], board[1][1], board[1][2],
                     board[2][0], board[2][1], board[2][2]
             );
-        } else if (LENGTH_OF_BOARD_SIDE == 4) {
+        } else if (LENGTH_OF_BOARD_SIDES == 4) {
             return String.format(
-                    "      col 1 col 2 col 3 col 4 %n" +
+                            "      col 1 col 2 col 3 col 4 %n" +
                             "     +-----+-----+-----+-----+%n" +
                             "row 1|%5s|%5s|%5s|%5s|%n" +
                             "     +-----+-----+-----+-----+%n" +
@@ -317,7 +328,7 @@ public class TicTacToe {
                     board[3][0], board[3][1], board[3][2], board[3][3]
             );
         }
-        return "Board of (`"+ LENGTH_OF_BOARD_SIDE + " X " + LENGTH_OF_BOARD_SIDE + ") not supported. Yet!";
+        return "Board of (`"+ LENGTH_OF_BOARD_SIDES + " X " + LENGTH_OF_BOARD_SIDES + ") not supported. Yet!";
     }
 
 
