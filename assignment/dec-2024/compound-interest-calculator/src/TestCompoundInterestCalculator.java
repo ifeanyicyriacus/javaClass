@@ -7,12 +7,12 @@ import java.math.RoundingMode;
 
 
 public class TestCompoundInterestCalculator {
-    BigDecimal[] initialInvestments = {BigDecimal.valueOf(-100_000), BigDecimal.valueOf(0), BigDecimal.valueOf(100_000)};
-    BigDecimal[] monthlyContributions = {BigDecimal.valueOf(-2_000), BigDecimal.valueOf(0), BigDecimal.valueOf(2_000)};
-    int[] durationsInYears = {-7, 0, 7};
+    BigDecimal[] initialInvestments     = {BigDecimal.valueOf(-100_000), BigDecimal.valueOf(0), BigDecimal.valueOf(100_000)};
+    BigDecimal[] monthlyContributions   = {BigDecimal.valueOf(-2_000), BigDecimal.valueOf(0), BigDecimal.valueOf(2_000)};
+    int[]        durationsInYears       = {-7, 0, 7};
     BigDecimal[] estimatedInterestRates = {BigDecimal.valueOf(-23), BigDecimal.valueOf(0), BigDecimal.valueOf(23)};
-    int weeklyUnsupported = 52;
-    int[] compoundFrequencies = {
+    int          weeklyUnsupported      = 52;
+    int[]        compoundFrequencies    = {
             CompoundFrequency.ANNUALLY.getFrequency(),
             CompoundFrequency.SEMIANNUALLY.getFrequency(),
             CompoundFrequency.QUARTERLY.getFrequency(),
@@ -24,40 +24,41 @@ public class TestCompoundInterestCalculator {
     MathContext mathContext = new MathContext(2, RoundingMode.HALF_UP);
 
     @Test
-    public void testThatCompoundInterestCalculatorExist(){
+    public void testThatCompoundInterestCalculatorExist() {
         assertTrue(CompoundInterestCalculator.isExist());
     }
 
-//    @Test
-//    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenInitialInvestmentIsLessThanZero(){
-//        new CompoundInterestCalculator(
-//                initialInvestments[0], monthlyContributions[2], durationsInYears[2],
-//                estimatedInterestRates[2], compoundFrequencies[3]);
-//    }
+    @Test
+    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenInitialInvestmentIsLessThanZero() {
+        assertThrows(IllegalArgumentException.class, () -> new CompoundInterestCalculator(
+                initialInvestments[0], monthlyContributions[2], durationsInYears[2],
+                estimatedInterestRates[2], compoundFrequencies[3]));
 
-//    @Test
-//    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenYearsEqualsZero(){
-//        new CompoundInterestCalculator(
-//                initialInvestments[2], monthlyContributions[2], durationsInYears[1],
-//                estimatedInterestRates[2], compoundFrequencies[3]);
-//    }
-
-//    @Test
-//    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenEstimatedInterestRateEqualsZero(){
-//        new CompoundInterestCalculator(
-//                initialInvestments[2], monthlyContributions[2], durationsInYears[2],
-//                estimatedInterestRates[1], compoundFrequencies[3]);
-//    }
-
-//    @Test
-//    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenCompoundFrequencyIsNotSupported(){
-//        new CompoundInterestCalculator(
-//                initialInvestments[2], monthlyContributions[2], durationsInYears[2],
-//                estimatedInterestRates[2], compoundFrequencies[5]);
-//    }
+    }
 
     @Test
-    public void testThatCompoundInterestCalculatorReturnCorrectValueWhenMonthlyContributionsIsNegative(){
+    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenYearsEqualsZero() {
+        assertThrows(IllegalArgumentException.class, () -> new CompoundInterestCalculator(
+                initialInvestments[2], monthlyContributions[2], durationsInYears[1],
+                estimatedInterestRates[2], compoundFrequencies[3]));
+    }
+
+    @Test
+    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenEstimatedInterestRateEqualsZero() {
+        assertThrows(IllegalArgumentException.class, () -> new CompoundInterestCalculator(
+                initialInvestments[2], monthlyContributions[2], durationsInYears[2],
+                estimatedInterestRates[1], compoundFrequencies[3]));
+    }
+
+    @Test
+    public void testThatCompoundInterestCalculatorThrowIllegalArgumentExceptionWhenCompoundFrequencyIsNotSupported() {
+        assertThrows(IllegalArgumentException.class, () -> new CompoundInterestCalculator(
+                initialInvestments[2], monthlyContributions[2], durationsInYears[2],
+                estimatedInterestRates[2], compoundFrequencies[5]));
+    }
+
+    @Test
+    public void testThatCompoundInterestCalculatorReturnCorrectValueWhenMonthlyContributionsIsNegative() {
         CompoundInterestCalculator investment = new CompoundInterestCalculator(
                 initialInvestments[2], monthlyContributions[0], durationsInYears[2],
                 estimatedInterestRates[2], compoundFrequencies[0]);
@@ -68,7 +69,7 @@ public class TestCompoundInterestCalculator {
     }
 
     @Test
-    public void testThatCompoundInterestCalculatorReturnCorrectValurWhenOneOrBothInitialInvestmentAndMonthlyContributionsAreZero(){
+    public void testThatCompoundInterestCalculatorReturnCorrectValurWhenOneOrBothInitialInvestmentAndMonthlyContributionsAreZero() {
         CompoundInterestCalculator investment = new CompoundInterestCalculator(
                 initialInvestments[1], monthlyContributions[1], durationsInYears[2],
                 estimatedInterestRates[2], compoundFrequencies[1]);
@@ -103,7 +104,7 @@ public class TestCompoundInterestCalculator {
     }
 
     @Test
-    public void testThatCompoundInterestCalculatorReturnCorrectValueWhenAllArgumentArePositive(){
+    public void testThatCompoundInterestCalculatorReturnCorrectValueWhenAllArgumentArePositive() {
         CompoundInterestCalculator investment = new CompoundInterestCalculator(
                 initialInvestments[2], monthlyContributions[2], durationsInYears[2],
                 estimatedInterestRates[2], compoundFrequencies[4]);
