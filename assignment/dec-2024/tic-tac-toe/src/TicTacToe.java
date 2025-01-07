@@ -176,10 +176,10 @@ public class TicTacToe {
 
     private boolean checkEdgeToEdgeDiagonals(String[][][] boards) {
         return
-        (boards[0][0][0].equals(boards[1][1][1]) && boards[0][0][0].equals(boards[2][2][2]) && boards[0][0][0].equals(boards[3][3][3])) ||
-        (boards[0][3][3].equals(boards[1][2][2]) && boards[0][3][3].equals(boards[2][1][1]) && boards[0][3][3].equals(boards[3][0][0])) ||
-        (boards[0][0][3].equals(boards[1][1][2]) && boards[0][0][3].equals(boards[2][2][1]) && boards[0][0][3].equals(boards[3][3][0])) ||
-        (boards[0][3][0].equals(boards[1][2][1]) && boards[0][3][0].equals(boards[2][1][2]) && boards[0][3][0].equals(boards[3][0][3]));
+        (!boards[0][0][0].equals(CellValues.EMPTY.value)) && (boards[0][0][0].equals(boards[1][1][1]) && boards[0][0][0].equals(boards[2][2][2]) && boards[0][0][0].equals(boards[3][3][3])) ||
+        (!boards[0][3][3].equals(CellValues.EMPTY.value)) && (boards[0][3][3].equals(boards[1][2][2]) && boards[0][3][3].equals(boards[2][1][1]) && boards[0][3][3].equals(boards[3][0][0])) ||
+        (!boards[0][0][3].equals(CellValues.EMPTY.value)) && (boards[0][0][3].equals(boards[1][1][2]) && boards[0][0][3].equals(boards[2][2][1]) && boards[0][0][3].equals(boards[3][3][0])) ||
+        (!boards[0][3][0].equals(CellValues.EMPTY.value)) && (boards[0][3][0].equals(boards[1][2][1]) && boards[0][3][0].equals(boards[2][1][2]) && boards[0][3][0].equals(boards[3][0][3]));
     }
 
     private boolean checkSideToSideBackwardDiagonalOnXAxis(String[][][] boards, int row) {
