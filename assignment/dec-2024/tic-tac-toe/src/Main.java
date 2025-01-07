@@ -66,6 +66,12 @@ public class Main {
 
     private static void startGame(int noOfPlayers, int difficultLevel) {
         TicTacToe ticTacToe = new TicTacToe(noOfPlayers, difficultLevel);
+        System.out.println("""
+                +-----------------------+
+                |   Tic-Tac-Toe Game    |
+                |       GAME ON!!       |
+                +-----------------------+
+                """);
         ticTacToe.startGame();
     }
 }

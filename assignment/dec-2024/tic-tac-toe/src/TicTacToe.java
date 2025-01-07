@@ -12,6 +12,7 @@ public class TicTacToe {
     private final int NO_OF_CELLS_IN_BOARD;
     private final int MIN_NO_OF_MOVES_FOR_A_WIN;
     private final int LENGTH_OF_BOARD_SIDE;
+    private final int LAYERS;
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
         this.noOfPlayers = noOfPlayers;
@@ -22,9 +23,9 @@ public class TicTacToe {
             case 3 -> BoardTypes.DANGEROUS.board;
             default -> throw new IllegalStateException("Unexpected value: " + difficultLevel);
         };
-        int layers = this.gameBoard.length;
+        this.LAYERS = this.gameBoard.length;
         this.LENGTH_OF_BOARD_SIDE = this.gameBoard[0].length;
-        this.NO_OF_CELLS_IN_BOARD = (int) (layers * Math.pow(LENGTH_OF_BOARD_SIDE, 2));
+        this.NO_OF_CELLS_IN_BOARD = (int) (this.LAYERS * Math.pow(LENGTH_OF_BOARD_SIDE, 2));
         this.MIN_NO_OF_MOVES_FOR_A_WIN = (this.LENGTH_OF_BOARD_SIDE * 2) - 1;
     }
 
@@ -60,12 +61,6 @@ public class TicTacToe {
     public void startGame() {
         reset(gameBoard);
         String token;
-        System.out.println("""
-                +-----------------------+
-                |   Tic-Tac-Toe Game    |
-                |       GAME ON!!       |
-                +-----------------------+
-                """);
 
         for (int index = 1; index <= NO_OF_CELLS_IN_BOARD; index += 1) {
             System.out.println(displayBoard(gameBoard));
@@ -87,7 +82,6 @@ public class TicTacToe {
                 break;
             }
         }
-
     }
 
     private void reset(String[][][] gameBoard) {
@@ -97,7 +91,6 @@ public class TicTacToe {
             }
         }
     }
-
 
     public void collectNextMove(String[][][] board, String token) {
         int retry = 0;
@@ -155,45 +148,75 @@ public class TicTacToe {
         return number;
     }
 
-    public boolean checkForWinner(String[][][] board) {
-        if (!board[0][0].isEmpty() && board[0][0].equals(board[0][1]) && board[0][1].equals(board[0][2])) {
-            highlightWinCells(board, 0, 0, 0, 1, 0, 2);
-            return true;
-        } else if (!board[1][0].isEmpty() && board[1][0].equals(board[1][1]) && board[1][1].equals(board[1][2])) {
-            highlightWinCells(board, 1, 0, 1, 1, 1, 2);
-            return true;
-        } else if (!board[2][0].isEmpty() && board[2][0].equals(board[2][1]) && board[2][1].equals(board[2][2])) {
-            highlightWinCells(board, 2, 0, 2, 1, 2, 2);
-            return true;
-        } else if (!board[0][0].isEmpty() && board[0][0].equals(board[1][0]) && board[1][0].equals(board[2][0])) {
-            highlightWinCells(board, 0, 0, 1, 0, 2, 0);
-            return true;
-        } else if (!board[0][1].isEmpty() && board[0][1].equals(board[1][1]) && board[1][1].equals(board[2][1])) {
-            highlightWinCells(board, 0, 1, 1, 1, 2, 1);
-            return true;
-        } else if (!board[0][2].isEmpty() && board[0][2].equals(board[1][2]) && board[1][2].equals(board[2][2])) {
-            highlightWinCells(board, 0, 2, 1, 2, 2, 2);
-            return true;
-        } else if (!board[0][0].isEmpty() && board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
-            highlightWinCells(board, 0, 0, 1, 1, 2, 2);
-            return true;
-        } else if (!board[0][2].isEmpty() && board[0][2].equals(board[1][1]) && board[1][1].equals(board[2][0])) {
-            highlightWinCells(board, 0, 2, 1, 1, 2, 0);
-            return true;
+    public boolean checkForWinner(String[][][] boards) {
+        if (boards.length == 1){
+            return checkBoardForComplete(boards[0]);
         } else {
-            return false;
+            for (String[][] board : boards) {
+                if (checkBoardForComplete(board)) { return true; }
+            }
+
         }
+
+//        transposing a cube
+        return false;
     }
 
-//    public static boolean checkForWinner4X4(String[][] board) {
-//
+    private boolean checkBoardForComplete(String[][] board) {
+        String[][] columns = transpose(board);
+        String[] backwardSlashDiagonal = extractDiagonals(board)[0];
+        String[] forwardSlashDiagonal = extractDiagonals(board)[1];
+
+        for (String[] row : board) {
+            if (checkRowForComplete(row)){ return true; }
+        }
+        for (String[] column: columns) {
+            if (checkRowForComplete(column)){ return true; }
+        }
+        if (checkRowForComplete(forwardSlashDiagonal)){ return true; }
+        if (checkRowForComplete(backwardSlashDiagonal)){ return true; }
+        return false;
+    }
+
+    private String[][] transpose(String[][] board) {
+        String[][] result = new String[LENGTH_OF_BOARD_SIDE][LENGTH_OF_BOARD_SIDE];
+        for (int i = 0; i < LENGTH_OF_BOARD_SIDE; i++) {
+            for (int j = 0; j < LENGTH_OF_BOARD_SIDE; j++) {
+                result[j][i] = board[i][j];
+            }
+        }
+        return result;
+    }
+
+    private String[][] extractDiagonals(String[][] board) {
+        String[][] diagonals = new String[2][LENGTH_OF_BOARD_SIDE];
+        int index = 0;
+        for (String[] row : board) {
+            diagonals[0][index] = row[index];
+            diagonals[1][index] = row[(LENGTH_OF_BOARD_SIDE - 1) - index];
+            index += 1;
+        }
+        return diagonals;
+    }
+
+    private boolean checkRowForComplete(String[] column) {
+        String[] rowOfXs = new String[LENGTH_OF_BOARD_SIDE];
+        Arrays.fill(rowOfXs, X);
+        String[] rowOfOs = new String[LENGTH_OF_BOARD_SIDE];
+        Arrays.fill(rowOfOs, O);
+
+        return Arrays.equals(rowOfXs, column) || Arrays.equals(rowOfOs, column);
+    }
+
+//    public void highlightWinCells(String[][][] board,
+//                                  int row1, int col1,//level1
+//                                  int row2, int col2,//level2
+//                                  int row3, int col3) {//level3
+//        board[row1][col1] = "\033[47m" + board[row1][col1];
+//        board[row2][col2] = "\033[47m" + board[row2][col2];
+//        board[row3][col3] = "\033[47m" + board[row3][col3];
 //    }
 
-    public void highlightWinCells(String[][] board, int row1, int col1, int row2, int col2, int row3, int col3) {
-        board[row1][col1] = "\033[47m" + board[row1][col1];
-        board[row2][col2] = "\033[47m" + board[row2][col2];
-        board[row3][col3] = "\033[47m" + board[row3][col3];
-    }
   /*public static void highlightWinCells(
           String[][] board, int row1, int col1, int row2, int col2, int row3, int col3, int row4, int col4) {
     board[row1][col1] = "\033[47m" + board[row1][col1];
@@ -203,19 +226,33 @@ public class TicTacToe {
   }*/
 
 
-    public static String displayBoard(String[][][] board) {
+    public String displayBoard(String[][][] boards) {
+        char boardCount = 'A';
+        String boardsString = "";
+        System.out.print("\033[2J");
+        for (String[][] board : boards) {
+            if (LAYERS > 1){
+                boardsString += "Board " + boardCount++ + ":";
+            }
+            boardsString += displayOneBoard(board) + "\n";
+        }
+        return boardsString;
+    }
+
+    public static String displayOneBoard(String[][] board) {
         return String.format(
                 "      col 1 col 2 col 3 %n" +
-                "     +-----+-----+-----+%n" +
-                "row 1|%5s|%5s|%5s|%n" +
-                "     +-----+-----+-----+%n" +
-                "row 2|%5s|%5s|%5s|%n" +
-                "     +-----+-----+-----+%n" +
-                "row 3|%5s|%5s|%5s|%n" +
-                "     +-----+-----+-----+%n",
+                        "     +-----+-----+-----+%n" +
+                        "row 1|%5s|%5s|%5s|%n" +
+                        "     +-----+-----+-----+%n" +
+                        "row 2|%5s|%5s|%5s|%n" +
+                        "     +-----+-----+-----+%n" +
+                        "row 3|%5s|%5s|%5s|%n" +
+                        "     +-----+-----+-----+%n",
                 board[0][0], board[0][1], board[0][2],
                 board[1][0], board[1][1], board[1][2],
-                board[2][0], board[2][1], board[2][2]);
+                board[2][0], board[2][1], board[2][2]
+        );
     }
 
 
