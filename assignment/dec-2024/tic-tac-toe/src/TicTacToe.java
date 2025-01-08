@@ -1,31 +1,31 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Random;
 
 public class TicTacToe {
-    private final        int          noOfPlayers;
-    private final        int          difficultLevel;
-    private final        String       X     = CellValues.X.value;
+    private final        int    NO_OF_PLAYERS;
+    private final        String X     = CellValues.X.value;
     private final        String       O     = CellValues.O.value;
-    private final        String[][][] gameBoard;
-    private final static Scanner      input = new Scanner(System.in);
+    private final        String[][][] GAME_BOARD;
+    private final static Scanner      INPUT = new Scanner(System.in);
+    private final static Random        RANDOM = new Random();
 
     private final int NO_OF_CELLS_IN_BOARD;
     private final int MIN_NO_OF_MOVES_FOR_A_WIN;
     private final int LENGTH_OF_BOARD_SIDES;
-    private final int LAYERS;
+    private final int LAYERS_OF_BOARD;
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
-        this.noOfPlayers = noOfPlayers;
-        this.difficultLevel = difficultLevel;
-        this.gameBoard = switch (difficultLevel) {
+        this.NO_OF_PLAYERS = noOfPlayers;
+        this.GAME_BOARD = switch (difficultLevel) {
             case 1 -> BoardTypes.EASY.board;
             case 2 -> BoardTypes.HARD.board;
             case 3 -> BoardTypes.DANGEROUS.board;
             default -> throw new IllegalStateException("Unexpected value: " + difficultLevel);
         };
-        this.LAYERS = this.gameBoard.length;
-        this.LENGTH_OF_BOARD_SIDES = this.gameBoard[0].length;
-        this.NO_OF_CELLS_IN_BOARD = (int) (this.LAYERS * Math.pow(LENGTH_OF_BOARD_SIDES, 2));
+        this.LAYERS_OF_BOARD = this.GAME_BOARD.length;
+        this.LENGTH_OF_BOARD_SIDES = this.GAME_BOARD[0].length;
+        this.NO_OF_CELLS_IN_BOARD = (int) (this.LAYERS_OF_BOARD * Math.pow(LENGTH_OF_BOARD_SIDES, 2));
         this.MIN_NO_OF_MOVES_FOR_A_WIN = (this.LENGTH_OF_BOARD_SIDES * 2) - 1;
     }
 
@@ -59,25 +59,29 @@ public class TicTacToe {
     }
 
     public void startGame() {
-        reset(gameBoard);
+        reset(GAME_BOARD);
         String token;
 
         for (int index = 1; index <= NO_OF_CELLS_IN_BOARD; index += 1) {
-            System.out.println(displayBoard(gameBoard));
-            if (index % 2 == 0) {
+            System.out.println(displayBoard());
+            if (index % 2 != 0) {
                 token = X;
-                collectNextMove(gameBoard, token);
+                if (NO_OF_PLAYERS == 1){
+                    collectComputerNextMove(token);
+                } else {
+                    collectHumanNextMove(token);
+                }
             } else {
                 token = O;
-                collectNextMove(gameBoard, token);
+                collectHumanNextMove(token);
             }
 
-            if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner(gameBoard)) {
-                System.out.println(displayBoard(gameBoard));
+            if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner()) {
+                System.out.println(displayBoard());
                 System.out.printf("GAME OVER\nPlayer%s Wins\n", token);
                 break;
             } else if (index == NO_OF_CELLS_IN_BOARD) {
-                System.out.println(displayBoard(gameBoard));
+                System.out.println(displayBoard());
                 System.out.println("GAME OVER\nDRAW!!!");
                 break;
             }
@@ -92,7 +96,7 @@ public class TicTacToe {
         }
     }
 
-    public void collectNextMove(String[][][] board, String token) {
+    public void collectHumanNextMove(String token) {
         int retry = 0;
         int row;
         int column;
@@ -101,7 +105,7 @@ public class TicTacToe {
             if (retry != 0) {
                 System.out.println("Position has been filled, try again!");
             }
-            if (board.length > 1) {
+            if (LAYERS_OF_BOARD > 1) {
                 System.out.printf("Player %s: enter board layer (A, B, C, D) >> ", token);
                 layer = collectLayer();
             }
@@ -110,12 +114,23 @@ public class TicTacToe {
             System.out.printf("Player %s: enter column >> ", token);
             column = collectRowOrColumn();
             retry += 1;
-        } while (!addToken(board, token, layer, row, column));
+        } while (!addToken(token, layer, row, column));
     }
 
-    public boolean addToken(String[][][] board, String token, int layer, int row, int column) {
-        if (board[layer - 1][row - 1][column - 1].equals(CellValues.EMPTY.value)) {
-            board[layer - 1][row - 1][column - 1] = token;
+    public void collectComputerNextMove(String token) {
+        int layer = 1;
+        int row = 1;
+        int col = 1;
+        do{
+            layer = (LAYERS_OF_BOARD == 1) ? 1 : RANDOM.nextInt(1, LAYERS_OF_BOARD + 1);
+            row = RANDOM.nextInt(LENGTH_OF_BOARD_SIDES) + 1;
+            col = RANDOM.nextInt(LENGTH_OF_BOARD_SIDES) + 1;
+        } while(!addToken(token, layer, row, col));
+    }
+
+    public boolean addToken(String token, int layer, int row, int column) {
+        if (GAME_BOARD[layer - 1][row - 1][column - 1].equals(CellValues.EMPTY.value)) {
+            GAME_BOARD[layer - 1][row - 1][column - 1] = token;
             return true;
         }else {
             return false;
@@ -125,13 +140,13 @@ public class TicTacToe {
     private int collectLayer() {
         int number = 0;
         do {
-            String layer = input.next();
+            String layer = INPUT.next();
             switch (layer.toUpperCase()) {
                 case "A" -> number = 1;
                 case "B" -> number = 2;
                 case "C" -> number = 3;
                 case "D" -> number = 4;
-                default -> System.out.print("Invalid input, Enter (A, B, C, or D) try again!\n>> ");
+                default -> System.out.print("Invalid INPUT, Enter (A, B, C, or D) try again!\n>> ");
             }
         } while (number == 0);
         return number;
@@ -141,88 +156,92 @@ public class TicTacToe {
         int number = 0;
         do {
             if (number != 0) {
-                System.out.print("Invalid input, try again!>> ");
+                System.out.print("Invalid INPUT, try again!>> ");
             }
-            number = input.nextInt();
+            number = INPUT.nextInt();
+
         } while (number < 1 || number > this.LENGTH_OF_BOARD_SIDES);
         return number;
     }
 
-    public boolean checkForWinner(String[][][] boards) {
-        if (boards.length == 1){
-            return checkIndividualBoardsForWinner(boards[0]);
+    public boolean checkForWinner() {
+        if (LAYERS_OF_BOARD == 1){
+            return checkIndividualBoardsForWinner(GAME_BOARD[0]);
         } else {
-            for (String[][] board : boards) {
+            for (String[][] board : GAME_BOARD) {
                 if (checkIndividualBoardsForWinner(board)) { return true; }
             }
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
                 for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                    if(checkUpDownVerticals(boards, row, col)) { return true; }
+                    if(checkUpDownVerticals(row, col)) { return true; }
                 }
             }
 
             for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                if(checkSideToSideForwardDiagonalOnYAxis(boards, col)) { return true; }
-                if(checkSideToSideBackwardDiagonalOnYAxis(boards, col)) { return true; }
+                if(checkSideToSideForwardDiagonalOnYAxis(col)) { return true; }
+                if(checkSideToSideBackwardDiagonalOnYAxis(col)) { return true; }
             }
 
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
-                if(checkSideToSideForwardDiagonalOnXAxis(boards, row)) { return true; }
-                if(checkSideToSideBackwardDiagonalOnXAxis(boards, row)) { return true; }
+                if(checkSideToSideForwardDiagonalOnXAxis(row)) { return true; }
+                if(checkSideToSideBackwardDiagonalOnXAxis(row)) { return true; }
             }
-            return checkEdgeToEdgeDiagonals(boards);
+            return checkEdgeToEdgeDiagonals();
         }
     }
 
-    private boolean checkEdgeToEdgeDiagonals(String[][][] boards) {
+    private boolean checkEdgeToEdgeDiagonals() {
         return
-        (!boards[0][0][0].equals(CellValues.EMPTY.value)) && (boards[0][0][0].equals(boards[1][1][1]) && boards[0][0][0].equals(boards[2][2][2]) && boards[0][0][0].equals(boards[3][3][3])) ||
-        (!boards[0][3][3].equals(CellValues.EMPTY.value)) && (boards[0][3][3].equals(boards[1][2][2]) && boards[0][3][3].equals(boards[2][1][1]) && boards[0][3][3].equals(boards[3][0][0])) ||
-        (!boards[0][0][3].equals(CellValues.EMPTY.value)) && (boards[0][0][3].equals(boards[1][1][2]) && boards[0][0][3].equals(boards[2][2][1]) && boards[0][0][3].equals(boards[3][3][0])) ||
-        (!boards[0][3][0].equals(CellValues.EMPTY.value)) && (boards[0][3][0].equals(boards[1][2][1]) && boards[0][3][0].equals(boards[2][1][2]) && boards[0][3][0].equals(boards[3][0][3]));
+        (!GAME_BOARD[0][0][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][0].equals(GAME_BOARD[1][1][1])
+                && GAME_BOARD[0][0][0].equals(GAME_BOARD[2][2][2]) && GAME_BOARD[0][0][0].equals(GAME_BOARD[3][3][3])) ||
+        (!GAME_BOARD[0][3][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][3].equals(GAME_BOARD[1][2][2])
+                && GAME_BOARD[0][3][3].equals(GAME_BOARD[2][1][1]) && GAME_BOARD[0][3][3].equals(GAME_BOARD[3][0][0])) ||
+        (!GAME_BOARD[0][0][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][3].equals(GAME_BOARD[1][1][2])
+                && GAME_BOARD[0][0][3].equals(GAME_BOARD[2][2][1]) && GAME_BOARD[0][0][3].equals(GAME_BOARD[3][3][0])) ||
+        (!GAME_BOARD[0][3][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][0].equals(GAME_BOARD[1][2][1])
+                && GAME_BOARD[0][3][0].equals(GAME_BOARD[2][1][2]) && GAME_BOARD[0][3][0].equals(GAME_BOARD[3][0][3]));
     }
 
-    private boolean checkSideToSideBackwardDiagonalOnXAxis(String[][][] boards, int row) {
-        if(boards[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) { return false; }
-        for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS; layer += 1, col -= 1){
-            if (!boards[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(boards[layer][row][col])){
+    private boolean checkSideToSideBackwardDiagonalOnXAxis(int row) {
+        if(GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) { return false; }
+        for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, col -= 1){
+            if (!GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(GAME_BOARD[layer][row][col])){
                 return false;
             }
         } return true;
     }
 
-    private boolean checkSideToSideForwardDiagonalOnXAxis(String[][][] boards, int row) {
-        if (boards[0][row][0].equals(CellValues.EMPTY.value)) { return false; }
-        for (int layer = 1, col = 1; layer < LAYERS; layer += 1, col += 1) {
-            if (!boards[0][row][0].equals(boards[layer][row][col])){
+    private boolean checkSideToSideForwardDiagonalOnXAxis(int row) {
+        if (GAME_BOARD[0][row][0].equals(CellValues.EMPTY.value)) { return false; }
+        for (int layer = 1, col = 1; layer < LAYERS_OF_BOARD; layer += 1, col += 1) {
+            if (!GAME_BOARD[0][row][0].equals(GAME_BOARD[layer][row][col])){
                 return false;
             }
         } return true;
     }
 
-    private boolean checkSideToSideForwardDiagonalOnYAxis(String[][][] boards, int col) {
-        if(boards[0][0][col].equals(CellValues.EMPTY.value)) { return false; }
-        for(int layer = 1, row = 1; layer < LAYERS; layer += 1, row += 1){
-            if (!boards[0][0][col].equals(boards[layer][row][col])) {
+    private boolean checkSideToSideForwardDiagonalOnYAxis(int col) {
+        if(GAME_BOARD[0][0][col].equals(CellValues.EMPTY.value)) { return false; }
+        for(int layer = 1, row = 1; layer < LAYERS_OF_BOARD; layer += 1, row += 1){
+            if (!GAME_BOARD[0][0][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
         } return true;
     }
 
-    private boolean checkSideToSideBackwardDiagonalOnYAxis(String[][][] boards, int col) {
-        if(boards[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) { return false; }
-        for(int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS; layer += 1, row -= 1){
-            if (!boards[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(boards[layer][row][col])) {
+    private boolean checkSideToSideBackwardDiagonalOnYAxis(int col) {
+        if(GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) { return false; }
+        for(int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, row -= 1){
+            if (!GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
         } return true;
     }
 
-
-    private boolean checkUpDownVerticals(String[][][] boards, int row, int col) {
-        if(boards[0][row][col].equals(CellValues.EMPTY.value)) { return false; };
-        for (int layer = 1; layer < LAYERS; layer += 1) {
-            if (!boards[0][row][col].equals(boards[layer][row][col])) {
+    private boolean checkUpDownVerticals(int row, int col) {
+        if(GAME_BOARD[0][row][col].equals(CellValues.EMPTY.value)) { return false; }
+        for (int layer = 1; layer < LAYERS_OF_BOARD; layer += 1) {
+            if (!GAME_BOARD[0][row][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
         } return true;
@@ -282,12 +301,12 @@ public class TicTacToe {
 //        board[row3][col3] = "\033[47m" + board[row3][col3];
 //    }
 
-    public String displayBoard(String[][][] boards) {
+    public String displayBoard() {
         char boardCount = 'A';
         StringBuilder boardsString = new StringBuilder();
         System.out.print("\033[2J");
-        for (String[][] board : boards) {
-            if (LAYERS > 1){
+        for (String[][] board : GAME_BOARD) {
+            if (LAYERS_OF_BOARD > 1){
                 boardsString.append("Board ").append(boardCount++).append(":\n");
             }
             boardsString.append(displayOneBoard(board)).append("\n");

@@ -23,10 +23,10 @@ public class Main {
         boolean gameOn = true;
         while (gameOn) {
             System.out.println(gameModeMenu);
-            int gameModeChoice = INPUT.nextInt();
+            String gameModeChoice = INPUT.next();
             gameOn = switch (gameModeChoice) {
-                case 1, 2 -> selectDifficultyLevel(gameModeChoice);
-                case 0 -> false;
+                case "1", "2" -> selectDifficultyLevel(Integer.valueOf(gameModeChoice));
+                case "0" -> false;
                 default -> {
                     System.out.println("Invalid Choice, Try Again.");
                     yield true;
@@ -47,14 +47,14 @@ public class Main {
         boolean gameOn = true;
         while (gameOn) {
             System.out.println(difficultLevelMenu);
-            int difficultLevelChoice = INPUT.nextInt();
+            String difficultLevelChoice = INPUT.next();
             gameOn = switch (difficultLevelChoice) {
-                case 1, 2, 3 -> {
-                    startGame(noOfPlayers, difficultLevelChoice);
+                case "1", "2", "3" -> {
+                    startGame(noOfPlayers, Integer.valueOf(difficultLevelChoice));
                     System.out.println("\nPlay Again");
                     yield true;
                 }
-                case 0 -> selectGameMode();
+                case "0" -> selectGameMode();
                 default -> {
                     System.out.println("Invalid Choice, Try Again.");
                     yield true;
