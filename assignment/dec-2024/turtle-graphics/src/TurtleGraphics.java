@@ -3,10 +3,11 @@ import java.util.Arrays;
 public class TurtleGraphics {
     final String[][] floor;
     final Turtle     turtle;
-    
+
     public TurtleGraphics() {
-        this.floor = new String[20][20];
-        this.turtle = new Turtle();
+        int noOfRows = 20; int noOfColumns = 20;
+        this.floor = new String[noOfRows][noOfColumns];
+        this.turtle = new Turtle(noOfRows, noOfColumns);
 
         for (String[] row : this.floor) {
             Arrays.fill(row, "0");

@@ -8,14 +8,18 @@ public class Turtle {
         NORTH, EAST, SOUTH, WEST
     }
 
+    private final int noOfRows;
+    private final int noOfColumns;
     private int         x;
     private int         y;
     private PenState    penState;
     private Orientation orientation;
 
-    public Turtle() {
+    public Turtle(int noOfRows, int noOfColumns) {
         this.x = 0;
         this.y = 0;
+        this.noOfRows = noOfRows;
+        this.noOfColumns = noOfColumns;
         this.penState = PenState.UP;
         this.orientation = Orientation.EAST;
     }
@@ -25,7 +29,11 @@ public class Turtle {
     }
 
     private void setX(int x) {
-        this.x = x;
+        if (x >= 0 && x < noOfRows){
+            this.x = x;
+        } else {
+            System.out.println("\033[A\033[K\033[31mERROR: you have exceeded the horizontal boundary\033[0m");
+        }
     }
 
     public int getY() {
@@ -33,7 +41,11 @@ public class Turtle {
     }
 
     private void setY(int y) {
-        this.y = y;
+        if (y >= 0 && y < noOfColumns){
+            this.y = y;
+        } else {
+            System.out.println("\033[A\033[K\033[31mERROR: you have exceeded the vertical boundary\033[0m");
+        }
     }
 
     public void move(int x, int y) {
