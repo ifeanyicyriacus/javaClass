@@ -49,6 +49,10 @@ public class Main {
         }
     }
 
+    private static void clearPreviousLine() {
+        System.out.print("\033[A\033[K");
+    }
+
     private static void colourCommandTextGreen(String command) {
         System.out.print("\033[A\033[K");
         System.out.println("\033[32m" + command + "\033[0m");
