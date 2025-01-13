@@ -173,24 +173,24 @@ public class TicTacToe {
             }
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
                 for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                    if(checkUpDownVerticals(row, col)) { return true; }
+                    if(checkTopToBottomVerticals(row, col)) { return true; }
                 }
             }
 
             for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                if(checkSideToSideForwardDiagonalOnYAxis(col)) { return true; }
-                if(checkSideToSideBackwardDiagonalOnYAxis(col)) { return true; }
+                if(checkTopEdgeToBottomEdgeForwardDiagonalOnYAxis(col)) { return true; }
+                if(checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(col)) { return true; }
             }
 
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
-                if(checkSideToSideForwardDiagonalOnXAxis(row)) { return true; }
-                if(checkSideToSideBackwardDiagonalOnXAxis(row)) { return true; }
+                if(checkTopEdgeToBottomEdgeForwardDiagonalOnXAxis(row)) { return true; }
+                if(checkTopEdgeToBottomEdgeBackwardDiagonalOnXAxis(row)) { return true; }
             }
-            return checkEdgeToEdgeDiagonals();
+            return checkCornerToCornerDiagonals();
         }
     }
 
-    private boolean checkEdgeToEdgeDiagonals() {
+    private boolean checkCornerToCornerDiagonals() {
         return
         (!GAME_BOARD[0][0][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][0].equals(GAME_BOARD[1][1][1])
                 && GAME_BOARD[0][0][0].equals(GAME_BOARD[2][2][2]) && GAME_BOARD[0][0][0].equals(GAME_BOARD[3][3][3])) ||
@@ -202,7 +202,7 @@ public class TicTacToe {
                 && GAME_BOARD[0][3][0].equals(GAME_BOARD[2][1][2]) && GAME_BOARD[0][3][0].equals(GAME_BOARD[3][0][3]));
     }
 
-    private boolean checkSideToSideBackwardDiagonalOnXAxis(int row) {
+    private boolean checkTopEdgeToBottomEdgeBackwardDiagonalOnXAxis(int row) {
         if(GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) { return false; }
         for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, col -= 1){
             if (!GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(GAME_BOARD[layer][row][col])){
@@ -211,7 +211,7 @@ public class TicTacToe {
         } return true;
     }
 
-    private boolean checkSideToSideForwardDiagonalOnXAxis(int row) {
+    private boolean checkTopEdgeToBottomEdgeForwardDiagonalOnXAxis(int row) {
         if (GAME_BOARD[0][row][0].equals(CellValues.EMPTY.value)) { return false; }
         for (int layer = 1, col = 1; layer < LAYERS_OF_BOARD; layer += 1, col += 1) {
             if (!GAME_BOARD[0][row][0].equals(GAME_BOARD[layer][row][col])){
@@ -220,7 +220,7 @@ public class TicTacToe {
         } return true;
     }
 
-    private boolean checkSideToSideForwardDiagonalOnYAxis(int col) {
+    private boolean checkTopEdgeToBottomEdgeForwardDiagonalOnYAxis(int col) {
         if(GAME_BOARD[0][0][col].equals(CellValues.EMPTY.value)) { return false; }
         for(int layer = 1, row = 1; layer < LAYERS_OF_BOARD; layer += 1, row += 1){
             if (!GAME_BOARD[0][0][col].equals(GAME_BOARD[layer][row][col])) {
@@ -228,8 +228,7 @@ public class TicTacToe {
             }
         } return true;
     }
-
-    private boolean checkSideToSideBackwardDiagonalOnYAxis(int col) {
+        private boolean checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(int col) {
         if(GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) { return false; }
         for(int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, row -= 1){
             if (!GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(GAME_BOARD[layer][row][col])) {
@@ -238,7 +237,7 @@ public class TicTacToe {
         } return true;
     }
 
-    private boolean checkUpDownVerticals(int row, int col) {
+    private boolean checkTopToBottomVerticals(int row, int col) {
         if(GAME_BOARD[0][row][col].equals(CellValues.EMPTY.value)) { return false; }
         for (int layer = 1; layer < LAYERS_OF_BOARD; layer += 1) {
             if (!GAME_BOARD[0][row][col].equals(GAME_BOARD[layer][row][col])) {
