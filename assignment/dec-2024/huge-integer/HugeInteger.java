@@ -11,9 +11,9 @@ public class HugeInteger{
   
   public int[] parse(String numberStr){
     numberStr = numberStr.replace("_", "");
-    if(numberStr.length() >= 1 && numberStr.substring(0,1).equals("-")){
+    if(!numberStr.isEmpty() && numberStr.charAt(0) == '-'){
       numberStr = numberStr.replace("-", "");
-      setIsNegative(true);
+      setIsNegative();
     }
     
     int length = numberStr.length();
@@ -35,11 +35,11 @@ public class HugeInteger{
   }
   
   public boolean getIsNegative(){ return this.isNegative; }
-  private void setIsNegative(boolean isNegative) { this.isNegative = isNegative; }
+  private void setIsNegative() { this.isNegative = true; }
 
   public int getLength(){ return this.length; }
   private void setLength(int length){ this.length = length; }
-  
+
   public String toString(){
     int[] numberArray = this.getNumber();
     boolean isAllDigitZero = true;
@@ -124,17 +124,16 @@ public class HugeInteger{
   
   public boolean isGreaterThan(HugeInteger alternativeNumber){
     if (isEqualTo(alternativeNumber)){ return false; }
-    if ((this.getIsNegative() == false) && (alternativeNumber.getIsNegative() == true)) { return true; }
-    if ((this.getIsNegative() == true) && (alternativeNumber.getIsNegative() == false)) { return false; }
-    if (this.getLength() > alternativeNumber.getLength()) { return true; }
-    if (this.getLength() < alternativeNumber.getLength()) { return false; }
+    if (!getIsNegative() && alternativeNumber.getIsNegative()) { return true; }
+    if (getIsNegative() && !alternativeNumber.getIsNegative()) { return false; }
+    if (getLength() > alternativeNumber.getLength()) { return true; }
+    if (getLength() < alternativeNumber.getLength()) { return false; }
     
     int[] numberArray = this.getNumber();
     int[] alternativeNumberArray = alternativeNumber.getNumber();
     for (int index = 0; index < HUGE_INTEGER_SIZE; index += 1) {
       if (numberArray[index] == alternativeNumberArray[index] ) { continue; }
-      else if (numberArray[index] > alternativeNumberArray[index]) { return true; }
-      else { return false; }
+      else return numberArray[index] > alternativeNumberArray[index];
     }
     return false;
   }
@@ -151,7 +150,8 @@ public class HugeInteger{
   public boolean isLessThanOrEqualTo(HugeInteger alternativeNumber){
     return !isGreaterThan(alternativeNumber);
   }
-  
+
+//  multiplication using addition
   public static HugeInteger multiply (HugeInteger number, int multiplier){
     HugeInteger product = new HugeInteger("0");
     for (int count = 1; count <= multiplier; count += 1){
@@ -160,20 +160,8 @@ public class HugeInteger{
     return product;
   }
 
-//  public static HugeInteger divide (HugeInteger number, int divisor){
-//    HugeInteger remainder = number;
-//    HugeInteger count = new HugeInteger("0");
-//    final HugeInteger ONE = new HugeInteger("1");
-//    HugeInteger hugeDivisor = new HugeInteger("" + divisor);
-//
-//    while (remainder.toString().charAt(0) != '-'){
-//      remainder = subtract(remainder, hugeDivisor);
-//      count = add(count, ONE);
-//    }
-//    return subtract(remainder, ONE);
-//  }
 
-  //  public static HugeInteger remainder (HugeInteger number, int divisor){}
+
 
 
 //  public static HugeInteger multiply (HugeInteger number, HugeInteger multiplier){
@@ -210,8 +198,23 @@ public class HugeInteger{
 
 //  public static HugeInteger divide (HugeInteger number, HugeInteger divisor){}
 
+//  public static HugeInteger divide (HugeInteger number, int divisor){
+//    HugeInteger remainder = number;
+//    HugeInteger count = new HugeInteger("0");
+//    final HugeInteger ONE = new HugeInteger("1");
+//    HugeInteger hugeDivisor = new HugeInteger("" + divisor);
+//
+//    while (remainder.toString().charAt(0) != '-'){
+//      remainder = subtract(remainder, hugeDivisor);
+//      count = add(count, ONE);
+//    }
+//    return subtract(remainder, ONE);
+//  }
+
 //  public static HugeInteger remainder (HugeInteger number, HugeInteger divisor){}
-  
-  
-  
+
+//  public static HugeInteger remainder (HugeInteger number, int divisor){}
+
+
+
 }

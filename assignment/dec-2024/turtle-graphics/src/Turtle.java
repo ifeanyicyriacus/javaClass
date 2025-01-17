@@ -4,16 +4,17 @@ public class Turtle {
     public enum PenState {
         UP, DOWN
     }
+
     public enum Orientation {
         NORTH, EAST, SOUTH, WEST
     }
 
-    private final int noOfRows;
-    private final int noOfColumns;
-    private int         x;
-    private int         y;
-    private PenState    penState;
-    private Orientation orientation;
+    private final int         noOfRows;
+    private final int         noOfColumns;
+    private       int         x;
+    private       int         y;
+    private       PenState    penState;
+    private       Orientation orientation;
 
     public Turtle(int noOfRows, int noOfColumns) {
         this.x = 0;
@@ -29,7 +30,7 @@ public class Turtle {
     }
 
     private void setX(int x) {
-        if (x >= 0 && x < noOfRows){
+        if (x >= 0 && x < noOfRows) {
             this.x = x;
         } else {
             System.out.println("\033[A\033[K\033[31mERROR: you have exceeded the horizontal boundary\033[0m");
@@ -41,7 +42,7 @@ public class Turtle {
     }
 
     private void setY(int y) {
-        if (y >= 0 && y < noOfColumns){
+        if (y >= 0 && y < noOfColumns) {
             this.y = y;
         } else {
             System.out.println("\033[A\033[K\033[31mERROR: you have exceeded the vertical boundary\033[0m");
@@ -78,6 +79,7 @@ public class Turtle {
         index = (index + 1) % Orientation.values().length;
         setOrientation(Orientation.values()[index]);
     }
+
     public void turnLEFT() {
         int index = getOrientation().ordinal();
         int orientationLength = Orientation.values().length;
@@ -92,8 +94,8 @@ public class Turtle {
         switch (getOrientation()) {
             case NORTH -> move(currentPosX, --currentPosY);
             case SOUTH -> move(currentPosX, ++currentPosY);
-            case EAST -> move(++currentPosX, currentPosY);
-            case WEST -> move(--currentPosX, currentPosY);
+            case EAST  -> move(++currentPosX, currentPosY);
+            case WEST  -> move(--currentPosX, currentPosY);
             default -> throw new IllegalStateException("Unexpected value: " + orientation);
         }
     }

@@ -69,9 +69,11 @@ public class TestHugeInteger{
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     HugeInteger number2Copy = new HugeInteger("10233435476944232322");
-    
+    HugeInteger number2CopyNeg = new HugeInteger("-10233435476944232322");
+
     assertFalse(number1.isEqualTo(number2));
     assertTrue(number2.isEqualTo(number2Copy));
+    assertFalse(number2.isEqualTo(number2CopyNeg));
   }
   
   @Test
@@ -79,9 +81,11 @@ public class TestHugeInteger{
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     HugeInteger number2Copy = new HugeInteger("10233435476944232322");
-    
+    HugeInteger number2CopyNeg = new HugeInteger("-10233435476944232322");
+
     assertTrue(number1.isNotEqualTo(number2));
     assertFalse(number2.isNotEqualTo(number2Copy));
+    assertTrue(number2.isNotEqualTo(number2CopyNeg));
   }
   
   @Test
@@ -140,21 +144,21 @@ public class TestHugeInteger{
     HugeInteger number1Neg = new HugeInteger("-12213232435345453446");
     HugeInteger number2Neg = new HugeInteger("-10233435476944232322");
     HugeInteger number1Short = new HugeInteger("5232435345453446");
-    
+
     assertTrue(number1.isGreaterThanOrEqualTo(number1));
     assertTrue(number1Neg.isGreaterThanOrEqualTo(number1Neg));
     assertTrue(number1.isGreaterThanOrEqualTo(number1Neg));
     assertFalse(number1Neg.isGreaterThanOrEqualTo(number1));
-    
+
     assertTrue(number2.isGreaterThanOrEqualTo(number2));
     assertTrue(number2Neg.isGreaterThanOrEqualTo(number2Neg));
     assertTrue(number2.isGreaterThanOrEqualTo(number2Neg));
     assertFalse(number2Neg.isGreaterThanOrEqualTo(number2));
-    
+
     assertTrue(number1.isGreaterThanOrEqualTo(number1Short));
     assertFalse(number1Neg.isGreaterThanOrEqualTo(number1Short));
     assertTrue(number1.isGreaterThanOrEqualTo(number2));
-    assertFalse(number2.isGreaterThanOrEqualTo(number1));    
+    assertFalse(number2.isGreaterThanOrEqualTo(number1));
   }
   
   @Test
@@ -186,14 +190,24 @@ public class TestHugeInteger{
     HugeInteger number1 = new HugeInteger("12213232435345453446");
     HugeInteger number2 = new HugeInteger("10233435476944232322");
     int multiplier1 = 10; int multiplier2 = 5;
-    
+//    HugeInteger number1Neg = new HugeInteger("12213232435345453446");
+//    HugeInteger number2Neg = new HugeInteger("10233435476944232322");
+    int multiplier1Neg = -10; int multiplier2Neg = -5;
+
     HugeInteger expected = HugeInteger.multiply(number1, multiplier1);
     assertEquals("122132324353454534460", expected.toString());
     expected = HugeInteger.multiply(number2, multiplier2);
     assertEquals("51167177384721161610", expected.toString());
+
+    expected = HugeInteger.multiply(number1, multiplier1Neg);
+    assertEquals("-122132324353454534460", expected.toString());
+    expected = HugeInteger.multiply(number2, multiplier2Neg);
+    assertEquals("-51167177384721161610", expected.toString());
+    
+
   }
 
-  @Test
+//  @Test
 //  public void testThatDivideFunctionReturnCorrectValue(){
 //    HugeInteger number1 = new HugeInteger("60");
 //    HugeInteger number2 = new HugeInteger("10");

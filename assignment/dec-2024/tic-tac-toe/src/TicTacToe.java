@@ -3,24 +3,26 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class TicTacToe {
-    private final        int    NO_OF_PLAYERS;
-    private final        String X     = CellValues.X.value;
-    private final        String       O     = CellValues.O.value;
+    private final        int          NO_OF_PLAYERS;
+    private final        String       X      = CellValues.X.value;
+    private final        String       O      = CellValues.O.value;
     private final        String[][][] GAME_BOARD;
-    private final static Scanner      INPUT = new Scanner(System.in);
-    private final static Random        RANDOM = new Random();
+    private final static Scanner      INPUT  = new Scanner(System.in);
+    private final static Random       RANDOM = new Random();
 
     private final int NO_OF_CELLS_IN_BOARD;
     private final int MIN_NO_OF_MOVES_FOR_A_WIN;
     private final int LENGTH_OF_BOARD_SIDES;
     private final int LAYERS_OF_BOARD;
+//    private final int[][] WINNER_START_TO_STOP_COORDINATES = new int[2][3];
 
     public TicTacToe(int noOfPlayers, int difficultLevel) {
         this.NO_OF_PLAYERS = noOfPlayers;
         this.GAME_BOARD = switch (difficultLevel) {
             case 1 -> BoardTypes.EASY.board;
             case 2 -> BoardTypes.HARD.board;
-            case 3 -> BoardTypes.DANGEROUS.board;
+            case 3 -> BoardTypes.EXTREME.board;
+            case 4 -> BoardTypes.DANGEROUS.board;
             default -> throw new IllegalStateException("Unexpected value: " + difficultLevel);
         };
         this.LAYERS_OF_BOARD = this.GAME_BOARD.length;
@@ -32,7 +34,8 @@ public class TicTacToe {
     private enum BoardTypes {
         EASY(1),
         HARD(2),
-        DANGEROUS(3);
+        EXTREME(3),
+        DANGEROUS(4);
 
         private final String[][][] board;
 
@@ -40,7 +43,8 @@ public class TicTacToe {
             this.board = switch (i) {
                 case 1 -> new String[1][3][3];
                 case 2 -> new String[1][4][4];
-                case 3 -> new String[4][4][4];
+                case 3 -> new String[3][3][3];
+                case 4 -> new String[4][4][4];
                 default -> throw new IllegalStateException("Unexpected value for board type: " + i);
             };
         }
@@ -66,7 +70,7 @@ public class TicTacToe {
             System.out.println(displayBoard());
             if (index % 2 != 0) {
                 token = X;
-                if (NO_OF_PLAYERS == 1){
+                if (NO_OF_PLAYERS == 1) {
                     collectComputerNextMove(token);
                 } else {
                     collectHumanNextMove(token);
@@ -78,7 +82,8 @@ public class TicTacToe {
 
             if (index >= MIN_NO_OF_MOVES_FOR_A_WIN && checkForWinner()) {
                 System.out.println(displayBoard());
-                System.out.printf("GAME OVER\nPlayer%s Wins\n", token);
+
+                System.out.printf("GAME OVER\n%s%s Wins\n", ((index % 2 != 0 && NO_OF_PLAYERS == 1) ? "Computer" : "Player"), token);
                 break;
             } else if (index == NO_OF_CELLS_IN_BOARD) {
                 System.out.println(displayBoard());
@@ -121,18 +126,18 @@ public class TicTacToe {
         int layer = 1;
         int row = 1;
         int col = 1;
-        do{
+        do {
             layer = (LAYERS_OF_BOARD == 1) ? 1 : RANDOM.nextInt(1, LAYERS_OF_BOARD + 1);
             row = RANDOM.nextInt(LENGTH_OF_BOARD_SIDES) + 1;
             col = RANDOM.nextInt(LENGTH_OF_BOARD_SIDES) + 1;
-        } while(!addToken(token, layer, row, col));
+        } while (!addToken(token, layer, row, col));
     }
 
     public boolean addToken(String token, int layer, int row, int column) {
         if (GAME_BOARD[layer - 1][row - 1][column - 1].equals(CellValues.EMPTY.value)) {
             GAME_BOARD[layer - 1][row - 1][column - 1] = token;
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -145,8 +150,14 @@ public class TicTacToe {
                 case "A" -> number = 1;
                 case "B" -> number = 2;
                 case "C" -> number = 3;
-                case "D" -> number = 4;
-                default -> System.out.print("Invalid INPUT, Enter (A, B, C, or D) try again!\n>> ");
+                default -> {
+                    if (LAYERS_OF_BOARD == 4 && layer.equalsIgnoreCase("D")) {
+                        number = 4;
+                    } else {
+                        System.out.printf("Invalid INPUT, Enter (A, B, %s try again!\n>> ",
+                                (LAYERS_OF_BOARD == 3) ? "or C" : "C, or D)");
+                    }
+                }
             }
         } while (number == 0);
         return number;
@@ -165,99 +176,151 @@ public class TicTacToe {
     }
 
     public boolean checkForWinner() {
-        if (LAYERS_OF_BOARD == 1){
-            return checkIndividualBoardsForWinner(GAME_BOARD[0]);
+        if (LAYERS_OF_BOARD == 1) {
+            return checkIndividualBoardsForWinner(0);
         } else {
-            for (String[][] board : GAME_BOARD) {
-                if (checkIndividualBoardsForWinner(board)) { return true; }
+            for (int layer = 0; layer < LAYERS_OF_BOARD; layer++) {
+                if (checkIndividualBoardsForWinner(layer)) {
+                    return true;
+                }
             }
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
                 for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                    if(checkTopToBottomVerticals(row, col)) { return true; }
+                    if (checkTopToBottomVerticals(row, col)) {
+                        return true;
+                    }
                 }
             }
 
             for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
-                if(checkTopEdgeToBottomEdgeForwardDiagonalOnYAxis(col)) { return true; }
-                if(checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(col)) { return true; }
+                if (checkTopEdgeToBottomEdgeForwardDiagonalOnYAxis(col)) {
+                    return true;
+                }
+                if (checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(col)) {
+                    return true;
+                }
             }
 
             for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
-                if(checkTopEdgeToBottomEdgeForwardDiagonalOnXAxis(row)) { return true; }
-                if(checkTopEdgeToBottomEdgeBackwardDiagonalOnXAxis(row)) { return true; }
+                if (checkTopEdgeToBottomEdgeForwardDiagonalOnXAxis(row)) {
+                    return true;
+                }
+                if (checkTopEdgeToBottomEdgeBackwardDiagonalOnXAxis(row)) {
+                    return true;
+                }
             }
             return checkCornerToCornerDiagonals();
         }
     }
 
-    private boolean checkCornerToCornerDiagonals() {
-        return
-        (!GAME_BOARD[0][0][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][0].equals(GAME_BOARD[1][1][1])
-                && GAME_BOARD[0][0][0].equals(GAME_BOARD[2][2][2]) && GAME_BOARD[0][0][0].equals(GAME_BOARD[3][3][3])) ||
-        (!GAME_BOARD[0][3][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][3].equals(GAME_BOARD[1][2][2])
-                && GAME_BOARD[0][3][3].equals(GAME_BOARD[2][1][1]) && GAME_BOARD[0][3][3].equals(GAME_BOARD[3][0][0])) ||
-        (!GAME_BOARD[0][0][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][3].equals(GAME_BOARD[1][1][2])
-                && GAME_BOARD[0][0][3].equals(GAME_BOARD[2][2][1]) && GAME_BOARD[0][0][3].equals(GAME_BOARD[3][3][0])) ||
-        (!GAME_BOARD[0][3][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][0].equals(GAME_BOARD[1][2][1])
-                && GAME_BOARD[0][3][0].equals(GAME_BOARD[2][1][2]) && GAME_BOARD[0][3][0].equals(GAME_BOARD[3][0][3]));
+    private boolean checkCornerToCornerDiagonals() {//do not support iteration yet
+        if (!GAME_BOARD[0][0][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][0].equals(GAME_BOARD[1][1][1])
+                && GAME_BOARD[0][0][0].equals(GAME_BOARD[2][2][2]) && GAME_BOARD[0][0][0].equals(GAME_BOARD[3][3][3])) {
+            highlightWinCells(0, LAYERS_OF_BOARD - 1, 0, 3, 0, 3, true);
+            return true;
+        } else if (!GAME_BOARD[0][3][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][3].equals(GAME_BOARD[1][2][2])
+                && GAME_BOARD[0][3][3].equals(GAME_BOARD[2][1][1]) && GAME_BOARD[0][3][3].equals(GAME_BOARD[3][0][0])) {
+            highlightWinCells(0, LAYERS_OF_BOARD - 1, 3, 0, 3, 0, true);
+            return true;
+        } else if (!GAME_BOARD[0][0][3].equals(CellValues.EMPTY.value) && GAME_BOARD[0][0][3].equals(GAME_BOARD[1][1][2])
+                && GAME_BOARD[0][0][3].equals(GAME_BOARD[2][2][1]) && GAME_BOARD[0][0][3].equals(GAME_BOARD[3][3][0])) {
+            highlightWinCells(0, LAYERS_OF_BOARD - 1, 0, 3, 3, 0, true);
+            return true;
+        } else if (!GAME_BOARD[0][3][0].equals(CellValues.EMPTY.value) && GAME_BOARD[0][3][0].equals(GAME_BOARD[1][2][1])
+                && GAME_BOARD[0][3][0].equals(GAME_BOARD[2][1][2]) && GAME_BOARD[0][3][0].equals(GAME_BOARD[3][0][3])) {
+            highlightWinCells(0, LAYERS_OF_BOARD - 1, 3, 0, 0, 3, true);
+            return true;
+        }
+        return false;
     }
 
     private boolean checkTopEdgeToBottomEdgeBackwardDiagonalOnXAxis(int row) {
-        if(GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) { return false; }
-        for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, col -= 1){
-            if (!GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(GAME_BOARD[layer][row][col])){
+        if (GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(CellValues.EMPTY.value)) {
+            return false;
+        }
+
+        for (int layer = 1, col = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, col -= 1) {
+            if (!GAME_BOARD[0][row][LENGTH_OF_BOARD_SIDES - 1].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
-        } return true;
+        }
+        highlightWinCells(0, LAYERS_OF_BOARD - 1, row, row, LENGTH_OF_BOARD_SIDES - 1, 0, true);
+        return true;
     }
 
     private boolean checkTopEdgeToBottomEdgeForwardDiagonalOnXAxis(int row) {
-        if (GAME_BOARD[0][row][0].equals(CellValues.EMPTY.value)) { return false; }
+        if (GAME_BOARD[0][row][0].equals(CellValues.EMPTY.value)) {
+            return false;
+        }
         for (int layer = 1, col = 1; layer < LAYERS_OF_BOARD; layer += 1, col += 1) {
-            if (!GAME_BOARD[0][row][0].equals(GAME_BOARD[layer][row][col])){
+            if (!GAME_BOARD[0][row][0].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
-        } return true;
+        }
+        highlightWinCells(0, LAYERS_OF_BOARD - 1, row, row, 0, LENGTH_OF_BOARD_SIDES - 1, true);
+        return true;
     }
 
     private boolean checkTopEdgeToBottomEdgeForwardDiagonalOnYAxis(int col) {
-        if(GAME_BOARD[0][0][col].equals(CellValues.EMPTY.value)) { return false; }
-        for(int layer = 1, row = 1; layer < LAYERS_OF_BOARD; layer += 1, row += 1){
+        if (GAME_BOARD[0][0][col].equals(CellValues.EMPTY.value)) {
+            return false;
+        }
+        for (int layer = 1, row = 1; layer < LAYERS_OF_BOARD; layer += 1, row += 1) {
             if (!GAME_BOARD[0][0][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
-        } return true;
+        }
+        highlightWinCells(0, LAYERS_OF_BOARD - 1, 0, LENGTH_OF_BOARD_SIDES - 1, col, col, true);
+        return true;
     }
-        private boolean checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(int col) {
-        if(GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) { return false; }
-        for(int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, row -= 1){
+
+    private boolean checkTopEdgeToBottomEdgeBackwardDiagonalOnYAxis(int col) {
+        if (GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(CellValues.EMPTY.value)) {
+            return false;
+        }
+        for (int layer = 1, row = (LENGTH_OF_BOARD_SIDES - 2); layer < LAYERS_OF_BOARD; layer += 1, row -= 1) {
             if (!GAME_BOARD[0][LENGTH_OF_BOARD_SIDES - 1][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
-        } return true;
+        }
+        highlightWinCells(0, LAYERS_OF_BOARD - 1, LENGTH_OF_BOARD_SIDES - 1, 0, col, col, true);
+        return true;
     }
 
     private boolean checkTopToBottomVerticals(int row, int col) {
-        if(GAME_BOARD[0][row][col].equals(CellValues.EMPTY.value)) { return false; }
+        if (GAME_BOARD[0][row][col].equals(CellValues.EMPTY.value)) {
+            return false;
+        }
         for (int layer = 1; layer < LAYERS_OF_BOARD; layer += 1) {
             if (!GAME_BOARD[0][row][col].equals(GAME_BOARD[layer][row][col])) {
                 return false;
             }
-        } return true;
+        }
+        highlightWinCells(0, LAYERS_OF_BOARD - 1, row, row, col, col, false);
+        return true;
     }
 
-    private boolean checkIndividualBoardsForWinner(String[][] board) {
-        String[][] columns = transpose(board);
-        String[] backwardSlashDiagonal = extractDiagonals(board)[0];
-        String[] forwardSlashDiagonal = extractDiagonals(board)[1];
+    private boolean checkIndividualBoardsForWinner(int layer) {
+        String[][] columns = transpose(GAME_BOARD[layer]);
+        String[] backwardSlashDiagonal = extractDiagonals(GAME_BOARD[layer])[0];
+        String[] forwardSlashDiagonal = extractDiagonals(GAME_BOARD[layer])[1];
 
-        for (String[] row : board) {
-            if (checkRowForComplete(row)){ return true; }
+        for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
+            if (checkRowForComplete(GAME_BOARD[layer][row])) {
+                highlightWinCells(layer, layer, row, row, 0, LENGTH_OF_BOARD_SIDES - 1, false);
+                return true;
+            }
         }
-        for (String[] column: columns) {
-            if (checkRowForComplete(column)){ return true; }
+
+        for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
+            if (checkRowForComplete(columns[col])) {
+                highlightWinCells(layer, layer, 0, LENGTH_OF_BOARD_SIDES - 1, col, col, false);
+                return true;
+            }
         }
-        if (checkRowForComplete(forwardSlashDiagonal)){ return true; }
+        if (checkRowForComplete(forwardSlashDiagonal)) {
+            return true;
+        }
         return checkRowForComplete(backwardSlashDiagonal);
     }
 
@@ -291,21 +354,24 @@ public class TicTacToe {
         return Arrays.equals(rowOfXs, column) || Arrays.equals(rowOfOs, column);
     }
 
-//    public void highlightWinCells(String[][][] board,
-//                                  int row1, int col1,//level1
-//                                  int row2, int col2,//level2
-//                                  int row3, int col3) {//level3
-//        board[row1][col1] = "\033[47m" + board[row1][col1];
-//        board[row2][col2] = "\033[47m" + board[row2][col2];
-//        board[row3][col3] = "\033[47m" + board[row3][col3];
-//    }
+    public void highlightWinCells(int startLayer, int stopLayer, int startRow, int stopRow, int startColumn, int stopColumn, boolean isDiagonal) {
+        for (int layer = startLayer; layer <= stopLayer; layer++) {
+            for (int row = startRow; row <= stopRow; row++) {
+                for (int column = startColumn; column <= stopColumn; column++) {
+                    if (true) {//if (!isDiagonal){
+                        GAME_BOARD[layer][row][column] = "\033[47m" + GAME_BOARD[layer][row][column] + "\033[0m";
+                    }
+                }
+            }
+        }
+    }
 
     public String displayBoard() {
         char boardCount = 'A';
         StringBuilder boardsString = new StringBuilder();
         System.out.print("\033[2J");
         for (String[][] board : GAME_BOARD) {
-            if (LAYERS_OF_BOARD > 1){
+            if (LAYERS_OF_BOARD > 1) {
                 boardsString.append("Board ").append(boardCount++).append(":\n");
             }
             boardsString.append(displayOneBoard(board)).append("\n");
@@ -314,39 +380,64 @@ public class TicTacToe {
     }
 
     public String displayOneBoard(String[][] board) {
-        if (LENGTH_OF_BOARD_SIDES == 3){
-            return String.format(
-                            "      col 1 col 2 col 3 %n" +
-                            "     +-----+-----+-----+%n" +
-                            "row 1|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+%n" +
-                            "row 2|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+%n" +
-                            "row 3|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+%n",
-                    board[0][0], board[0][1], board[0][2],
-                    board[1][0], board[1][1], board[1][2],
-                    board[2][0], board[2][1], board[2][2]
-            );
-        } else if (LENGTH_OF_BOARD_SIDES == 4) {
-            return String.format(
-                            "      col 1 col 2 col 3 col 4 %n" +
-                            "     +-----+-----+-----+-----+%n" +
-                            "row 1|%5s|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+-----+%n" +
-                            "row 2|%5s|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+-----+%n" +
-                            "row 3|%5s|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+-----+%n" +
-                            "row 4|%5s|%5s|%5s|%5s|%n" +
-                            "     +-----+-----+-----+-----+%n",
-                    board[0][0], board[0][1], board[0][2], board[0][3],
-                    board[1][0], board[1][1], board[1][2], board[1][3],
-                    board[2][0], board[2][1], board[2][2], board[2][3],
-                    board[3][0], board[3][1], board[3][2], board[3][3]
-            );
+        StringBuilder boardString = new StringBuilder("     |");
+
+        for (int row = 0; row < LENGTH_OF_BOARD_SIDES; row += 1) {
+            for (int col = 0; row == 0 && col < LENGTH_OF_BOARD_SIDES; col += 1) {
+                boardString.append("col ").append(col + 1).append("|");
+                if (col == LENGTH_OF_BOARD_SIDES - 1) {
+                    demarcateBoardRows(boardString);
+                }
+            }
+
+            for (int col = 0; col < LENGTH_OF_BOARD_SIDES; col += 1) {
+                if (col == 0) {
+                    boardString.append("row ").append(row + 1).append("|");
+                }
+                boardString.append(String.format("%5s|", board[row][col]));
+            }
+            demarcateBoardRows(boardString);
         }
-        return "Board of (`"+ LENGTH_OF_BOARD_SIDES + " X " + LENGTH_OF_BOARD_SIDES + ") not supported. Yet!";
+        return boardString.toString();
+//
+//        if (LENGTH_OF_BOARD_SIDES == 3){
+//            return String.format(
+//                            "     |col 1|col 2|col 3| %n" +
+//                            "-----+-----+-----+-----+%n" +
+//                            "row 1|%5s|%5s|%5s|%n" +
+//                            "-----+-----+-----+-----+%n" +
+//                            "row 2|%5s|%5s|%5s|%n" +
+//                            "-----+-----+-----+-----+%n" +
+//                            "row 3|%5s|%5s|%5s|%n" +
+//                            "-----+-----+-----+-----+%n",
+//                    board[0][0], board[0][1], board[0][2],
+//                    board[1][0], board[1][1], board[1][2],
+//                    board[2][0], board[2][1], board[2][2]
+//            );
+//        } else if (LENGTH_OF_BOARD_SIDES == 4) {
+//            return String.format(
+//                            "      col 1 col 2 col 3 col 4 %n" +
+//                            "     +-----+-----+-----+-----+%n" +
+//                            "row 1|%5s|%5s|%5s|%5s|%n" +
+//                            "     +-----+-----+-----+-----+%n" +
+//                            "row 2|%5s|%5s|%5s|%5s|%n" +
+//                            "     +-----+-----+-----+-----+%n" +
+//                            "row 3|%5s|%5s|%5s|%5s|%n" +
+//                            "     +-----+-----+-----+-----+%n" +
+//                            "row 4|%5s|%5s|%5s|%5s|%n" +
+//                            "     +-----+-----+-----+-----+%n",
+//                    board[0][0], board[0][1], board[0][2], board[0][3],
+//                    board[1][0], board[1][1], board[1][2], board[1][3],
+//                    board[2][0], board[2][1], board[2][2], board[2][3],
+//                    board[3][0], board[3][1], board[3][2], board[3][3]
+//            );
+//        }
+//        return "Board of (`"+ LENGTH_OF_BOARD_SIDES + " X " + LENGTH_OF_BOARD_SIDES + ") not supported. Yet!";
+//
+    }
+
+    private void demarcateBoardRows(StringBuilder boardString) {
+        boardString.append("\n").append("-----+".repeat(LENGTH_OF_BOARD_SIDES + 1)).append("\n");
     }
 
 

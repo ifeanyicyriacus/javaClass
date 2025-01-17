@@ -42,7 +42,7 @@ public class Main {
                         colourCommandTextGreen(command);
                         turtleGraphics.parser(command);
                     } else {
-                        System.out.print("\033[A\033[K");
+                        clearPreviousLine();
                     }
                 }
             }
@@ -54,7 +54,7 @@ public class Main {
     }
 
     private static void colourCommandTextGreen(String command) {
-        System.out.print("\033[A\033[K");
+        clearPreviousLine();
         System.out.println("\033[32m" + command + "\033[0m");
     }
 }

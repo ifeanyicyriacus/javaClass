@@ -47,8 +47,8 @@ public class Main {
         System.out.println("""
                 \033[1mChoose the Compound frequency from the following options:\033[0m
                 \033[3m(Times per year that interest will be compounded.)\033[0m
-                1. Annual
-                2. Semiannual
+                1. Annually
+                2. Semiannually
                 3. Quarterly
                 4. Monthly
                 5. Daily
@@ -60,7 +60,7 @@ public class Main {
             case 4 -> CompoundFrequency.MONTHLY.getFrequency();
             case 5 -> CompoundFrequency.DAILY.getFrequency();
             default -> {
-                System.out.println("Invalid choice: (Your default will be set to ANNUALLY)");
+                System.out.println("Invalid choice: (Your default will be set to 1. ANNUALLY)");
                 yield CompoundFrequency.ANNUALLY.getFrequency();
             }
         };

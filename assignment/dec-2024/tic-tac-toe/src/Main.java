@@ -41,7 +41,8 @@ public class Main {
                 Select Difficulty Level:
                 1. Easy (3 X 3)
                 2. Hard (4 X 4)
-                3. Dangerous (4 X 4 X 4)
+                3. Extreme (3 X 3 X 3)
+                4. Dangerous (4 X 4 X 4)
                 0. |<- go back.
                 """;
         boolean gameOn = true;
@@ -49,7 +50,7 @@ public class Main {
             System.out.println(difficultLevelMenu);
             String difficultLevelChoice = INPUT.next();
             gameOn = switch (difficultLevelChoice) {
-                case "1", "2", "3" -> {
+                case "1", "2", "3", "4" -> {
                     startGame(noOfPlayers, Integer.valueOf(difficultLevelChoice));
                     System.out.println("\nPlay Again");
                     yield true;

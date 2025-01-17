@@ -14,3 +14,4 @@ TODO 5: subtract support for negative operands
    --------------
     15      3     0  =>  1530
 
+this method will wrestle with the same integer limit, when a 40 digit number is entered as either base or multiplier
