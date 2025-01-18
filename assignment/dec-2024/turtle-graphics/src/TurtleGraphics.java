@@ -1,8 +1,12 @@
 import java.util.Arrays;
 
 public class TurtleGraphics {
-    final String[][] floor;
-    final Turtle     turtle;
+    final private String[][] floor;
+    final private Turtle     turtle;
+
+    public String[][] getFloor() {
+        return floor;
+    }
 
     public TurtleGraphics() {
         int noOfRows = 20; int noOfColumns = 20;
@@ -13,7 +17,7 @@ public class TurtleGraphics {
             Arrays.fill(row, "0");
         }
     }
-    
+
     public String displayGraphics() {
         StringBuilder output = new StringBuilder();
         for (String[] row : floor) {

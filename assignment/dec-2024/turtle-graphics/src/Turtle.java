@@ -49,7 +49,7 @@ public class Turtle {
         }
     }
 
-    public void move(int x, int y) {
+    private void move(int x, int y) {
         setX(x);
         setY(y);
     }
