@@ -27,8 +27,14 @@ class TestTurtleGraphics {
 
 class TestTurtle {
     @Test
-    public void testThatTurtleWasCreated() {
+    public void testTurtle_Exist() {
+       new Turtle(20, 20);
+    }
+
+    @Test
+    public void testTurtle_FieldsHaveBeenInitializedToCorrectValue() {
         Turtle turtle = new Turtle(20, 20);
+
         assertEquals(0, turtle.getX());
         assertEquals(0, turtle.getY());
         assertEquals(Turtle.PenState.UP, turtle.getPenState());
@@ -36,28 +42,42 @@ class TestTurtle {
     }
 
     @Test
-    public void testThatTurtleWasMoved() {
+    public void testTurtle_CanMoveForward() {
         Turtle turtle = new Turtle(20, 20);
-        assertEquals(0, turtle.getX());
+        turtle.moveForwardOneStep();
+
+        assertEquals(1, turtle.getX());
         assertEquals(0, turtle.getY());
         turtle.moveForwardOneStep();
-        assertEquals(1, turtle.getX());
+        assertEquals(2, turtle.getX());
         assertEquals(0, turtle.getY());
         assertEquals(Turtle.Orientation.EAST, turtle.getOrientation());
     }
 
     @Test
-    public void testThatTurtleWasTurned() {
+    public void testTurtle_CanTurnRight() {
         Turtle turtle = new Turtle(20, 20);
+
         assertEquals(Turtle.Orientation.EAST, turtle.getOrientation());
         turtle.turnRIGHT();
         assertEquals(Turtle.Orientation.SOUTH, turtle.getOrientation());
-        turtle.turnLEFT();
+        turtle.turnRIGHT();
+        assertEquals(Turtle.Orientation.WEST, turtle.getOrientation());
+        turtle.turnRIGHT();
+        assertEquals(Turtle.Orientation.NORTH, turtle.getOrientation());
+    }
+
+    @Test
+    public void testTurtle_CanTurnLeft() {
+        Turtle turtle = new Turtle(20, 20);
         assertEquals(Turtle.Orientation.EAST, turtle.getOrientation());
+
         turtle.turnLEFT();
         assertEquals(Turtle.Orientation.NORTH, turtle.getOrientation());
         turtle.turnLEFT();
         assertEquals(Turtle.Orientation.WEST, turtle.getOrientation());
+        turtle.turnLEFT();
+        assertEquals(Turtle.Orientation.SOUTH, turtle.getOrientation());
     }
 
 }
