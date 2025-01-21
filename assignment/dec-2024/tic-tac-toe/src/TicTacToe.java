@@ -51,8 +51,8 @@ public class TicTacToe {
     }
 
     private enum CellValues {
-        X("  \033[1;31mX  \033[0m"),
-        O("  \033[1;32mO  \033[0m"),
+        X("\033[1;31m  X  \033[0m"),
+        O("\033[1;32m  O  \033[0m"),
         EMPTY("");
 
         private final String value;
@@ -399,41 +399,6 @@ public class TicTacToe {
             demarcateBoardRows(boardString);
         }
         return boardString.toString();
-//
-//        if (LENGTH_OF_BOARD_SIDES == 3){
-//            return String.format(
-//                            "     |col 1|col 2|col 3| %n" +
-//                            "-----+-----+-----+-----+%n" +
-//                            "row 1|%5s|%5s|%5s|%n" +
-//                            "-----+-----+-----+-----+%n" +
-//                            "row 2|%5s|%5s|%5s|%n" +
-//                            "-----+-----+-----+-----+%n" +
-//                            "row 3|%5s|%5s|%5s|%n" +
-//                            "-----+-----+-----+-----+%n",
-//                    board[0][0], board[0][1], board[0][2],
-//                    board[1][0], board[1][1], board[1][2],
-//                    board[2][0], board[2][1], board[2][2]
-//            );
-//        } else if (LENGTH_OF_BOARD_SIDES == 4) {
-//            return String.format(
-//                            "      col 1 col 2 col 3 col 4 %n" +
-//                            "     +-----+-----+-----+-----+%n" +
-//                            "row 1|%5s|%5s|%5s|%5s|%n" +
-//                            "     +-----+-----+-----+-----+%n" +
-//                            "row 2|%5s|%5s|%5s|%5s|%n" +
-//                            "     +-----+-----+-----+-----+%n" +
-//                            "row 3|%5s|%5s|%5s|%5s|%n" +
-//                            "     +-----+-----+-----+-----+%n" +
-//                            "row 4|%5s|%5s|%5s|%5s|%n" +
-//                            "     +-----+-----+-----+-----+%n",
-//                    board[0][0], board[0][1], board[0][2], board[0][3],
-//                    board[1][0], board[1][1], board[1][2], board[1][3],
-//                    board[2][0], board[2][1], board[2][2], board[2][3],
-//                    board[3][0], board[3][1], board[3][2], board[3][3]
-//            );
-//        }
-//        return "Board of (`"+ LENGTH_OF_BOARD_SIDES + " X " + LENGTH_OF_BOARD_SIDES + ") not supported. Yet!";
-//
     }
 
     private void demarcateBoardRows(StringBuilder boardString) {
