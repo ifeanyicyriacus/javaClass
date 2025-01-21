@@ -1,10 +1,10 @@
 package airconditioner;
 
 public class AirConditioner {
-    private PowerState powerState = PowerState.OFF;
-    private int temperature;
-    final int MAX_TEMPERATURE;
-    final int MIN_TEMPERATURE;
+    private PowerState powerState = PowerState.OFF;;
+    private final int MAX_TEMPERATURE = 30;
+    private final int MIN_TEMPERATURE = 16;
+    private int temperature = (MAX_TEMPERATURE + MIN_TEMPERATURE) / 2;
 
     public void turnOn() {
         setPowerState(PowerState.ON);
@@ -17,13 +17,13 @@ public class AirConditioner {
     }
 
     public void increaseTemperature() {
-        if (temperature < MAX_TEMPERATURE) {
+        if (getPowerState() == PowerState.ON && temperature < MAX_TEMPERATURE) {
             temperature++;
         }
     }
 
     public void decreaseTemperature() {
-        if (temperature > MIN_TEMPERATURE) {
+        if (getPowerState() == PowerState.ON && temperature > MIN_TEMPERATURE) {
             temperature--;
         }
     }
@@ -39,9 +39,4 @@ public class AirConditioner {
         this.powerState = powerState;
     }
 
-    public AirConditioner() {
-        this.MAX_TEMPERATURE = 30;
-        this.MIN_TEMPERATURE = 16;
-        this.temperature = (MAX_TEMPERATURE + MIN_TEMPERATURE) / 2;
-    }
 }
