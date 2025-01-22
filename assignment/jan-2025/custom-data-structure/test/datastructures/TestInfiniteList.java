@@ -51,6 +51,18 @@ public class TestInfiniteList {
     }
 
     @Test
+    public void testInfiniteList_cantRemoveNonElementFromList(){
+        infiniteList.add("Terve");
+        infiniteList.add("kaunis");
+        infiniteList.add("nainen");
+        assertEquals(3, infiniteList.size());
+        assertTrue(infiniteList.contains("nainen"));
+        infiniteList.remove("Chairman");
+        assertEquals(3, infiniteList.size());
+
+    }
+
+    @Test
     public void testInfiniteList_canFetchElementFromList(){
         infiniteList.add("Nigeria");
         infiniteList.add("kaunis");

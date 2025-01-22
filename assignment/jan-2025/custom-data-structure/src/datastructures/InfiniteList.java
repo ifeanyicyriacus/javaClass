@@ -3,9 +3,9 @@ package datastructures;
 
 import java.util.stream.IntStream;
 
-public class InfiniteList {
+public class InfiniteList extends Collection{
     private int count = 0;
-    private int capacity = 5;
+    private int capacity = 2;
     private String[] infiniteList = new String[capacity];
 
     public boolean isEmpty() {
@@ -22,7 +22,7 @@ public class InfiniteList {
         if (count == capacity) {
             int newCapacity = count * 2;
             String[] newList = new String[newCapacity];
-            IntStream.range(0, newCapacity).forEach(i -> newList[i] = infiniteList[i]);
+            IntStream.range(0, count).forEach(i -> newList[i] = infiniteList[i]);
             infiniteList = newList;
             capacity = newCapacity;
         }
@@ -43,7 +43,7 @@ public class InfiniteList {
 
     private void remove(int elementIndex) {
         if (elementIndex != -1) {
-            for (int index = elementIndex + 1; index < count; index++) {
+            for (int index = elementIndex; index < count; index++) {
                 infiniteList[index] = infiniteList[index - 1];
             }
             count--;
@@ -52,7 +52,7 @@ public class InfiniteList {
 
     private int indexOf(String element) {
         for (int index = 0; index < count; index++) {
-            if (infiniteList[index].equals(element)){
+            if (element.equals(infiniteList[index])){
                 return index;
             }
         }
