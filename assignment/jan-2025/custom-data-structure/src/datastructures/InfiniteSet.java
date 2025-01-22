@@ -1,4 +1,5 @@
 package datastructures;
 
-public class InfiniteSet {
+public class InfiniteSet extends InfiniteCollection {
+
 }

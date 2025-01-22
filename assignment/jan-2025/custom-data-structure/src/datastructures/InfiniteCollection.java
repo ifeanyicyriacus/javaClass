@@ -66,4 +66,5 @@ public class InfiniteCollection {
         return trimToSize(listBucket);
     }
 
+//    implement reverse, sort and copy
 }
