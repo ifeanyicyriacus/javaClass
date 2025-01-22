@@ -70,4 +70,24 @@ public class TestInfiniteList {
         assertEquals("kaunis", infiniteList.get(1));
         assertEquals("Nigeria", infiniteList.get(0));
     }
+
+    @Test
+    public void testInfiniteList_canClearAllElementsFromList(){
+        infiniteList.add("Nigeria");
+        infiniteList.add("kaunis");
+        infiniteList.add("Roosa");
+        infiniteList.add("poika");
+        infiniteList.clear();
+        assertEquals(0, infiniteList.size());
+    }
+
+    @Test
+    public void testInfiniteList_canReturnElementFromListAsArray(){
+        infiniteList.add("Nigeria");
+        infiniteList.add("kaunis");
+        infiniteList.add("maa");
+        assertArrayEquals(new String[] {"Nigeria", "kaunis", "maa"}, infiniteList.toArray());
+        infiniteList.clear();
+        assertArrayEquals(new String[] {}, infiniteList.toArray());
+    }
 }
