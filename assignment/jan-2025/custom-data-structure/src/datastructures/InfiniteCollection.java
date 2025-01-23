@@ -8,9 +8,10 @@ public class InfiniteCollection {
     protected String[] listBucket;
 
     public InfiniteCollection() {
-        capacity = 2;
-        listBucket = new String[capacity];
+        this(2);
+//        can you inherit constructors
     }
+
     public InfiniteCollection(int capacity) {
         this.capacity = capacity;
         listBucket = new String[capacity];
@@ -20,7 +21,11 @@ public class InfiniteCollection {
         return size == 0;
     }
 
-    protected void extendCapacity() {
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    protected void extendCapacityIfNecessary() {
         if (size == capacity) {
             int newCapacity = size * 2;
             String[] newList = new String[newCapacity];
@@ -29,16 +34,16 @@ public class InfiniteCollection {
             capacity = newCapacity;
         }
     }
-    
-    protected int size() {
+
+    public int size() {
         return size;
     }
 
-    protected boolean contains(String element) {
+    public boolean contains(String element) {
         return IntStream.range(0, size).anyMatch(index -> element.equals(listBucket[index]));
     }
 
-    protected int indexOf(String element) {
+    public int indexOf(String element) {
         for (int index = 0; index < size; index++) {
             if (element.equals(listBucket[index])){
                 return index;
@@ -47,11 +52,11 @@ public class InfiniteCollection {
         return -1;
     }
 
-    protected String get(int index) {
+    public String get(int index) {
         return listBucket[index];
     }
 
-    protected void clear(){
+    public void clear(){
         listBucket = new String[capacity];
         size = 0;
     }
@@ -62,7 +67,7 @@ public class InfiniteCollection {
         return newList;
     }
 
-    protected String[] toArray() {
+    public String[] toArray() {
         return trimToSize(listBucket);
     }
 
