@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public class InfiniteArrayList extends InfiniteList {
     public InfiniteArrayList() {
-        super();
+        this(2);
     }
     public InfiniteArrayList(int capacity) {
         super(capacity);

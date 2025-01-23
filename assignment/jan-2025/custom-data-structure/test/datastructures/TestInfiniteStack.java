@@ -3,15 +3,15 @@ package datastructures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestInfiniteStack{
     InfiniteStack infiniteStack;
+    int capacity = 5;
 
     @BeforeEach
     public void setUp(){
-        infiniteStack = new InfiniteStack(5);
+        infiniteStack = new InfiniteStack(capacity);
     }
 
     @Test
@@ -60,5 +60,21 @@ public class TestInfiniteStack{
                 new String[] {"Hello", "World", "Terve", "hyva"},
                 infiniteStack.toArray()
         );
+    }
+
+    @Test
+    public void testInfiniteStack_throwRuntimeException_Expect_RuntimeException(){
+        infiniteStack.push("Terve");
+        infiniteStack.push("Hi");
+        infiniteStack.push("Hyva");
+        infiniteStack.push("Herra");
+        infiniteStack.push("Pollonen");
+        assertThrowsExactly(RuntimeException.class, () -> infiniteStack.push("Hello"));
+    }
+
+    @Test
+    public void testInfiniteStack_popReturnNullWhenEmpty(){
+        assertTrue(infiniteStack.isEmpty());
+        assertNull(infiniteStack.pop());
     }
 }

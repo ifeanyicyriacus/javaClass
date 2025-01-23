@@ -7,11 +7,6 @@ public class InfiniteCollection {
     protected int capacity;
     protected String[] listBucket;
 
-    public InfiniteCollection() {
-        this(2);
-//        can you inherit constructors
-    }
-
     public InfiniteCollection(int capacity) {
         this.capacity = capacity;
         listBucket = new String[capacity];

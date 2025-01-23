@@ -2,7 +2,7 @@ package datastructures;
 
 public class InfiniteList extends InfiniteCollection{
     public InfiniteList() {
-        super();
+        this(2);
     }
     public InfiniteList(int capacity) {
         super(capacity);
