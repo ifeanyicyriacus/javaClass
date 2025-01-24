@@ -1,18 +1,24 @@
 package datastructures;
-
 public class InfiniteSet extends InfiniteList {
 
     public void add(String element) {
         if (!contains(element)) {
-            ensureCapacity();
-            listBucket[size] = element;
-            size++;
+            super.add(element);
         }
     }
 
-//    @Override
-    public int count(String element) {
-        return 1;
+    public void add(String[] elements) {
+        for (String element : elements) {
+            add(element);
+        }
+    }
+
+    @Override
+    public int count(String text) {
+        for (String element: listBucket){
+            if (text.equals(element)){ return 1; }
+        }
+        return 0;
     }
 
 //    public InfiniteSet intersection(InfiniteSet other) {

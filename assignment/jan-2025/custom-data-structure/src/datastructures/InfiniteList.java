@@ -43,4 +43,17 @@ public class InfiniteList extends InfiniteCollection{
         return listBucket[index];
     }
 
+    public void add(String element) {
+        ensureCapacity();
+        listBucket[size] = element;
+        size++;
+    }
+
+    public void replace(int index, String element) {
+        listBucket[index] = element;
+    }
+
+
+
+
 }
