@@ -20,7 +20,7 @@ public class InfiniteCollection {
         return size == capacity;
     }
 
-    protected void extendCapacityIfNecessary() {
+    protected void ensureCapacity() {
         if (size == capacity) {
             int newCapacity = size * 2;
             String[] newList = new String[newCapacity];
@@ -38,19 +38,6 @@ public class InfiniteCollection {
         return IntStream.range(0, size).anyMatch(index -> element.equals(listBucket[index]));
     }
 
-    public int indexOf(String element) {
-        for (int index = 0; index < size; index++) {
-            if (element.equals(listBucket[index])){
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    public String get(int index) {
-        return listBucket[index];
-    }
-
     public void clear(){
         listBucket = new String[capacity];
         size = 0;
@@ -66,5 +53,29 @@ public class InfiniteCollection {
         return trimToSize(listBucket);
     }
 
-//    implement reverse, sort and copy
+    public int count(String element) {
+        return (int) IntStream.range(0, size)
+                .filter(index -> element.equals(listBucket[index]))
+                .count();
+    }
+
+//    public InfiniteCollection sort() {
+//        return null;
+//    }
+//
+//    public InfiniteCollection reverse() {
+//        return null;
+//    }
+//
+//    public InfiniteCollection shuffle() {
+//        return null;
+//    }
+//
+//    public InfiniteCollection shuffle(Random random) {
+//        return null;
+//    }
+//
+//    public InfiniteCollection copy() {
+//        return null;
+//    }
 }

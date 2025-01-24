@@ -1,7 +1,5 @@
 package datastructures;
 
-import java.util.stream.IntStream;
-
 public class InfiniteStack extends InfiniteCollection{
     public InfiniteStack(int capacity) {
         super(capacity);
@@ -26,11 +24,8 @@ public class InfiniteStack extends InfiniteCollection{
         return result;
     }
 
-    public int count(String element) {
-        return (int) IntStream.range(0, size).filter(index -> element.equals(listBucket[index])).count();
-    }
-
     public String peek() {
         return listBucket[size - 1];
+//        return null if not included in test whe
     }
 }

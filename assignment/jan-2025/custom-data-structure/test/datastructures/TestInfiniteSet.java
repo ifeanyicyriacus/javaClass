@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestInfiniteSet {
-    InfiniteSet infiniteSet;
+    InfiniteSet set;
 
     @BeforeEach
     void setUp() {
-        infiniteSet = new InfiniteSet();
+        set = new InfiniteSet();
     }
 
     @Test
     public void testInfiniteSet_doesNotSupportDuplicateElements() {
-        infiniteSet.add("Apple");
-        infiniteSet.add("Banana");
-        infiniteSet.add("Apple");
-        infiniteSet.add("Banana");
-        assertEquals(2, infiniteSet.size);
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Apple");
+        set.add("Banana");
+        assertEquals(2, set.size);
     }
 }

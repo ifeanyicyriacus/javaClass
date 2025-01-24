@@ -29,4 +29,18 @@ public class InfiniteList extends InfiniteCollection{
             element = temp;
         }
     }
+
+    public int indexOf(String element) {
+        for (int index = 0; index < size; index++) {
+            if (element.equals(listBucket[index])){
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public String get(int index) {
+        return listBucket[index];
+    }
+
 }
