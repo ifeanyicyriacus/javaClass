@@ -1,4 +1,5 @@
 package datastructures;
+
 public class InfiniteSet extends InfiniteList {
 
     public void add(String element) {

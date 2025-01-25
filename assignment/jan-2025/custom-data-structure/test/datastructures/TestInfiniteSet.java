@@ -30,6 +30,6 @@ public class TestInfiniteSet {
         assertEquals(3, set.size);
         assertEquals(1, set.count("Apple"));
         assertEquals(1, set.count("Banana"));
-        assertEquals(1, set.count("Guava"));
+        assertEquals(0, set.count("Pineapple"));
     }
 }

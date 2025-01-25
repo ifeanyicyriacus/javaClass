@@ -20,16 +20,6 @@ public class InfiniteCollection {
         return size == capacity;
     }
 
-    protected void ensureCapacity() {
-        if (size == capacity) {
-            int newCapacity = size * 2;
-            String[] newList = new String[newCapacity];
-            IntStream.range(0, size).forEach(i -> newList[i] = listBucket[i]);
-            listBucket = newList;
-            capacity = newCapacity;
-        }
-    }
-
     public int size() {
         return size;
     }

@@ -34,13 +34,100 @@ public class TestInfiniteMap {
         assertEquals(3, map.size());
     }
 
-//    @Test
-//    public void testMap_
-    //test overwrite key
-    //test duplicate key not supported
-    //test keys are case sensitive
-//    find by index
-    // get keys
-    // get values
+    @Test
+    public void testMap_gettingValueByCorrectKey() {
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        assertEquals("Valentine", map.get("name"));
+        assertEquals("180", map.get("height"));
+        assertNull(map.get("state"));
+    }
+
+    @Test
+    public void testMap_returnsNullGettingWithIncorrectKey() {
+        assertNull(map.get("state"));
+    }
+
+    @Test
+    public void testMap_overwritingKeyValueIsSupportedButNotDuplicateKey(){
+        map.add("name", "Valentine");
+        assertEquals("Valentine", map.get("name"));
+        map.add("name", "Kevin");
+        assertEquals("Kevin", map.get("name"));
+        assertEquals(1, map.size());
+    }
+
+    @Test
+    public void testMap_canReturnItsKeysAndValues() {
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        map.add("school", "Semicolon");
+        assertArrayEquals(
+                new String[] {"name", "height", "school"},
+                map.keys());
+        assertArrayEquals(
+                new String[] {"Valentine", "180", "Semicolon"},
+                map.values());
+    }
+
+    @Test
+    public void testMap_keysAreCaseSensitive() {
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        map.add("Name", "Valentine");
+        assertEquals(3, map.size());
+    }
+
+    @Test
+    public void testMap_canRemoveElementByKey(){
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        map.add("school", "Semicolon");
+        map.add("town", "Sabo");
+        assertEquals(4, map.size());
+        map.remove("name");
+        map.remove("school");
+        assertEquals(2, map.size());
+        assertArrayEquals(
+                new String[][] {
+                        {"height", "180"},
+                        {"town", "Sabo"}
+                },
+                map.items()
+        );
+    }
+
+    @Test
+    public void testMap_canNotRemoveElementUsingIncorrectKey(){
+        assertEquals(0, map.size());
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        map.add("school", "Semicolon");
+        map.add("town", "Sabo");
+        map.remove("name");
+        assertNull(map.get("name"));
+        assertEquals(3, map.size());
+        map.remove("university");
+        assertEquals(3, map.size());
+    }
+
+    @Test
+    public void testMap_canDisplayMapInJSONFormat() {
+        map.add("name", "Valentine");
+        map.add("height", "180");
+        map.add("school", "Semicolon");
+        map.add("town", "Sabo Yaba");
+        assertEquals(
+                """
+                        {
+                        \t"name": "Valentine",
+                        \t"height": "180",
+                        \t"school": "Semicolon",
+                        \t"town": "Sabo Yaba",
+                        }
+                        """,
+                map.toString());
+    }
+
 
 }

@@ -20,6 +20,4 @@ public class InfiniteArrayList extends InfiniteList {
             add(element);
         }
     }
-//    public void rep
-
 }

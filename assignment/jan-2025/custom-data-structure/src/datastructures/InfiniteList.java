@@ -1,5 +1,7 @@
 package datastructures;
 
+import java.util.stream.IntStream;
+
 public class InfiniteList extends InfiniteCollection{
     public InfiniteList() {
         this(2);
@@ -12,7 +14,7 @@ public class InfiniteList extends InfiniteCollection{
         remove(elementIndex);
     }
 
-    private void remove(int elementIndex) {
+    public void remove(int elementIndex) {
         if (elementIndex != -1) {
             for (int index = elementIndex; index < size; index++) {
                 listBucket[index] = (index + 1 != size) ? listBucket[index + 1] : null;
@@ -53,7 +55,13 @@ public class InfiniteList extends InfiniteCollection{
         listBucket[index] = element;
     }
 
-
-
-
+    protected void ensureCapacity() {
+        if (size == capacity) {
+            int newCapacity = size * 2;
+            String[] newList = new String[newCapacity];
+            IntStream.range(0, size).forEach(i -> newList[i] = listBucket[i]);
+            listBucket = newList;
+            capacity = newCapacity;
+        }
+    }
 }
