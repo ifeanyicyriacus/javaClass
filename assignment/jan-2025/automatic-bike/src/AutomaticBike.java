@@ -35,6 +35,9 @@ public class AutomaticBike {
         }
     }
 
+    public int getGear() {
+        return this.gear;
+    }
 
     private void changeGear() {
         if (speed <= 20)
@@ -62,5 +65,6 @@ public class AutomaticBike {
             case 2 -> setSpeed(speed - 2);
             case 3 -> setSpeed(speed - 3);
             case 4 -> setSpeed(speed - 4);
-        }    }
+        }
+    }
 }

@@ -35,13 +35,13 @@ public class TestAutomaticBike {
 
     @Test
     public void testAutomaticBike_canBeAccelerated() {
-        for (int speed = 0; speed <= 200; ) {
+        for (int speed = 0; speed <= 100; ) {
             if (speed <= 20) speed += 1;
             else if (speed <= 30) speed += 2;
             else if (speed <= 40) speed += 3;
             else speed += 4;
-            assertEquals(speed, automaticBike.getSpeed());
             automaticBike.accelerate();
+            assertEquals(speed, automaticBike.getSpeed());
         }
     }
 
@@ -62,7 +62,30 @@ public class TestAutomaticBike {
             automaticBike.decelerate();
             assertEquals(speed, automaticBike.getSpeed());
         }
+    }
 
+    @Test
+    public void testAutomaticBike_gearIsWithinRange() {
+        for (int speed = 0; speed <= 200; ) {
+            if (speed <= 20) {
+                speed += 1;
+                assertEquals(1, automaticBike.getGear());
+            }
+            else if (speed <= 30) {
+                speed += 2;
+                assertEquals(2, automaticBike.getGear());
+            }
+            else if (speed <= 40) {
+                speed += 3;
+                assertEquals(3, automaticBike.getGear());
+            }
+            else {
+                speed += 4;
+                assertEquals(4, automaticBike.getGear());
+            }
+            automaticBike.accelerate();
+            assertEquals(speed, automaticBike.getSpeed());
+        }
     }
 }
 
