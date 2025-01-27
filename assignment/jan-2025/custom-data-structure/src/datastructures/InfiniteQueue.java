@@ -27,7 +27,7 @@ public class InfiniteQueue extends InfiniteCollection {
         return count;
     }
 
-    public void enqueue(String element) {
+    public void add(String element) {
         if (isFull()) {
             throw new IllegalStateException("Queue is full: element cannot be added at this time due to capacity " +
                     "restrictions");
@@ -36,12 +36,13 @@ public class InfiniteQueue extends InfiniteCollection {
             size++; count++;
         }
     }
+    //    offer
 
     public String peek() {
         return listBucket [pointer % capacity];
     }
 
-    public String dequeue() {
+    public String remove() {
         if (!isEmpty()) {
             String element = listBucket [pointer % capacity];
             listBucket [(pointer % capacity)] = null;
@@ -52,4 +53,7 @@ public class InfiniteQueue extends InfiniteCollection {
             return null;
         }
     }
+//    poll
+
+
 }

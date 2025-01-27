@@ -31,5 +31,6 @@ public class TestInfiniteSet {
         assertEquals(1, set.count("Apple"));
         assertEquals(1, set.count("Banana"));
         assertEquals(0, set.count("Pineapple"));
+
     }
 }
