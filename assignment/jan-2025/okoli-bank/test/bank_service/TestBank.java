@@ -14,12 +14,13 @@ public class TestBank {
 
     @BeforeEach
     void setUp() {
-        bank = new Bank();
+        bank = new Bank("First Bank Nigeria");
     }
 
     @Test
     public void testBank_exist() {
         assertTrue(bank.exist());
+        assertEquals("First Bank Nigeria", bank.getName());
     }
 
     @Test

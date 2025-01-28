@@ -3,8 +3,17 @@ package bank_service;
 import java.util.HashMap;
 
 public class Bank {
+    private String name;
     private final HashMap<Integer, Account> accounts = new HashMap<>();
     private static int accountCounter = 1;
+
+    public Bank(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public boolean exist() {
         return true;
