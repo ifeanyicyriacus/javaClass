@@ -1,4 +1,4 @@
-package okolibank;
+package bank_service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +24,18 @@ public class TestAccount {
         assertEquals(100, account.getAccountNumber());
         assertEquals("Ifeanyi", account.getFirstName());
         assertEquals("Cyriacus", account.getLastName());
+    }
+
+    @Test
+    public void testAccount_canBeCreatedOnlyWithLegalValues(){
+        assertThrowsExactly(IllegalArgumentException.class,
+                ()-> new Account(0, "Ifeanyi", "Cyriacus", "0000"));
+        assertThrowsExactly(IllegalArgumentException.class,
+                ()-> new Account(100, "", "Cyriacus", "0000"));
+        assertThrowsExactly(IllegalArgumentException.class,
+                ()-> new Account(100, "Ifeanyi", "", "0000"));
+        assertThrowsExactly(IllegalArgumentException.class,
+                ()-> new Account(100, "", "Cyriacus", ""));
     }
     
     @Test

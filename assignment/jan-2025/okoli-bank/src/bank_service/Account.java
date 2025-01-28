@@ -1,4 +1,4 @@
-package okolibank;
+package bank_service;
 
 public class Account {
     private final int accountNumber;
@@ -8,9 +8,13 @@ public class Account {
     private int balance;
 
     public Account(int accountNumber, String firstName, String lastName, String pin) {
+        if (accountNumber < 1) throw new IllegalArgumentException("Please Enter a valid Account number");
         this.accountNumber = accountNumber;
+        if (firstName.isEmpty()) throw new IllegalArgumentException("First name cannot be empty");
         this.firstName = firstName;
+        if (lastName.isEmpty()) throw new IllegalArgumentException("Last name cannot be empty");
         this.lastName = lastName;
+        if (pin.isEmpty()) throw new IllegalArgumentException("Pin cannot be empty");
         this.pin = pin;
     }
 
@@ -45,7 +49,7 @@ public class Account {
     }
 
     public int checkBalance(String pin) {
-        if (pin.equals(this.pin)){
+        if (this.pin.equals(pin)){
             return balance;
         } else throw new IllegalArgumentException("Pins don't match");
     }
