@@ -20,6 +20,7 @@ public class TestAccount {
 
     @Test
     public void testAccount_canBeCreated(){
+        assertNotNull(account);
         assertEquals(100, account.getAccountNumber());
         assertEquals("Ifeanyi", account.getFirstName());
         assertEquals("Cyriacus", account.getLastName());
