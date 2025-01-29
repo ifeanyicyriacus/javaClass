@@ -62,9 +62,10 @@ public class Account {
 
     public void withdraw(int amount, String pin) {
         if (pin.equals(this.pin)){
-            if (amount > balance || amount < 0){
-                throw new IllegalArgumentException(
-                        "Withdrawal amount must be less then account balance and greater than zero");
+            if (amount > balance){
+                throw new IllegalArgumentException("Insufficient Balance");
+            }else if(amount <= 0){
+                throw new IllegalArgumentException("Withdrawal amount can't be negative");
             } else {balance -= amount;}
         } else throw new IllegalArgumentException("Pins don't match");
     }

@@ -150,5 +150,16 @@ public class TestBank {
         assertEquals(0, bank.checkBalance(receiverAccountNumber, correctReceiverPin));
     }
 
+    @Test
+    public void testBank_transferBetweenTheSameAccountThrowsException(){
+        String correctSenderPin = pins[0];
+        int senderAccountNumber = bank.createAccount(firstNames[0], lastNames[0], correctSenderPin);
+        bank.deposit(senderAccountNumber, 150_000);
+        assertEquals(150_000, bank.checkBalance(senderAccountNumber, correctSenderPin));
 
+        assertThrowsExactly(IllegalArgumentException.class,
+                ()->bank.transfer(senderAccountNumber, senderAccountNumber, 50_000, correctSenderPin));
+        assertEquals(150_000, bank.checkBalance(senderAccountNumber, correctSenderPin));
     }
+
+}

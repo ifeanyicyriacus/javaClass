@@ -34,8 +34,6 @@ public class Bank {
         return accounts.get(accountNumber).getLastName();
     }
 
-
-
     private int generateUniqueAccountNumber() {
         return accountCounter++;
     }
@@ -59,6 +57,8 @@ public class Bank {
     }
 
     public void transfer(int sourceAccountNumber, int destinationAccountNumber, int amount, String sourceAccountPin) {
+        if (sourceAccountNumber == destinationAccountNumber) throw new IllegalArgumentException("Source account number is the same as the destination account number");
+
         Account source = accounts.get(sourceAccountNumber);
         Account destination = accounts.get(destinationAccountNumber);
 
