@@ -3,7 +3,7 @@ package bank_service;
 import java.util.HashMap;
 
 public class Bank {
-    private String name;
+    private final String name;
     private final HashMap<Integer, Account> accounts = new HashMap<>();
     private static int accountCounter = 1;
 
@@ -19,13 +19,24 @@ public class Bank {
         return true;
     }
 
-    public Account createAccount(String firstName, String lastName, String pin) {
-        Account newAccount = new Account(generateAccountUniqueAccountNumber(), firstName, lastName, pin);
-        accounts.put(newAccount.getAccountNumber(), newAccount);
-        return accounts.get(newAccount.getAccountNumber());
+    public int createAccount(String firstName, String lastName, String pin) {
+        Account newAccount = new Account(generateUniqueAccountNumber(), firstName, lastName, pin);
+        int newAccountNumber = newAccount.getAccountNumber();
+        accounts.put(newAccountNumber, newAccount);
+        return newAccountNumber;
     }
 
-    private int generateAccountUniqueAccountNumber() {
+    public String getAccountFirstName(int accountNumber) {
+        return accounts.get(accountNumber).getFirstName();
+    }
+
+    public String getAccountLastName(int accountNumber) {
+        return accounts.get(accountNumber).getLastName();
+    }
+
+
+
+    private int generateUniqueAccountNumber() {
         return accountCounter++;
     }
 
@@ -48,12 +59,23 @@ public class Bank {
     }
 
     public void transfer(int sourceAccountNumber, int destinationAccountNumber, int amount, String sourceAccountPin) {
-        Account source;
-        Account destination;
+        Account source = accounts.get(sourceAccountNumber);
+        Account destination = accounts.get(destinationAccountNumber);
 
-        source = accounts.get(sourceAccountNumber);
-        destination = accounts.get(destinationAccountNumber);
-        source.withdraw(amount, sourceAccountPin);
-        destination.deposit(amount);
+        if (source == null) throw new IllegalArgumentException("Source account not found");
+        if (destination == null) throw new IllegalArgumentException("Destination account not found");
+
+        try {
+            source.withdraw(amount, sourceAccountPin);
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Transfer Unsuccessful");
+        }
+
+        try{
+            destination.deposit(amount);
+        } catch (IllegalArgumentException err) {
+            source.deposit(amount);
+            throw new IllegalArgumentException("Transfer Unsuccessful");
+        }
     }
 }
