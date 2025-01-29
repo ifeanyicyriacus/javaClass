@@ -68,14 +68,14 @@ public class Bank {
         try {
             source.withdraw(amount, sourceAccountPin);
         } catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("Transfer Unsuccessful");
+            throw new IllegalArgumentException("Transfer Unsuccessful "+ e.getMessage());
         }
 
         try{
             destination.deposit(amount);
         } catch (IllegalArgumentException err) {
             source.deposit(amount);
-            throw new IllegalArgumentException("Transfer Unsuccessful");
+            throw new IllegalArgumentException("Transfer Unsuccessful: " + err.getMessage());
         }
     }
 }

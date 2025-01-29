@@ -35,7 +35,7 @@ public class TestAccount {
         assertThrowsExactly(IllegalArgumentException.class,
                 ()-> new Account(100, "Ifeanyi", "", "0000"));
         assertThrowsExactly(IllegalArgumentException.class,
-                ()-> new Account(100, "", "Cyriacus", ""));
+                ()-> new Account(100, "Ifeanyi", "Cyriacus", ""));
     }
     
     @Test
