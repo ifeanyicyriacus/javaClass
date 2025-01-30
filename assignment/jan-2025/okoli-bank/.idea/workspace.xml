@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ee25e68-f34f-4f4c-9bb1-b21ce15489f3" name="Changes" comment="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%" />
+    <list default="true" id="2ee25e68-f34f-4f4c-9bb1-b21ce15489f3" name="Changes" comment="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OkoliBankUSSD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OkoliBankUSSD.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +71,7 @@
     "Repository.Attach.Sources": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "okoli-bank",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,7 +89,7 @@
       <recent name="okolibank" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in okoli-bank">
+  <component name="RunManager" selected="Application.OkoliBankUSSD">
     <configuration name="OkoliBankUSSD" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="OkoliBankUSSD" />
       <module name="okoli-bank" />
@@ -149,9 +152,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OkoliBankUSSD" />
         <item itemvalue="JUnit.All in okoli-bank" />
         <item itemvalue="JUnit.bank_service in okoli-bank" />
-        <item itemvalue="Application.OkoliBankUSSD" />
         <item itemvalue="JUnit.TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN" />
         <item itemvalue="JUnit.TestBank" />
       </list>
@@ -178,6 +181,7 @@
       <workItem from="1738061257043" duration="7153000" />
       <workItem from="1738121368186" duration="10372000" />
       <workItem from="1738148969147" duration="26406000" />
+      <workItem from="1738209857281" duration="995000" />
     </task>
     <task id="LOCAL-00001" summary="checkpoint in the data structure task">
       <option name="closed" value="true" />

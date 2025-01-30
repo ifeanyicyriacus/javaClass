@@ -12,8 +12,7 @@ public class OkoliBankUSSD {
     }
 
     private static void mainMenu(String prompt) {
-
-//        print(prompt);
+        clearScreen();
         String menuPrompt = BANK_NAME + """
                 
                 Main Menu:
@@ -25,6 +24,7 @@ public class OkoliBankUSSD {
                 6: Get Mini Statement
                 7: Account Settings
                 0: Exit
+                
                 """ + prompt +"\n>>>";
 
         int choice = inputNumber(menuPrompt);
@@ -41,6 +41,10 @@ public class OkoliBankUSSD {
         }
     }
 
+    private static void clearScreen() {
+        print("\033[H\033[2J");
+    }
+
     private static void getMiniStatement() {
         mainMenu("Mini Statement (Coming soon)");
     }
@@ -52,6 +56,7 @@ public class OkoliBankUSSD {
     }
 
     private static void updateProfileMenu(String prompt, int accountNumber) {
+        clearScreen();
         String menuPrompt = BANK_NAME + """
                 
                 Main Menu/Update Profile:
@@ -138,13 +143,12 @@ public class OkoliBankUSSD {
         String lastName = inputText("Enter your last name: ");
         String pin = inputText("Enter your PIN code: ");
         int accountNumber = bank.createAccount(firstName, lastName, pin);
-        print(accountInfo(accountNumber));
-        mainMenu("Account Created Successfully");
+        mainMenu("Account Created Successfully\n" + accountInfo(accountNumber));
     }
 
     private static String accountInfo(int accountNumber) {
         final String fullName = getFullName(accountNumber);
-        return String.format("%n%s%nAccount number: %d%nAccount name: %s%n%s%n",
+        return String.format("%s%nAccount number: %d%nAccount name: %s%n%s%n",
                 "-".repeat(10), accountNumber, fullName, "-".repeat(10));
     }
 
