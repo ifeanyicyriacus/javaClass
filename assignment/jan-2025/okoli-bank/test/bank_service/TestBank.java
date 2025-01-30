@@ -162,4 +162,46 @@ public class TestBank {
         assertEquals(150_000, bank.checkBalance(senderAccountNumber, correctSenderPin));
     }
 
+    @Test
+    public void testBank_canChangeAccountPIN(){
+        String correctPIN = pins[0];
+        String newPIN = pins[1];
+        int accountNumber = bank.createAccount(firstNames[0], lastNames[0], correctPIN);
+        bank.deposit(accountNumber, 75_000);
+
+        assertEquals(75_000, bank.checkBalance(accountNumber, correctPIN));
+        bank.resetPIN(accountNumber, correctPIN, newPIN);
+        assertEquals(75_000, bank.checkBalance(accountNumber, newPIN));
+    }
+
+    @Test
+    public void testBank_canChangeAccountFirstName(){
+        String correctPIN = pins[0];
+        String newFirstName = firstNames[1];
+        int accountNumber = bank.createAccount(firstNames[0], lastNames[0], correctPIN);
+        bank.updateFirstName(accountNumber, newFirstName, correctPIN);
+        assertEquals(newFirstName, bank.getAccountFirstName(accountNumber));
+    }
+
+    @Test
+    public void testBank_canChangeAccountLastName(){
+        String correctPIN = pins[0];
+        String newLastName = lastNames[1];
+        int accountNumber = bank.createAccount(firstNames[0], lastNames[0], correctPIN);
+        bank.updateLastName(accountNumber, newLastName, correctPIN);
+        assertEquals(newLastName, bank.getAccountLastName(accountNumber));
+    }
+
+    @Test
+    public void testBank_canGenerateAMiniStatement(){
+//        test empty list is returned if no transaction happens
+//        balance |   amount (green)| cash deposit
+//        balance |    -amount (red)| cash withdrawal
+//        balance |  +amount (green)| transfer in, from sender
+//        balance |   -amount (red) | transfer out, to beneficiary
+
+    }
+
+
+
 }

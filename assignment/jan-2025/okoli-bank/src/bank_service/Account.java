@@ -1,11 +1,11 @@
 package bank_service;
 
 public class Account {
-    private final int accountNumber;
-    private String firstName;
-    private String lastName;
-    private String pin;
-    private int balance;
+    private final int    accountNumber;
+    private       String firstName;
+    private       String lastName;
+    private       String pin;
+    private       int    balance;
 
     public Account(int accountNumber, String firstName, String lastName, String pin) {
         if (accountNumber < 1) throw new IllegalArgumentException("Please Enter a valid Account number");
@@ -34,42 +34,47 @@ public class Account {
         return accountNumber;
     }
 
-    public void updateFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstName, String pin) {
+        if (this.pin.equals(pin)) {
+            this.firstName = firstName;
+        } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
-    public void updateLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastName, String pin) {
+        if (this.pin.equals(pin)) {
+            this.lastName = lastName;
+        } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
     public void updatePin(String oldPin, String newPin) {
-        if (pin.equals(oldPin)){
+        if (pin.equals(oldPin)) {
             this.pin = newPin;
-        } else throw new IllegalArgumentException("Pins don't match");
+        } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
     public int checkBalance(String pin) {
-        if (this.pin.equals(pin)){
+        if (this.pin.equals(pin)) {
             return balance;
-        } else throw new IllegalArgumentException("Pins don't match");
+        } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
     public void deposit(int amount) {
-        if (amount > 0){
+        if (amount > 0) {
             balance += amount;
         } else throw new IllegalArgumentException("Amount can't be zero or negative");
     }
 
     public void withdraw(int amount, String pin) {
-        if (pin.equals(this.pin)){
-            if (amount > balance){
+        if (pin.equals(this.pin)) {
+            if (amount > balance) {
                 throw new IllegalArgumentException("Insufficient Balance");
-            }else if(amount <= 0){
+            } else if (amount <= 0) {
                 throw new IllegalArgumentException("Withdrawal amount can't be negative");
-            } else {balance -= amount;}
-        } else throw new IllegalArgumentException("Pins don't match");
+            } else {
+                balance -= amount;
+            }
+        } else throw new IllegalArgumentException("Incorrect PIN");
     }
-
 
 
 }
