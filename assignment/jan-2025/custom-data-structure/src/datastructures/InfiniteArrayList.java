@@ -8,12 +8,6 @@ public class InfiniteArrayList extends InfiniteList {
         super(capacity);
     }
 
-    public void add(String element) {
-        ensureCapacity();
-        listBucket[size] = element;
-        size++;
-    }
-
     public void removeAll(String element) {
         int count = count(element);
         for (int index = 0; index < count; index++) {
@@ -21,4 +15,9 @@ public class InfiniteArrayList extends InfiniteList {
         }
     }
 
+    public void add(String[] elements) {
+        for (String element : elements) {
+            add(element);
+        }
+    }
 }

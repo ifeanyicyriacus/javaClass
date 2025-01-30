@@ -122,4 +122,15 @@ public class TestInfiniteArrayList {
         assertEquals("Ivory Coast", arrayList.get(0));
         assertEquals("maa", arrayList.get(3));
     }
+
+    @Test
+    public void testInfiniteArrayList_canAddAnArrayOfElements(){
+        String[] countries = new String[] {"Nigeria", "Ivory Coast", "Cameroon", "Niger","Ghana"};
+        arrayList.add(countries);
+        assertEquals(5, arrayList.size());
+        assertEquals("Nigeria", arrayList.get(0));
+        assertEquals("Ivory Coast", arrayList.get(1));
+    }
+
+
 }
