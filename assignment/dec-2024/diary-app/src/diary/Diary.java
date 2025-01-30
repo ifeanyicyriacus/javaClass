@@ -1,3 +1,5 @@
+package diary;
+
 import java.util.ArrayList;
 
 public class Diary{

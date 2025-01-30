@@ -1,3 +1,5 @@
+package diary;
+
 import java.util.Date;
 
 public class Entry{
