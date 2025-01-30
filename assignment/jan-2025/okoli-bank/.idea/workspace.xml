@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2ee25e68-f34f-4f4c-9bb1-b21ce15489f3" name="Changes" comment="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="TestBank" />
+      <run-configuration type="JUnit" name="All in okoli-bank" />
+    </enabled-run-configurations>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2sDSUDNces2ibdh9vRtA28VT0Sl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.OkoliBankUSSD.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in okoli-bank.executor": "Coverage",
+    "JUnit.TestAccount.executor": "Run",
+    "JUnit.TestAccount.testAccount_canBeCreated.executor": "Run",
+    "JUnit.TestAccount.testAccount_canBeCreatedOnlyWithLegalValues.executor": "Run",
+    "JUnit.TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN.executor": "Run",
+    "JUnit.TestBank.executor": "Run",
+    "JUnit.TestBank.setUp.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeAccountFirstName.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeAccountLastName.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeCustomerPIN.executor": "Run",
+    "JUnit.TestBank.testBank_canCreateAccount.executor": "Run",
+    "JUnit.TestBank.testBank_canEnableMoneyTransfer.executor": "Run",
+    "JUnit.TestBank.testBank_exist.executor": "Run",
+    "JUnit.TestBank.testBank_transferBetweenTheSameAccountThrowsException.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenReceiversAccountNumberIsIncorrect.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderAccountNumberIsIncorrect.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderBalanceIsLessThanAmount.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderPinIsIncorrect.executor": "Run",
+    "JUnit.bank_service in okoli-bank.executor": "Coverage",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "okoli-bank",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="okolibank" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="okolibank" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in okoli-bank">
+    <configuration name="OkoliBankUSSD" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OkoliBankUSSD" />
+      <module name="okoli-bank" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in okoli-bank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="okoli-bank" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="okoli-bank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bank_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bank_service" />
+      <option name="MAIN_CLASS_NAME" value="bank_service.TestAccount" />
+      <option name="METHOD_NAME" value="testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="okoli-bank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bank_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bank_service" />
+      <option name="MAIN_CLASS_NAME" value="bank_service.TestBank" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bank_service in okoli-bank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="okoli-bank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bank_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="bank_service" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in okoli-bank" />
+        <item itemvalue="JUnit.bank_service in okoli-bank" />
+        <item itemvalue="Application.OkoliBankUSSD" />
+        <item itemvalue="JUnit.TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN" />
+        <item itemvalue="JUnit.TestBank" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2ee25e68-f34f-4f4c-9bb1-b21ce15489f3" name="Changes" comment="" />
+      <created>1737988667317</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737988667317</updated>
+      <workItem from="1737988668687" duration="16199000" />
+      <workItem from="1738017683805" duration="14298000" />
+      <workItem from="1738061257043" duration="7153000" />
+      <workItem from="1738121368186" duration="10372000" />
+      <workItem from="1738148969147" duration="26406000" />
+    </task>
+    <task id="LOCAL-00001" summary="checkpoint in the data structure task">
+      <option name="closed" value="true" />
+      <created>1737988825054</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737988825054</updated>
+    </task>
+    <task id="LOCAL-00002" summary="checkpoint in the data structure task">
+      <option name="closed" value="true" />
+      <created>1737989180455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737989180455</updated>
+    </task>
+    <task id="LOCAL-00003" summary="completed Account and TestAccount">
+      <option name="closed" value="true" />
+      <created>1738011976020</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738011976020</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Progress before i sleep">
+      <option name="closed" value="true" />
+      <created>1738024293098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738024293098</updated>
+    </task>
+    <task id="LOCAL-00005" summary="completed the Bank testing and implementation">
+      <option name="closed" value="true" />
+      <created>1738058980575</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738058980575</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added the Bank name field">
+      <option name="closed" value="true" />
+      <created>1738059446014</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738059446014</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added the Bank name field">
+      <option name="closed" value="true" />
+      <created>1738059459538</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738059459538</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Before Testing coverage">
+      <option name="closed" value="true" />
+      <created>1738128361277</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1738128361277</updated>
+    </task>
+    <task id="LOCAL-00009" summary="After Testing coverage. I can not at this moment write test that cause (Bank line [77-78] to execute). but they serve a purpose in case the receivers bank is dormant or is not capable of receiving deposit, which will likely never happen.">
+      <option name="closed" value="true" />
+      <created>1738129332099</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1738129332099</updated>
+    </task>
+    <task id="LOCAL-00010" summary="After Testing coverage. I can not at this moment write test that cause (Bank line [77-78] to execute). but they serve a purpose in case the receivers account is dormant or is not capable of receiving deposit, which will likely never happen.">
+      <option name="closed" value="true" />
+      <created>1738129366468</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1738129366468</updated>
+    </task>
+    <task id="LOCAL-00011" summary="checkpoint&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; &#10;doing:&#10;- getMiniStatement&#10;- update profile menu&#10;  - update first name&#10;  - update last name&#10;- reset PIN&#10;- try, catch &amp; finally for all thrown exception">
+      <option name="closed" value="true" />
+      <created>1738182306450</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738182306450</updated>
+    </task>
+    <task id="LOCAL-00012" summary="checkpoint&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; &#10;doing:&#10;- getMiniStatement&#10;- update profile menu&#10;  - update first name&#10;  - update last name&#10;- reset PIN&#10;- try, catch &amp; finally for all thrown exception">
+      <option name="closed" value="true" />
+      <created>1738182383135</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1738182383135</updated>
+    </task>
+    <task id="LOCAL-00013" summary="done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; &#10;doing:&#10;- getMiniStatement&#10;- update profile menu&#10;  - update first name&#10;  - update last name&#10;- reset PIN&#10;- try, catch &amp; finally for all thrown exception">
+      <option name="closed" value="true" />
+      <created>1738204087081</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738204087081</updated>
+    </task>
+    <task id="LOCAL-00014" summary="done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement">
+      <option name="closed" value="true" />
+      <created>1738209076302</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738209076302</updated>
+    </task>
+    <task id="LOCAL-00015" summary="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%">
+      <option name="closed" value="true" />
+      <created>1738209175734</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738209175734</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new project okoli-bank" />
+    <MESSAGE value="checkpoint in the data structure task" />
+    <MESSAGE value="completed Account and TestAccount" />
+    <MESSAGE value="Progress before i sleep" />
+    <MESSAGE value="completed the Bank testing and implementation" />
+    <MESSAGE value="Added the Bank name field" />
+    <MESSAGE value="Before Testing coverage" />
+    <MESSAGE value="After Testing coverage. I can not at this moment write test that cause (Bank line [77-78] to execute). but they serve a purpose in case the receivers bank is dormant or is not capable of receiving deposit, which will likely never happen." />
+    <MESSAGE value="After Testing coverage. I can not at this moment write test that cause (Bank line [77-78] to execute). but they serve a purpose in case the receivers account is dormant or is not capable of receiving deposit, which will likely never happen." />
+    <MESSAGE value="checkpoint&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; &#10;doing:&#10;- getMiniStatement&#10;- update profile menu&#10;  - update first name&#10;  - update last name&#10;- reset PIN&#10;- try, catch &amp; finally for all thrown exception" />
+    <MESSAGE value="done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; &#10;doing:&#10;- getMiniStatement&#10;- update profile menu&#10;  - update first name&#10;  - update last name&#10;- reset PIN&#10;- try, catch &amp; finally for all thrown exception" />
+    <MESSAGE value="done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement" />
+    <MESSAGE value="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;done&#10; - prevent transferring to self&#10; - edited exception for insufficient balance&#10; - update profile menu&#10;   - update first name&#10;   - update last name&#10;- reset PIN&#10; &#10;doing:&#10;- try, catch &amp; finally for all thrown exception&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/okoli_bank$TestAccount.ic" NAME="TestAccount Coverage Results" MODIFIED="1738011878362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>okolibank.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/okoli_bank$bank_service_in_okoli_bank.ic" NAME="bank_service in okoli-bank Coverage Results" MODIFIED="1738208270424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>bank_service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/okoli_bank$All_in_okoli_bank.ic" NAME="All in okoli-bank Coverage Results" MODIFIED="1738208947709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
