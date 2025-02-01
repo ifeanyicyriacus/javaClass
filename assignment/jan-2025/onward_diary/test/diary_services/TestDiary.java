@@ -9,6 +9,7 @@ public class TestDiary {
     private       Diary    diary;
     private final String[] usernames     = {"username1", "username2", "username3"};
     private final String[] passwords     = {"password1", "password2", "password3"};
+    private final String   wrongPassword = "wrongPassword";
     private final String[] titles = {"title1", "title2", "title3"};
     private final String[] bodies = {"entry1", "entry2", "entry3"};
     private final int[] validIds = {0, 1};
@@ -85,5 +86,56 @@ public class TestDiary {
         assertEquals(1, diary.getNoOfEntries());
     }
 
+    @Test
+    void testDiary_canUpdateEntry(){
+        assertEquals(0, diary.getNoOfEntries());
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        assertEquals(titles[0], diary.findEntryById(validIds[0]).getTitle());
+        assertEquals(bodies[0], diary.findEntryById(validIds[0]).getBody());
+        diary.updateEntry(validIds[0], titles[1], bodies[1]);
+        assertEquals(1, diary.getNoOfEntries());
+        assertEquals(titles[1], diary.findEntryById(validIds[0]).getTitle());
+        assertEquals(bodies[1], diary.findEntryById(validIds[0]).getBody());
+    }
 
+    @Test
+    void testDiary_throwsExceptionWhenTryingToUpdateEntryThatDoesNotExist(){
+        assertEquals(0, diary.getNoOfEntries());
+        assertThrows(IllegalArgumentException.class,
+                ()-> diary.updateEntry(invalidId, titles[1], bodies[1]));
+    }
+
+    @Test
+    void testDiary_canChangeUsernameWhenCorrectPassword(){
+        assertEquals(usernames[0], diary.getUsername());
+        diary.changeUsername(usernames[1], passwords[0]);
+        assertEquals(usernames[1], diary.getUsername());
+    }
+
+    @Test
+    void testDiary_canNotChangePasswordWithIncorrectPassword(){
+        assertEquals(usernames[0], diary.getUsername());
+        assertThrows(IllegalArgumentException.class,
+                () -> diary.changeUsername(usernames[1], wrongPassword));
+        assertNotEquals(usernames[1], diary.getUsername());
+    }
+
+    @Test
+    void testDiary_canChangePasswordWhenCorrectPassword(){
+        String oldPassword = passwords[0];
+        String newPassword = passwords[1];
+        diary.changePassword(newPassword, oldPassword);
+    }
+
+    @Test
+    void testDiary_canNotChangePasswordWhenIncorrectPassword(){
+        String oldPassword = passwords[0];
+        String newPassword = passwords[1];
+        assertThrows(IllegalArgumentException.class,
+                () -> diary.changePassword(newPassword, wrongPassword));
+        diary.changeUsername(usernames[1], oldPassword);
+        assertEquals(usernames[1], diary.getUsername());
+
+    }
 }
