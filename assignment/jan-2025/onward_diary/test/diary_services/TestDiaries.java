@@ -63,7 +63,6 @@ public class TestDiaries {
                 () -> diaries.findByUsername(emptyField));
         assertThrows(IllegalArgumentException.class,
                 () -> diaries.findByUsername(unknownUsername));
-
     }
 
     @Test
@@ -77,7 +76,6 @@ public class TestDiaries {
         assertThrows(IllegalArgumentException.class,
                 () -> diaries.findByUsername(username1));
     }
-
 
     @Test
     public void testDiaries_canNotDeleteDiaryWithIncorrectCredentials() {
@@ -96,7 +94,13 @@ public class TestDiaries {
 
         diaries.delete(username1, password1);
         assertEquals(1, diaries.size());
-
     }
 
+    @Test
+    public void testDiaries_canNotAddDiaryIfUsernameIsAlreadyPresent() {
+        assertEquals(0, diaries.size());
+        diaries.add(username1, password1);
+        assertThrows(IllegalArgumentException.class,
+                () -> diaries.add(username1, password2));
+    }
 }

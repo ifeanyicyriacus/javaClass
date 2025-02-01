@@ -35,7 +35,7 @@ public class Diary {
     }
 
     public void createEntry(String title, String body) {
-        if (this.isLocked) throw new IllegalArgumentException("Diary is locked, unlock to add new entry");
+        if (this.isLocked) throw new IllegalStateException("Diary is locked, unlock to add new entry");
         int id = entryId++;
         Entry newEntry = new Entry(id, title, body);
         entries.put(id, newEntry);

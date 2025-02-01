@@ -35,6 +35,33 @@ public class TestDiary {
     }
 
     @Test
+    void testDiary_canNotBeUnlockedWithWrongPassword() {
+        diary.lock();
+        assertThrows(IllegalArgumentException.class,
+                () -> diary.unlock(wrongPassword));
+    }
+
+    @Test
+    void testDiary_canNotPerformAnyOperationIfDiaryIsLocked() {
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        diary.lock();
+
+        assertThrows(IllegalStateException.class,
+                () -> diary.createEntry(titles[1], bodies[1]));
+        assertThrows(IllegalStateException.class,
+                () -> diary.updateEntry(validIds[0], titles[0], bodies[0]));
+        assertThrows(IllegalStateException.class,
+                () -> diary.findEntryById(validIds[0]));
+        assertThrows(IllegalStateException.class,
+                () -> diary.delete(validIds[0]));
+        assertThrows(IllegalStateException.class,
+                () -> diary.changePassword("newPassword", correctPasswords[0]));
+        assertThrows(IllegalStateException.class,
+                () -> diary.changeUsername("newPassword", correctPasswords[0]));
+    }
+
+    @Test
     void testDiary_canBeLocked() {
         assertFalse(diary.isLocked());
         diary.lock();
@@ -46,7 +73,7 @@ public class TestDiary {
         diary.lock();
         assertTrue(diary.isLocked());
         assertEquals(0, diary.getNoOfEntries());
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> diary.createEntry(titles[0], bodies[0]));
         assertEquals(0, diary.getNoOfEntries());
     }

@@ -14,7 +14,7 @@ public class Diaries {
             throw new IllegalArgumentException("Username and password cannot be empty");
         }
         if (this.diaries.containsKey(username)) {
-            throw new IllegalArgumentException("User already have a diary.");
+            throw new IllegalArgumentException("Username already exists, try another username.");
         } else {
             this.diaries.put(username, new Diary(username, password));
         }
