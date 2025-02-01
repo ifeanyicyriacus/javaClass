@@ -1,0 +1,89 @@
+package diary_services;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TestDiary {
+    private       Diary    diary;
+    private final String[] usernames     = {"username1", "username2", "username3"};
+    private final String[] passwords     = {"password1", "password2", "password3"};
+    private final String[] titles = {"title1", "title2", "title3"};
+    private final String[] bodies = {"entry1", "entry2", "entry3"};
+    private final int[] validIds = {0, 1};
+    private final int invalidId = 100;
+
+    @BeforeEach
+    void setUp() {
+        diary = new Diary(usernames[0], passwords[0]);
+    }
+
+    @Test
+    void testDiary_canBeCreated() {
+        assertEquals(0, diary.getNoOfEntries());
+        assertTrue(diary.isLocked());
+    }
+
+    @Test
+    void testDiary_canBeUnlocked() {
+        assertTrue(diary.isLocked());
+        diary.unlock();
+        assertFalse(diary.isLocked());
+    }
+
+    @Test
+    void testDiary_canBeLocked() {
+        diary.unlock();
+        assertFalse(diary.isLocked());
+        diary.lock();
+        assertTrue(diary.isLocked());
+    }
+
+    @Test
+    void testDiary_canCreateEntry(){
+        assertEquals(0, diary.getNoOfEntries());
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        diary.createEntry(titles[1], bodies[1]);
+        assertEquals(2, diary.getNoOfEntries());
+        assertEquals(titles[0], diary.findEntryById(validIds[0]).getTitle());
+        assertEquals(bodies[0], diary.findEntryById(validIds[0]).getBody());
+        assertEquals(titles[1], diary.findEntryById(validIds[1]).getTitle());
+        assertEquals(bodies[1], diary.findEntryById(validIds[1]).getBody());
+    }
+
+    @Test
+    void testDiary_throwsExceptionIfNoEntryMatchId(){
+        assertEquals(0, diary.getNoOfEntries());
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        assertEquals(titles[0], diary.findEntryById(0).getTitle());
+        assertEquals(bodies[0], diary.findEntryById(0).getBody());
+        assertThrows(IllegalArgumentException.class, () -> diary.findEntryById(invalidId));
+    }
+
+    @Test
+    void testDiary_canDeleteEntry(){
+        assertEquals(0, diary.getNoOfEntries());
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        assertEquals(titles[0], diary.findEntryById(validIds[0]).getTitle());
+        assertEquals(bodies[0], diary.findEntryById(validIds[0]).getBody());
+        diary.delete(validIds[0]);
+        assertEquals(0, diary.getNoOfEntries());
+        assertThrows(IllegalArgumentException.class, () -> diary.findEntryById(validIds[0]));
+    }
+
+    @Test
+    void testDiary_throwsExceptionWhenTryingToDeleteEntryThatDoesNotExist(){
+        assertEquals(0, diary.getNoOfEntries());
+        diary.createEntry(titles[0], bodies[0]);
+        assertEquals(1, diary.getNoOfEntries());
+        assertThrows(IllegalArgumentException.class,
+                ()-> diary.delete(invalidId));
+        assertEquals(1, diary.getNoOfEntries());
+    }
+
+
+}
