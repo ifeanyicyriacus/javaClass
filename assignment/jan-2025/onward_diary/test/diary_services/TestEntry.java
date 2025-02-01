@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestEntry {
     private Entry entry;
 
-    private int id = 0;
-    private String title = "Entry title";
-    private String body = "Entry body";
+    private final int    id    = 0;
+    private final String title = "Entry title";
+    private final String body  = "Entry body";
 
     @BeforeEach
     void setUp() {
@@ -22,7 +22,7 @@ public class TestEntry {
         assertEquals(id, entry.getID());
         assertEquals(title, entry.getTitle());
         assertEquals(body, entry.getBody());
-        assertNotNull(entry.getDate_CREATED());
+        assertFalse(entry.getDATE_CREATED().isEmpty());
     }
 
     @Test
@@ -45,5 +45,17 @@ public class TestEntry {
         assertNotEquals(body, entry.getBody());
         assertEquals(newBody, entry.getBody());
         assertEquals(id, entry.getID());
+    }
+
+    @Test
+    void testEntry_bodyCanNotBeUpdatedWithEmptyBody() {
+        assertThrows(IllegalArgumentException.class, () -> entry.updateBody(""));
+        assertEquals(body, entry.getBody());
+    }
+
+    @Test
+    void testEntry_titleCanNotBeUpdatedWithEmptyTitle() {
+        assertThrows(IllegalArgumentException.class, () -> entry.updateTitle(""));
+        assertEquals(title, entry.getTitle());
     }
 }
