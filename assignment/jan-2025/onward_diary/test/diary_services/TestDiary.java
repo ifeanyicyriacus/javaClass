@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestDiary {
     private       Diary    diary;
-    private final String[] usernames     = {"username1", "username2", "username3"};
-    private final String[] passwords     = {"password1", "password2", "password3"};
-    private final String   wrongPassword = "wrongPassword";
+    private final String[] usernames        = {"username1", "username2", "username3"};
+    private final String[] correctPasswords = {"password1", "password2", "password3"};
+    private final String   wrongPassword    = "wrongPassword";
     private final String[] titles = {"title1", "title2", "title3"};
     private final String[] bodies = {"entry1", "entry2", "entry3"};
     private final int[] validIds = {0, 1};
@@ -17,32 +17,42 @@ public class TestDiary {
 
     @BeforeEach
     void setUp() {
-        diary = new Diary(usernames[0], passwords[0]);
+        diary = new Diary(usernames[0], correctPasswords[0]);
+        diary.unlock(correctPasswords[0]);
     }
 
     @Test
     void testDiary_canBeCreated() {
         assertEquals(0, diary.getNoOfEntries());
-        assertTrue(diary.isLocked());
     }
 
     @Test
     void testDiary_canBeUnlocked() {
+        diary.lock();
         assertTrue(diary.isLocked());
-        diary.unlock();
+        diary.unlock(correctPasswords[0]);
         assertFalse(diary.isLocked());
     }
 
     @Test
     void testDiary_canBeLocked() {
-        diary.unlock();
         assertFalse(diary.isLocked());
         diary.lock();
         assertTrue(diary.isLocked());
     }
 
     @Test
-    void testDiary_canCreateEntry(){
+    void testDiary_canNotPerformCRUDOperationIfLocked() {
+        diary.lock();
+        assertTrue(diary.isLocked());
+        assertEquals(0, diary.getNoOfEntries());
+        assertThrows(IllegalArgumentException.class,
+                () -> diary.createEntry(titles[0], bodies[0]));
+        assertEquals(0, diary.getNoOfEntries());
+    }
+
+    @Test
+    void testDiary_canCreateEntryIfDiaryIs() {
         assertEquals(0, diary.getNoOfEntries());
         diary.createEntry(titles[0], bodies[0]);
         assertEquals(1, diary.getNoOfEntries());
@@ -55,7 +65,7 @@ public class TestDiary {
     }
 
     @Test
-    void testDiary_throwsExceptionIfNoEntryMatchId(){
+    void testDiary_throwsExceptionIfNoEntryMatchIdIfDiaryIsLocked() {
         assertEquals(0, diary.getNoOfEntries());
         diary.createEntry(titles[0], bodies[0]);
         assertEquals(1, diary.getNoOfEntries());
@@ -109,7 +119,7 @@ public class TestDiary {
     @Test
     void testDiary_canChangeUsernameWhenCorrectPassword(){
         assertEquals(usernames[0], diary.getUsername());
-        diary.changeUsername(usernames[1], passwords[0]);
+        diary.changeUsername(usernames[1], correctPasswords[0]);
         assertEquals(usernames[1], diary.getUsername());
     }
 
@@ -123,15 +133,15 @@ public class TestDiary {
 
     @Test
     void testDiary_canChangePasswordWhenCorrectPassword(){
-        String oldPassword = passwords[0];
-        String newPassword = passwords[1];
+        String oldPassword = correctPasswords[0];
+        String newPassword = correctPasswords[1];
         diary.changePassword(newPassword, oldPassword);
     }
 
     @Test
     void testDiary_canNotChangePasswordWhenIncorrectPassword(){
-        String oldPassword = passwords[0];
-        String newPassword = passwords[1];
+        String oldPassword = correctPasswords[0];
+        String newPassword = correctPasswords[1];
         assertThrows(IllegalArgumentException.class,
                 () -> diary.changePassword(newPassword, wrongPassword));
         diary.changeUsername(usernames[1], oldPassword);
