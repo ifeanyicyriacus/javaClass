@@ -7,18 +7,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestDiary {
     private       Diary    diary;
-    private final String[] usernames        = {"username1", "username2", "username3"};
-    private final String[] correctPasswords = {"password1", "password2", "password3"};
-    private final String   wrongPassword    = "wrongPassword";
+    private final String[] usernames     = {"username1", "username2", "username3"};
+    private final String[] Passwords     = {"password1", "password2", "password3"};
+    private final String   wrongPassword = "wrongPassword";
     private final String[] titles = {"title1", "title2", "title3"};
     private final String[] bodies = {"entry1", "entry2", "entry3"};
     private final int[] validIds = {1, 2};
     private final int invalidId = 100;
+    private final String empty = "";
 
     @BeforeEach
     void setUp() {
-        diary = new Diary(usernames[0], correctPasswords[0]);
-        diary.unlock(correctPasswords[0]);
+        diary = new Diary(usernames[0], Passwords[0]);
+        diary.unlock(Passwords[0]);
     }
 
     @Test
@@ -27,10 +28,22 @@ public class TestDiary {
     }
 
     @Test
+    void testDiary_canNotBeCreatedWithEmptyOrNullUsernameOrPassword() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Diary(empty, Passwords[0]));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Diary(null, Passwords[0]));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Diary(usernames[1], empty));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Diary(usernames[1], null));
+    }
+
+    @Test
     void testDiary_canBeUnlocked() {
         diary.lock();
         assertTrue(diary.isLocked());
-        diary.unlock(correctPasswords[0]);
+        diary.unlock(Passwords[0]);
         assertFalse(diary.isLocked());
     }
 
@@ -56,9 +69,9 @@ public class TestDiary {
         assertThrows(IllegalStateException.class,
                 () -> diary.delete(validIds[0]));
         assertThrows(IllegalStateException.class,
-                () -> diary.changePassword("newPassword", correctPasswords[0]));
+                () -> diary.changePassword("newPassword", Passwords[0]));
         assertThrows(IllegalStateException.class,
-                () -> diary.changeUsername("newPassword", correctPasswords[0]));
+                () -> diary.changeUsername("newPassword", Passwords[0]));
     }
 
     @Test
@@ -146,7 +159,7 @@ public class TestDiary {
     @Test
     void testDiary_canChangeUsernameWhenCorrectPassword(){
         assertEquals(usernames[0], diary.getUsername());
-        diary.changeUsername(usernames[1], correctPasswords[0]);
+        diary.changeUsername(usernames[1], Passwords[0]);
         assertEquals(usernames[1], diary.getUsername());
     }
 
@@ -160,15 +173,15 @@ public class TestDiary {
 
     @Test
     void testDiary_canChangePasswordWhenCorrectPassword(){
-        String oldPassword = correctPasswords[0];
-        String newPassword = correctPasswords[1];
+        String oldPassword = Passwords[0];
+        String newPassword = Passwords[1];
         diary.changePassword(newPassword, oldPassword);
     }
 
     @Test
     void testDiary_canNotChangePasswordWhenIncorrectPassword(){
-        String oldPassword = correctPasswords[0];
-        String newPassword = correctPasswords[1];
+        String oldPassword = Passwords[0];
+        String newPassword = Passwords[1];
         assertThrows(IllegalArgumentException.class,
                 () -> diary.changePassword(newPassword, wrongPassword));
         diary.changeUsername(usernames[1], oldPassword);

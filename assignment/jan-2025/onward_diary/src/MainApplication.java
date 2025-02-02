@@ -9,12 +9,7 @@ public class MainApplication {
     private final static Diaries diaries = new Diaries();
 
     public static void main(String[] args) {
-//        try{
         mainMenu(successMessage("Welcome!!!"));
-//        }finally {
-//            mainMenu();
-//        }
-
     }
 
     private static void mainMenu(String notification) {
@@ -37,6 +32,7 @@ public class MainApplication {
             case 0 -> exitDiary();
             default -> mainMenu(errorMessage("Invalid selection, Try again."));
         }
+        mainMenu(notification);
     }
 
     private static void exitDiary() {
@@ -68,12 +64,14 @@ public class MainApplication {
                 print(e.getMessage());
             }
             mainMenu(successMessage("Successfully deleted the diary."));
+        } else {
+            mainMenu(infoMessage("Deletion attempt was avoided - close call!"));
         }
     }
 
     private static boolean getConfirmation(String confirmationPrompt) {
         clearScreen();
-        String choice = input(confirmationPrompt);
+        String choice = input(infoMessage(confirmationPrompt));
         return switch (choice.toLowerCase()) {
             case "y" -> true;
             case "n" -> false;
@@ -124,7 +122,7 @@ public class MainApplication {
             case 4 -> findEntry(diary);
             case 5 -> deleteEntry(diary);
             case 6 -> toggleDiaryLock(diary);
-            case 7 -> diarySettingsMenu();
+            case 7 -> diarySettingsMenu(infoMessage("Remember to take note of your new changes"), diary);
             case 8 -> mainMenu(successMessage("Log Out!!!"));
             case 0 -> exitDiary();
             default -> diaryMenu(errorMessage("Invalid selection, Try again."), diary);
@@ -132,8 +130,65 @@ public class MainApplication {
         diaryMenu(notification, diary);
     }
 
-    private static void diarySettingsMenu() {
+    private static void diarySettingsMenu(String notification, Diary diary) {
+        clearScreen();
+        String diarySettingsMenuPrompt = """
+                -----ONWARD DIARY SERVICE------
+                Diary Settings:
+                1 -> Change Diary username
+                2 -> Change Diary password
+                8 -> Go Back
+                0 -> Exit
+                
+                """ + notification + "\n>>>";
+        int choice = inputNumber(diarySettingsMenuPrompt);
+        switch (choice) {
+            case 1 -> changeDiaryUsername(diary);
+            case 2 -> changeDiaryPassword(diary);
+            case 8 -> diaryMenu(infoMessage("Welcome to your diary."), diary);
+            case 0 -> exitDiary();
+            default -> diarySettingsMenu(errorMessage("Invalid selection, Try again."), diary);
+        }
+        diaryMenu(successMessage("Your changes were successful"), diary);
+    }
 
+    private static void changeDiaryPassword(Diary diary) {
+        if (diary.isLocked()) { toggleDiaryLock(diary); }
+        String confirmationPrompt = "Are you sure you want to change your password? (y/n)";
+        boolean isConfirmed = getConfirmation(confirmationPrompt);
+        if (isConfirmed) {
+            String currentPassword = input("Please enter your current password: ");
+            String newPassword = input("Please enter your new password: ");
+            try {
+                diary.changePassword(currentPassword, newPassword);
+            } catch (IllegalArgumentException e) {
+                diarySettingsMenu(errorMessage(e.getMessage()), diary);
+            }
+        } else {
+            diarySettingsMenu(infoMessage("No changes were made."), diary);
+        }
+    }
+
+    private static void changeDiaryUsername(Diary diary) {
+        if (diary.isLocked()) {
+            toggleDiaryLock(diary);
+        }
+        String oldUsername = diary.getUsername();
+        String confirmationPrompt = String.format("Your old username is (%s)%n " +
+                        "Are you sure you want to change your username? (y/n)", oldUsername);
+        boolean isConfirmed = getConfirmation(confirmationPrompt);
+        if (isConfirmed) {
+            String newUsername = input("Please enter your new username: ");
+            String password = input("Please enter your password to authorise your changes: ");
+            try{
+                diary.changePassword(newUsername, password);
+            } catch (IllegalArgumentException e) {
+                diarySettingsMenu(errorMessage(e.getMessage()), diary);
+            }
+            diarySettingsMenu(successMessage("Your username was changed successfully."), diary);
+        }else {
+            diarySettingsMenu(infoMessage("No changes were made."), diary);
+        }
     }
 
     private static void deleteEntry(Diary diary) {
@@ -150,8 +205,10 @@ public class MainApplication {
         boolean isConfirmed = getConfirmation(confirmationPrompt);
         if (isConfirmed){
             diary.delete(entryId);
+            diaryMenu(successMessage("Successfully deleted the entry"), diary);
+        } else {
+            diaryMenu(infoMessage("Deletion was avoided - close call!"), diary);
         }
-        diaryMenu(successMessage("Successfully deleted the entry"), diary);
     }
 
     private static void findEntry(Diary diary) {
@@ -183,8 +240,10 @@ public class MainApplication {
             newTitle = (newTitle.isEmpty()) ? entry.getTitle() : newTitle;
             newBody = (newBody.isEmpty()) ? entry.getBody() : newBody;
             diary.updateEntry(entryId, newTitle, newBody);
+            diaryMenu(successMessage("Update was successful"), diary);
+        } else{
+            diaryMenu(infoMessage("No changes were made."), diary);
         }
-        diaryMenu(successMessage("Update was successful"), diary);
     }
 
     private static void readEntries(Diary diary) {
@@ -194,12 +253,14 @@ public class MainApplication {
     private static void toggleDiaryLock(Diary diary) {
         if (!diary.isLocked()) {
             diary.lock();
-        }
-        String password = input("Please enter your password to unlock: ");
-        try {
-            diary.unlock(password);
-        } catch (IllegalArgumentException e) {
-            diaryMenu(errorMessage(e.getMessage()), diary);
+            print(infoMessage("Mischief managed\uD83E\uDE84"));
+        } else {
+            String password = input("Please enter your password to unlock: ");
+            try {
+                diary.unlock(password);
+            } catch (IllegalArgumentException e) {
+                diaryMenu(errorMessage(e.getMessage()), diary);
+            }
         }
     }
 
@@ -218,7 +279,6 @@ public class MainApplication {
         }
         diaryMenu(successMessage("(" +title + ") added successfully."), diary);
     }
-
 
     private static void addDiary() {
         String username = input("Enter your username: ");
@@ -256,14 +316,13 @@ public class MainApplication {
         }
     }
 
-    private static void clearScreen() {
-        print("\033[H\033[2J");
-    }
-
     private static void print(String prompt) {
         System.out.println(prompt);
     }
 
+    private static void clearScreen() {
+        print("\033[H\033[2J");
+    }
     private static String errorMessage(String prompt) {
         return "\033[31m" + prompt + "\033[0m";
     }
@@ -273,6 +332,4 @@ public class MainApplication {
     private static String infoMessage(String prompt) {
         return "\033[33m" + prompt + "\033[0m";
     }
-
-
 }

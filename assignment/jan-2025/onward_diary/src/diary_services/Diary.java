@@ -12,8 +12,8 @@ public class Diary {
     public Diary(String username, String password) {
         this.entries = new HashMap<>();
         this.isLocked = true;
-        this.username = username;
-        this.password = password;
+        setUsername(username);
+        setPassword(password);
     }
 
     public int getNoOfEntries() {
@@ -67,7 +67,7 @@ public class Diary {
     public void changeUsername(String username, String password) {
         if (this.isLocked) throw new IllegalStateException("Diary is locked, unlock to change username");
         if (isPasswordValid(password)) {
-            this.username = username;
+            setUsername(username);
         } else throw new IllegalArgumentException("Passwords do not match");
     }
 
@@ -75,10 +75,22 @@ public class Diary {
         return username;
     }
 
-    public void changePassword(String newPassword, String oldPassword) {
+    private void setUsername(String username) {
+        if (username == null) throw new IllegalArgumentException("Password cannot be null");
+        if (username.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
+        this.username = username;
+    }
+
+    private void setPassword(String password) {
+        if (password == null) throw new IllegalArgumentException("Password cannot be null");
+        if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
+        this.password = password;
+    }
+
+    public void changePassword(String newPassword, String oldPassword) throws IllegalArgumentException {
         if (this.isLocked) throw new IllegalStateException("Diary is locked, unlock to change password");
         if (isPasswordValid(oldPassword)) {
-            this.password = newPassword;
+            setPassword(newPassword);
         } else throw new IllegalArgumentException("Passwords do not match");
     }
 
@@ -86,7 +98,7 @@ public class Diary {
         return this.password.equals(password);
     }
 
-    public String toString(){
+    public String toString() {
         int size = getNoOfEntries();
         String noOfEntries = (size > 1) ? String.format("%2d entries", size) : String.format("%2d entry", size);
 
@@ -96,11 +108,11 @@ public class Diary {
         return diary;
     }
 
-    private String displayDiaryEntries(){
+    private String displayDiaryEntries() {
         StringBuilder output = new StringBuilder();
-        for(Entry entry: entries.values()){
+        for (Entry entry : entries.values()) {
             output.append(entry);
-            output.append(String.format("-----------------------------------------------------%n"));
+            output.append(String.format("%n-----------------------------------------------------%n"));
         }
         return output.toString();
     }
