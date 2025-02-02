@@ -103,7 +103,7 @@ public class Diary {
         String noOfEntries = (size > 1) ? String.format("%2d entries", size) : String.format("%2d entry", size);
 
 
-        String diary = String.format("\033[Diary: (user: %s) - %s\033[0m%n", username, noOfEntries);
+        String diary = String.format("\033[1mDiary: (user: %s) - %s\033[0m%n", username, noOfEntries);
         diary += displayDiaryEntries();
         return diary;
     }
@@ -116,6 +116,4 @@ public class Diary {
         }
         return output.toString();
     }
-
-
 }

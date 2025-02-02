@@ -70,7 +70,7 @@ public class MainApplication {
     }
 
     private static boolean getConfirmation(String confirmationPrompt) {
-        clearScreen();
+//        clearScreen();
         String choice = input(infoMessage(confirmationPrompt));
         return switch (choice.toLowerCase()) {
             case "y" -> true;
@@ -94,8 +94,9 @@ public class MainApplication {
     }
 
     private static void diaryMenu(String notification, Diary diary) {
-        clearScreen();
+//        clearScreen();
         String diaryMenuPrompt = """
+                
                 -----ONWARD DIARY SERVICE------
                 Diary Menu:
                 1 -> Add new Entry
@@ -123,11 +124,16 @@ public class MainApplication {
             case 5 -> deleteEntry(diary);
             case 6 -> toggleDiaryLock(diary);
             case 7 -> diarySettingsMenu(infoMessage("Remember to take note of your new changes"), diary);
-            case 8 -> mainMenu(successMessage("Log Out!!!"));
+            case 8 -> logOut(diary);
             case 0 -> exitDiary();
             default -> diaryMenu(errorMessage("Invalid selection, Try again."), diary);
         }
         diaryMenu(notification, diary);
+    }
+
+    private static void logOut(Diary diary) {
+        diary.lock();
+        mainMenu(successMessage("Log Out!!!"));
     }
 
     private static void diarySettingsMenu(String notification, Diary diary) {
@@ -160,7 +166,7 @@ public class MainApplication {
             String currentPassword = input("Please enter your current password: ");
             String newPassword = input("Please enter your new password: ");
             try {
-                diary.changePassword(currentPassword, newPassword);
+                diary.changePassword(newPassword, currentPassword);
             } catch (IllegalArgumentException e) {
                 diarySettingsMenu(errorMessage(e.getMessage()), diary);
             }
@@ -296,7 +302,12 @@ public class MainApplication {
         print(prompt);
         Scanner scanner = new Scanner(System.in);
         try {
-            return scanner.nextLine();
+            String value =  scanner.nextLine();
+            if (value.isEmpty()) {
+                throw new InputMismatchException("Field cannot be blank");
+            } else {
+                return value;
+            }
         } catch (InputMismatchException inputMismatchException) {
             clearScreen();
             print(errorMessage(inputMismatchException.getMessage()));
@@ -311,7 +322,7 @@ public class MainApplication {
             return scanner.nextInt();
         } catch (InputMismatchException inputMismatchException) {
             clearScreen();
-            print(errorMessage(inputMismatchException.getMessage()));//custom: Only Numbers 0 - 9 are supported
+            print(errorMessage("Only Numbers 0 - 9 are supported"));
             return inputNumber(prompt);
         }
     }
