@@ -24,7 +24,7 @@ public class Diary {
         return isLocked;
     }
 
-    public void unlock(String password) {
+    public void unlock(String password) throws IllegalArgumentException {
         if (isPasswordValid(password)) {
             this.isLocked = false;
         } else throw new IllegalArgumentException("Passwords do not match, Try again to unlock");
