@@ -12,7 +12,7 @@ public class TestDiary {
     private final String   wrongPassword    = "wrongPassword";
     private final String[] titles = {"title1", "title2", "title3"};
     private final String[] bodies = {"entry1", "entry2", "entry3"};
-    private final int[] validIds = {0, 1};
+    private final int[] validIds = {1, 2};
     private final int invalidId = 100;
 
     @BeforeEach
@@ -96,8 +96,8 @@ public class TestDiary {
         assertEquals(0, diary.getNoOfEntries());
         diary.createEntry(titles[0], bodies[0]);
         assertEquals(1, diary.getNoOfEntries());
-        assertEquals(titles[0], diary.findEntryById(0).getTitle());
-        assertEquals(bodies[0], diary.findEntryById(0).getBody());
+        assertEquals(titles[0], diary.findEntryById(validIds[0]).getTitle());
+        assertEquals(bodies[0], diary.findEntryById(validIds[0]).getBody());
         assertThrows(IllegalArgumentException.class, () -> diary.findEntryById(invalidId));
     }
 
@@ -174,5 +174,13 @@ public class TestDiary {
         diary.changeUsername(usernames[1], oldPassword);
         assertEquals(usernames[1], diary.getUsername());
 
+    }
+
+    @Test
+    void testDiary_toStringDisplaysTheOverwrittenFormat() {
+        for (int count = 1, splits = 2; count <= 3; count++, splits++) {
+            diary.createEntry(titles[0], bodies[0]);
+            assertEquals(diary.toString().split("title").length, splits);
+        }
     }
 }

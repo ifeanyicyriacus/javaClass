@@ -58,4 +58,9 @@ public class TestEntry {
         assertThrows(IllegalArgumentException.class, () -> entry.updateTitle(""));
         assertEquals(title, entry.getTitle());
     }
+
+    @Test
+    void testEntry_toStringDisplaysTheOverwrittenFormat() {
+        assertTrue(entry.toString().contains("(0)\tEntry title"));
+    }
 }

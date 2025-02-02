@@ -37,11 +37,13 @@ public class Entry {
     }
 
     public String getDATE_CREATED() {
-        return DATE_CREATED.getDayOfWeek().toString().substring(0, 2) + ", " +
-                DATE_CREATED.getDayOfMonth() + ", " +
-                DATE_CREATED.getMonthValue() + ", " +
+        return DATE_CREATED.getDayOfWeek().toString().substring(0, 3) + ", " +
+                DATE_CREATED.getDayOfMonth() + "/" +
+                DATE_CREATED.getMonthValue() + "/" +
                 DATE_CREATED.getYear() +
-                " (" + DATE_CREATED.getHour() + ":" + DATE_CREATED.getMinute() + ")";
+                " (" + DATE_CREATED.getHour() + ":" +
+                DATE_CREATED.getMinute() + ":" +
+                DATE_CREATED.getSecond() + ")";
     }
 
     public void updateTitle(String newTitle) {
@@ -50,5 +52,12 @@ public class Entry {
 
     public void updateBody(String newBody) {
         setBody(newBody);
+    }
+
+    public String toString(){
+        String entry = String.format("\033[1m(%d)\t%s\033[0m%n", ID, title);
+        entry += String.format("\033[3m%s\033[0m%n", getDATE_CREATED());
+        entry += String.format("%s", getBody());
+        return entry;
     }
 }

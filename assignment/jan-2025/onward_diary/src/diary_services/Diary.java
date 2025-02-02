@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Diary {
     private       boolean                 isLocked;
     private final HashMap<Integer, Entry> entries;
-    private       int                     entryId = 0;
+    private       int                     entryId = 1;
     private       String                  username;
     private       String                  password;
 
@@ -85,4 +85,25 @@ public class Diary {
     public boolean isPasswordValid(String password) {
         return this.password.equals(password);
     }
+
+    public String toString(){
+        int size = getNoOfEntries();
+        String noOfEntries = (size > 1) ? String.format("%2d entries", size) : String.format("%2d entry", size);
+
+
+        String diary = String.format("\033[Diary: (user: %s) - %s\033[0m%n", username, noOfEntries);
+        diary += displayDiaryEntries();
+        return diary;
+    }
+
+    private String displayDiaryEntries(){
+        StringBuilder output = new StringBuilder();
+        for(Entry entry: entries.values()){
+            output.append(entry);
+            output.append(String.format("-----------------------------------------------------%n"));
+        }
+        return output.toString();
+    }
+
+
 }

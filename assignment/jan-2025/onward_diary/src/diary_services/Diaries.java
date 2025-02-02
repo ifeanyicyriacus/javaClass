@@ -11,7 +11,7 @@ public class Diaries {
 
     public void add(String username, String password)  throws IllegalArgumentException{
         if (username.isEmpty() || password.isEmpty()) {
-            throw new IllegalArgumentException("Username and password cannot be empty");
+            throw new IllegalArgumentException("Username or password cannot be empty, try again.");
         }
         if (this.diaries.containsKey(username)) {
             throw new IllegalArgumentException("Username already exists, try another username.");
@@ -33,7 +33,7 @@ public class Diaries {
         return diary;
     }
 
-    public void delete(String username, String password) {
+    public void delete(String username, String password) throws IllegalArgumentException {
         Diary diary = findByUsername(username);
         if (diary.isPasswordValid(password)){
             this.diaries.remove(username);
