@@ -60,7 +60,7 @@ public class Account {
 
     public void updatePin(String oldPin, String newPin) {
         if (pin.equals(oldPin)) {
-            setPin(pin);
+            setPin(newPin);
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
