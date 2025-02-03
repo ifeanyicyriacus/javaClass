@@ -8,18 +8,15 @@ public class Account {
     private       int    balance;
 
     public Account(int accountNumber, String firstName, String lastName, String pin) {
-        if (accountNumber < 1) throw new IllegalArgumentException("Please Enter a valid Account number");
-        this.accountNumber = accountNumber;
-        if (firstName.isEmpty()) throw new IllegalArgumentException("First name cannot be empty");
-        this.firstName = firstName;
-        if (lastName.isEmpty()) throw new IllegalArgumentException("Last name cannot be empty");
-        this.lastName = lastName;
-        if (pin.isEmpty()) throw new IllegalArgumentException("Pin cannot be empty");
-        this.pin = pin;
-    }
-
-    public boolean exist() {
-        return true;
+        try {
+            if (accountNumber < 1) throw new IllegalArgumentException("Please Enter a valid Account number");
+            this.accountNumber = accountNumber;
+            setFirstName(firstName);
+            updateLastName(lastName);
+            setPin(pin);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Account creation failed: " + e.getMessage());
+        }
     }
 
     public String getFirstName() {
@@ -34,21 +31,36 @@ public class Account {
         return accountNumber;
     }
 
-    public void setFirstName(String firstName, String pin) {
+    private void setFirstName(String firstName) {
+        if (firstName.isEmpty()) throw new IllegalArgumentException("First name cannot be empty");
+        this.firstName = firstName;
+    }
+
+    private void updateLastName(String lastName) {
+        if (lastName.isEmpty()) throw new IllegalArgumentException("Last name cannot be empty");
+        this.lastName = lastName;
+    }
+
+    private void setPin(String pin) {
+        if (pin.isEmpty()) throw new IllegalArgumentException("Pin cannot be empty");
+        this.pin = pin;
+    }
+
+    public void updateFirstName(String firstName, String pin) {
         if (this.pin.equals(pin)) {
-            this.firstName = firstName;
+            setFirstName(firstName);
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
-    public void setLastName(String lastName, String pin) {
+    public void updateLastName(String lastName, String pin) {
         if (this.pin.equals(pin)) {
-            this.lastName = lastName;
+            updateLastName(lastName);
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
     public void updatePin(String oldPin, String newPin) {
         if (pin.equals(oldPin)) {
-            this.pin = newPin;
+            setPin(pin);
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
@@ -61,7 +73,7 @@ public class Account {
     public void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
-        } else throw new IllegalArgumentException("Amount can't be zero or negative");
+        } else throw new IllegalArgumentException("Deposit amount can not be zero or negative");
     }
 
     public void withdraw(int amount, String pin) {
@@ -69,7 +81,7 @@ public class Account {
             if (amount > balance) {
                 throw new IllegalArgumentException("Insufficient Balance");
             } else if (amount <= 0) {
-                throw new IllegalArgumentException("Withdrawal amount can't be negative");
+                throw new IllegalArgumentException("Withdrawal amount can not be zero or negative");
             } else {
                 balance -= amount;
             }

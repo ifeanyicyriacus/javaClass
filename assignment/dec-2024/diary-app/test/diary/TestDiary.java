@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-public class TestDiaryApp{
+public class TestDiary {
   @Test 
   public void testEntryExists(){
     assertTrue(Entry.isExist());

@@ -124,11 +124,12 @@ public class DiaryMenu {
     static void toggleDiaryLock(Diary diary) {
         if (!diary.isLocked()) {
             diary.lock();
-            print(infoMessage("Mischief managed\uD83E\uDE84"));
+            print(infoMessage("Mischief managed\uD83E\uDE84 : Diary locked!"));
         } else {
             String password = input("Please enter your password to unlock: ");
             try {
                 diary.unlock(password);
+                print(infoMessage("Diary unlocked!"));
             } catch (IllegalArgumentException e) {
                 diaryMenu(errorMessage(e.getMessage()), diary);
             }

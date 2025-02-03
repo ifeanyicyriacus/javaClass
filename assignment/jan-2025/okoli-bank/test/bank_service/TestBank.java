@@ -19,7 +19,6 @@ public class TestBank {
 
     @Test
     public void testBank_exist() {
-        assertTrue(bank.exist());
         assertEquals("First Bank Nigeria", bank.getName());
     }
 

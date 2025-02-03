@@ -17,11 +17,6 @@ public class TestAccount {
     }
 
     @Test
-    public void testAccount_exist(){
-        assertTrue(account.exist());
-    }
-
-    @Test
     public void testAccount_canBeCreated(){
         assertNotNull(account);
         assertEquals(100, account.getAccountNumber());
@@ -43,9 +38,9 @@ public class TestAccount {
     
     @Test
     public void testAccount_profileDetailCanBeUpdated(){
-        account.setFirstName("Valentine", correctPIN);
+        account.updateFirstName("Valentine", correctPIN);
         assertEquals("Valentine", account.getFirstName());
-        account.setLastName("Mark", correctPIN);
+        account.updateLastName("Mark", correctPIN);
         assertEquals("Mark", account.getLastName());
     }
 
@@ -55,10 +50,10 @@ public class TestAccount {
         assertEquals("Cyriacus", account.getLastName());
 
         assertThrows(IllegalArgumentException.class,
-                ()-> account.setFirstName("Valentine", wrongPIN));
+                ()-> account.updateFirstName("Valentine", wrongPIN));
         assertEquals("Ifeanyi", account.getFirstName());
         assertThrows(IllegalArgumentException.class,
-                ()-> account.setLastName("Mark", wrongPIN));
+                ()-> account.updateLastName("Mark", wrongPIN));
         assertEquals("Cyriacus", account.getLastName());
     }
 

@@ -15,11 +15,8 @@ public class Bank {
         return name;
     }
 
-    public boolean exist() {
-        return true;
-    }
-
     public int createAccount(String firstName, String lastName, String pin) {
+
         Account newAccount = new Account(generateUniqueAccountNumber(), firstName, lastName, pin);
         int newAccountNumber = newAccount.getAccountNumber();
         accounts.put(newAccountNumber, newAccount);
@@ -27,11 +24,11 @@ public class Bank {
     }
 
     public String getAccountFirstName(int accountNumber) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         return account.getFirstName();
     }
 
-    private Account tryGetAccount(int accountNumber) {
+    private Account getAccount(int accountNumber) {
         Account account = accounts.get(accountNumber);
         if (account == null) {
             throw new IllegalArgumentException("Account number (" + accountNumber + ") does not exist");
@@ -40,7 +37,7 @@ public class Bank {
     }
 
     public String getAccountLastName(int accountNumber) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         return account.getLastName();
     }
 
@@ -54,17 +51,17 @@ public class Bank {
     }
 
     public void deposit(int accountNumber, int amount) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         account.deposit(amount);
     }
 
     public int checkBalance(int accountNumber, String pin) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         return account.checkBalance(pin);
     }
 
     public void withdraw(int accountNumber, int amount, String pin) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         account.withdraw(amount, pin);
     }
 
@@ -72,8 +69,8 @@ public class Bank {
         if (sourceAccountNumber == destinationAccountNumber)
             throw new IllegalArgumentException("Source account number is the same as the destination account number");
 
-        Account source = tryGetAccount(sourceAccountNumber);
-        Account destination = tryGetAccount(destinationAccountNumber);
+        Account source = getAccount(sourceAccountNumber);
+        Account destination = getAccount(destinationAccountNumber);
 
         try {
             source.withdraw(amount, sourceAccountPin);
@@ -84,17 +81,17 @@ public class Bank {
     }
 
     public void resetPIN(int accountNumber, String oldPIN, String newPIN) {
-        Account account = tryGetAccount(accountNumber);
+        Account account = getAccount(accountNumber);
         account.updatePin(oldPIN, newPIN);
     }
 
     public void updateFirstName(int accountNumber, String newFirstName, String correctPIN) {
-        Account account = tryGetAccount(accountNumber);
-        account.setFirstName(newFirstName, correctPIN);
+        Account account = getAccount(accountNumber);
+        account.updateFirstName(newFirstName, correctPIN);
     }
 
     public void updateLastName(int accountNumber, String newLastName, String correctPIN) {
-        Account account = tryGetAccount(accountNumber);
-        account.setLastName(newLastName, correctPIN);
+        Account account = getAccount(accountNumber);
+        account.updateLastName(newLastName, correctPIN);
     }
 }
