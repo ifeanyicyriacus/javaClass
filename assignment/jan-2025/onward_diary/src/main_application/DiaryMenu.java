@@ -7,6 +7,7 @@ import static main_application.DiarySettingsMenu.diarySettingsMenu;
 import static main_application.MainMenu.*;
 
 public class DiaryMenu {
+    private static int incorrectInput = 3;
     public static void diaryMenu(String notification, Diary diary) {
         String diaryMenuPrompt = """
                 
@@ -39,7 +40,13 @@ public class DiaryMenu {
             case 7 -> diarySettingsMenu(infoMessage("Remember to take note of your new changes"), diary);
             case 8 -> logOut(diary);
             case 0 -> exitDiary();
-            default -> diaryMenu(errorMessage("Invalid selection, Try again."), diary);
+            default -> {
+                if (incorrectInput == 0) {
+                    incorrectInput = 3;
+                    exitDiary();
+                }
+                diaryMenu(errorMessage(String.format("Invalid selection, Try again.(%d tries left)", incorrectInput--)), diary);
+            }
         }
     }
 
