@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestAccount {
     private Account account;
-    private String correctPIN = "0000";
-    private String wrongPIN = "1111";
-    private String emptyPIN = "";
+    private final String correctPIN = "0000";
+    private final String wrongPIN = "1111";
+    private final String emptyPIN = "";
 
     @BeforeEach
     void setUp() {
