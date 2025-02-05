@@ -1,6 +1,6 @@
 package menues;
 
-import static menues.OkoliBankUSSD.*;
+import static menues.OkoliBankATM.*;
 
 public class AccountSettingsMenu {
 

@@ -12,7 +12,7 @@ public class Account {
             if (accountNumber < 1) throw new IllegalArgumentException("Please Enter a valid Account number");
             this.accountNumber = accountNumber;
             setFirstName(firstName);
-            updateLastName(lastName);
+            setLastName(lastName);
             setPin(pin);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Account creation failed: " + e.getMessage());
@@ -36,7 +36,7 @@ public class Account {
         this.firstName = firstName;
     }
 
-    private void updateLastName(String lastName) {
+    private void setLastName(String lastName) {
         if (lastName.isEmpty()) throw new IllegalArgumentException("Last name cannot be empty");
         this.lastName = lastName;
     }
@@ -54,7 +54,7 @@ public class Account {
 
     public void updateLastName(String lastName, String pin) {
         if (this.pin.equals(pin)) {
-            updateLastName(lastName);
+            setLastName(lastName);
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 

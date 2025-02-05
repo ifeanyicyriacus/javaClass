@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import static menues.AccountSettingsMenu.accountSettingsMenu;
 
-public class OkoliBankUSSD {
+public class OkoliBankATM {
     static       Bank   bank;
     static final String BANK_NAME = "Okoli Bank Nigeria PLC";
 
