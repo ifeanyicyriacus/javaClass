@@ -1,4 +1,4 @@
 package estore;
 
-public class User {
+public abstract class User {
 }
