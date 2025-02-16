@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestNigeriaStateGeoPoliticalZonesFunctions {
-    private String state1 = "Imo";
-    private String state2 = "Nasarawa";
-    private String state3 = "Taraba";
-    private String state4 = "Kebbi";
-    private String state5 = "Akwa-Ibom";
-    private String state6 = "Lagos";
-    private String wrongState = "New York";
+    private final String state1     = "Imo";
+    private final String state2     = "Nasarawa";
+    private final String state3     = "Taraba";
+    private final String state4     = "Kebbi";
+    private final String state5     = "Akwa-Ibom";
+    private final String state6     = "Lagos";
+    private final String wrongState = "New York";
 
     @Test
     void testNigeriaStateGeoPoliticalZonesFunctionsReturnCorrectZoneValue() {

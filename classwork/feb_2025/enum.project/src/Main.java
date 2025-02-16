@@ -11,7 +11,7 @@ public class Main {
 
         try {
             var zone = getGeoPoliticalZoneByState(response).name();
-            System.out.println("'" + response +" state' belongs to '" + zone + "' geo political zone");
+            System.out.println("'" + response + " state' belongs to '" + zone + "' geo political zone");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

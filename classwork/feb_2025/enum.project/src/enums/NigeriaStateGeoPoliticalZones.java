@@ -18,7 +18,7 @@ public enum NigeriaStateGeoPoliticalZones {
         return states;
     }
 
-    public String toString(){
+    public String toString() {
         String[] name = this.name().split("_");
         return name[0].substring(0, 1).toUpperCase() + name[0].substring(1).toLowerCase()
                 + "-"
