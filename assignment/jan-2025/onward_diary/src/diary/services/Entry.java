@@ -1,4 +1,4 @@
-package diary_services;
+package diary.services;
 
 import java.time.LocalDateTime;
 
@@ -57,7 +57,7 @@ public class Entry {
     public String toString(){
         String entry = String.format("\033[1m(%d)\t%s\033[0m%n", ID, title);
         entry += String.format("\033[3m%s\033[0m%n", getDATE_CREATED());
-        entry += String.format("%s", getBody());
+        entry += getBody();
         return entry;
     }
 }

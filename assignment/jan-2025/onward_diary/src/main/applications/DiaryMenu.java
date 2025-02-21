@@ -1,10 +1,10 @@
-package main_application;
+package main.applications;
 
-import diary_services.Diary;
-import diary_services.Entry;
+import diary.services.Diary;
+import diary.services.Entry;
 
-import static main_application.DiarySettingsMenu.diarySettingsMenu;
-import static main_application.MainMenu.*;
+import static main.applications.DiarySettingsMenu.diarySettingsMenu;
+import static main.applications.MainMenu.*;
 
 public class DiaryMenu {
     private static int incorrectInput = 3;

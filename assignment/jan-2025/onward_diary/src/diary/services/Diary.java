@@ -1,4 +1,4 @@
-package diary_services;
+package diary.services;
 
 import java.util.HashMap;
 

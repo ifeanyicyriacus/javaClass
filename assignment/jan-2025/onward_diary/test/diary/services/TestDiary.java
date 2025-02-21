@@ -1,4 +1,4 @@
-package diary_services;
+package diary.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -92,7 +92,8 @@ public class TestDiary {
     }
 
     @Test
-    void testDiary_canCreateEntryIfDiaryIs() {
+    void testDiary_canCreateEntryIfDiaryIsUnlocked() {
+        assertFalse(diary.isLocked());
         assertEquals(0, diary.getNoOfEntries());
         diary.createEntry(titles[0], bodies[0]);
         assertEquals(1, diary.getNoOfEntries());
@@ -105,7 +106,7 @@ public class TestDiary {
     }
 
     @Test
-    void testDiary_throwsExceptionIfNoEntryMatchIdIfDiaryIsLocked() {
+    void testDiary_throwsExceptionIfNoEntryMatchIdIfDiaryIsUnlocked() {
         assertEquals(0, diary.getNoOfEntries());
         diary.createEntry(titles[0], bodies[0]);
         assertEquals(1, diary.getNoOfEntries());

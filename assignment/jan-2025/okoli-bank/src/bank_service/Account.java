@@ -70,7 +70,7 @@ public class Account {
         } else throw new IllegalArgumentException("Incorrect PIN");
     }
 
-    public void deposit(int amount) {
+    public void increaseBy(int amount) {
         if (amount > 0) {
             balance += amount;
         } else throw new IllegalArgumentException("Deposit amount can not be zero or negative");

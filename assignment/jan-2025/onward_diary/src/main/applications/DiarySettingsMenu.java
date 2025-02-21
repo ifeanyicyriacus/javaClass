@@ -1,10 +1,10 @@
-package main_application;
+package main.applications;
 
-import diary_services.Diary;
+import diary.services.Diary;
 
-import static main_application.DiaryMenu.diaryMenu;
-import static main_application.DiaryMenu.toggleDiaryLock;
-import static main_application.MainMenu.*;
+import static main.applications.DiaryMenu.diaryMenu;
+import static main.applications.DiaryMenu.toggleDiaryLock;
+import static main.applications.MainMenu.*;
 
 public class DiarySettingsMenu {
     public static void diarySettingsMenu(String notification, Diary diary) {

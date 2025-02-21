@@ -1,12 +1,12 @@
-package main_application;
+package main.applications;
 
-import diary_services.Diaries;
-import diary_services.Diary;
+import diary.services.Diaries;
+import diary.services.Diary;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static main_application.DiaryMenu.*;
+import static main.applications.DiaryMenu.*;
 
 public class MainMenu {
     private final static Diaries diaries = new Diaries();
