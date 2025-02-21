@@ -50,7 +50,7 @@ public class OkoliBankATM {
         int accountNumber;
         try {
             accountNumber = bank.createAccount(firstName, lastName, pin);
-            mainMenu(successMessage("Account Created Successfully\n") +
+            mainMenu(successMessage("Account Created Successfully!\n") +
                     infoMessage(accountInfo(accountNumber)));
         } catch (IllegalArgumentException e) {
             mainMenu(errorMessage(e.getMessage()));
@@ -59,10 +59,10 @@ public class OkoliBankATM {
 
     private static void deposit() {
         int accountNumber = inputInteger("Enter the account number: ");
-        int amount = inputInteger("Enter amount to deposit: ");
+        int amount = inputInteger("Enter amount to increaseBy: ");
         try {
             bank.deposit(accountNumber, amount);
-            mainMenu(successMessage(successMessage(formatAmountOutput(amount) + " Deposit Successful")));
+            mainMenu(successMessage(formatAmountOutput(amount) + " Deposit Successful"));
         } catch (IllegalArgumentException e) {
             mainMenu(errorMessage("Deposit Failed: " + e.getMessage()));
         }
@@ -85,7 +85,7 @@ public class OkoliBankATM {
         int destinationAccountNumber = inputInteger("Enter destination account number: ");
         int amount = inputInteger("Enter amount: ");
         try {
-            String transferPrompt = String.format("Transfer %s to %d (%s)%nTo continue, please enter your PIN: ",
+            String transferPrompt = String.format("Transfer %s to %d (%s)%nTo proceed, please enter your PIN: ",
                     formatAmountOutput(amount), destinationAccountNumber, getFullName(destinationAccountNumber));
             String pin = inputText(infoMessage(transferPrompt));
             bank.transfer(sourceAccountNumber, destinationAccountNumber, amount, pin);

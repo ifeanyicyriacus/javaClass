@@ -52,7 +52,7 @@ public class Bank {
 
     public void deposit(int accountNumber, int amount) {
         Account account = getAccount(accountNumber);
-        account.deposit(amount);
+        account.increaseBy(amount);
     }
 
     public int checkBalance(int accountNumber, String pin) {
@@ -74,7 +74,7 @@ public class Bank {
 
         try {
             source.withdraw(amount, sourceAccountPin);
-            destination.deposit(amount);
+            destination.increaseBy(amount);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Transfer Unsuccessful " + e.getMessage());
         }

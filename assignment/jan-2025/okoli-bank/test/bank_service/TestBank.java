@@ -194,7 +194,7 @@ public class TestBank {
     @Test
     public void testBank_canGenerateAMiniStatement(){
 //        test empty list is returned if no transaction happens
-//        balance |   amount (green)| cash deposit
+//        balance |   amount (green)| cash increaseBy
 //        balance |    -amount (red)| cash withdrawal
 //        balance |  +amount (green)| transfer in, from sender
 //        balance |   -amount (red) | transfer out, to beneficiary

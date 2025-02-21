@@ -84,37 +84,37 @@ public class TestAccount {
     }
 
     @Test
-    public void testAccount_supportsDeposit(){
-        account.deposit(30_000);
+    public void testAccount_supportsBalanceIncrease(){
+        account.increaseBy(30_000);
         assertEquals(30_000, account.checkBalance(correctPIN));
-        account.deposit(300);
-        account.deposit(400);
+        account.increaseBy(300);
+        account.increaseBy(400);
         assertEquals(30_700, account.checkBalance(correctPIN));
     }
 
     @Test
-    public void testAccount_throwExceptionForInvalidDepositAmount(){
-        assertThrows(IllegalArgumentException.class, ()-> account.deposit(-300));
+    public void testAccount_throwExceptionForInvalidIncreaseAmount(){
+        assertThrows(IllegalArgumentException.class, ()-> account.increaseBy(-300));
         assertEquals(0, account.checkBalance(correctPIN));
     }
 
     @Test
     public void testAccount_supportsWithdrawal(){
-        account.deposit(30_000);
+        account.increaseBy(30_000);
         account.withdraw(10_000, correctPIN);
         assertEquals(20_000, account.checkBalance(correctPIN));
     }
 
     @Test
     public void testAccount_throwExceptionForInvalidWithdrawAmount(){
-        account.deposit(30_000);
+        account.increaseBy(30_000);
         assertThrows(IllegalArgumentException.class, ()-> account.withdraw(-200, correctPIN));
         assertThrows(IllegalArgumentException.class, ()-> account.withdraw(40_000, correctPIN));
     }
 
     @Test
     public void testAccount_throwExceptionWhenWithdrawingUsingIncorrectPin(){
-        account.deposit(30_000);
+        account.increaseBy(30_000);
         assertThrows(IllegalArgumentException.class, ()-> account.withdraw(300, wrongPIN));
     }
 }

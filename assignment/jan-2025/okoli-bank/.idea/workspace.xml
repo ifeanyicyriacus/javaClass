@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ee25e68-f34f-4f4c-9bb1-b21ce15489f3" name="Changes" comment="&#10;done&#10;-minor refactoring&#10;UpNext:&#10;- getMiniStatement&#10;&#10;test coverage:&#10;- Account: 100%&#10;- Bank: 100%&#10;- OkoliBankUSSD: 0%">
+      <change afterPath="$PROJECT_DIR$/../../../classwork/feb_2025/xoxo/src/xoxo/XOXO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../classwork/feb_2025/xoxo/test/xoxo/XOXOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../feb-2025/turtle-graphics-remix/test/turtle/graphics/TurtleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../feb-2025/turtle-graphics-remix/test/turtle/graphics/TurtleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank_service/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank_service/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank_service/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank_service/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menues/OkoliBankATM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menues/OkoliBankATM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/bank_service/TestAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/bank_service/TestAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/bank_service/TestBank.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/bank_service/TestBank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,45 +62,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.OkoliBankUSSD.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.All in okoli-bank.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestAccount.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestAccount.testAccount_canBeCreated.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestAccount.testAccount_canBeCreatedOnlyWithLegalValues.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.setUp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_canChangeAccountFirstName.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_canChangeAccountLastName.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_canChangeCustomerPIN.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_canCreateAccount.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_canEnableMoneyTransfer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_exist.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_transferBetweenTheSameAccountThrowsException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_transferRevertToOriginalStateWhenReceiversAccountNumberIsIncorrect.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderAccountNumberIsIncorrect.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderBalanceIsLessThanAmount.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderPinIsIncorrect.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.bank_service in okoli-bank.executor&quot;: &quot;Coverage&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.grazie.pro.style&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.OkoliBankUSSD.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in okoli-bank.executor": "Run",
+    "JUnit.TestAccount.executor": "Run",
+    "JUnit.TestAccount.testAccount_canBeCreated.executor": "Run",
+    "JUnit.TestAccount.testAccount_canBeCreatedOnlyWithLegalValues.executor": "Run",
+    "JUnit.TestAccount.testAccount_exceptionOccurWhenManipulatingProfileDetailUsingIncorrectPIN.executor": "Run",
+    "JUnit.TestBank.executor": "Run",
+    "JUnit.TestBank.setUp.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeAccountFirstName.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeAccountLastName.executor": "Run",
+    "JUnit.TestBank.testBank_canChangeCustomerPIN.executor": "Run",
+    "JUnit.TestBank.testBank_canCreateAccount.executor": "Run",
+    "JUnit.TestBank.testBank_canEnableMoneyTransfer.executor": "Run",
+    "JUnit.TestBank.testBank_exist.executor": "Run",
+    "JUnit.TestBank.testBank_transferBetweenTheSameAccountThrowsException.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenReceiversAccountNumberIsIncorrect.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderAccountNumberIsIncorrect.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderBalanceIsLessThanAmount.executor": "Run",
+    "JUnit.TestBank.testBank_transferRevertToOriginalStateWhenSenderPinIsIncorrect.executor": "Run",
+    "JUnit.bank_service in okoli-bank.executor": "Coverage",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/civm/Documents/Dynamite/javaClass/assignment/jan-2025/okoli-bank",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.grazie.pro.style",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="okolibank" />
@@ -208,6 +217,9 @@
       <workItem from="1738681583395" duration="22000" />
       <workItem from="1738734706848" duration="183000" />
       <workItem from="1738841410850" duration="662000" />
+      <workItem from="1739381424501" duration="581000" />
+      <workItem from="1739516489788" duration="510000" />
+      <workItem from="1739931625536" duration="940000" />
     </task>
     <task id="LOCAL-00001" summary="checkpoint in the data structure task">
       <option name="closed" value="true" />
