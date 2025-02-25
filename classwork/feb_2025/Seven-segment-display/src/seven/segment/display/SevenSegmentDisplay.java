@@ -26,16 +26,15 @@ public class SevenSegmentDisplay {
     }
 
     private void setA(boolean state) {
-        display[0][0] = state ? token: display[0][0];
-        display[0][1] = state ? token: display[0][1];
-        display[0][2] = state ? token: display[0][2];
-        display[0][3] = state ? token: display[0][3];
+        for (int i = 0; i < 4; i++) {
+            display[0][i] = state ? token: display[0][i];
+        }
     }
 
     private void setB(boolean state) {
-        display[0][3] = state ? token: display[0][3];
-        display[1][3] = state ? token: display[1][3];
-        display[2][3] = state ? token: display[2][3];
+        for (int i = 0; i < 3; i++) {
+            display[i][3] = state ? token: display[i][3];
+        }
     }
 
     private void setC(boolean state) {
