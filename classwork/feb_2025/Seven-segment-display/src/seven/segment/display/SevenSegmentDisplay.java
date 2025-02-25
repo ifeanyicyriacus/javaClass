@@ -38,22 +38,21 @@ public class SevenSegmentDisplay {
     }
 
     private void setC(boolean state) {
-        display[2][3] = state ? token: display[2][3];
-        display[3][3] = state ? token: display[3][3];
-        display[4][3] = state ? token: display[4][3];
+        for (int i = 2; i < 5; i++) {
+            display[i][3] = state ? token: display[i][3];
+        }
     }
 
     private void setD(boolean state) {
-        display[4][3] = state ? token: display[4][3];
-        display[4][2] = state ? token: display[4][2];
-        display[4][1] = state ? token: display[4][1];
-        display[4][0] = state ? token: display[4][0];
+        for (int i = 3; i >= 0; i--) {
+            display[4][i] = state ? token: display[4][i];
+        }
     }
 
     private void setE(boolean state) {
-        display[4][0] = state ? token: display[4][0];
-        display[3][0] = state ? token: display[3][0];
-        display[2][0] = state ? token: display[2][0];
+        for (int i = 4; i >= 2; i--){
+            display[i][0] = state ? token: display[i][0];
+        }
     }
 
     private void setF(boolean state) {
