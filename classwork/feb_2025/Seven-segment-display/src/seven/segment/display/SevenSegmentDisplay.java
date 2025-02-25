@@ -56,16 +56,15 @@ public class SevenSegmentDisplay {
     }
 
     private void setF(boolean state) {
-        display[2][0] = state ? token: display[2][0];
-        display[1][0] = state ? token: display[1][0];
-        display[0][0] = state ? token: display[0][0];
+        for (int i = 2; i >= 0; i--) {
+            display[i][0] = state ? token: display[i][0];
+        }
     }
 
     private void setG(boolean state) {
-        display[2][0] = state ? token: display[2][0];
-        display[2][1] = state ? token: display[2][1];
-        display[2][2] = state ? token: display[2][2];
-        display[2][3] = state ? token: display[2][3];
+        for (int i = 0; i < 4; i++) {
+            display[2][i] = state ? token: display[2][i];
+        }
     }
 
     private void toggleDisplayOnOrOff(boolean state) {
@@ -86,13 +85,10 @@ public class SevenSegmentDisplay {
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        for (String[] rows : display) {
-            for (String cell : rows) {
-                sb.append(cell);
-            }
+        Arrays.stream(display).forEach(rows -> {
+            Arrays.stream(rows).forEach(sb::append);
             sb.append("\n");
-        }
+        });
         return sb.toString();
     }
-
 }
