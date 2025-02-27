@@ -4,7 +4,14 @@ import java.util.Arrays;
 
 public class SevenSegmentDisplay {
 
-    private final String[][] display = new String[5][4];
+    private final String[][] display;
+
+    public SevenSegmentDisplay() {
+        display = new String[5][4];
+        for (String[] row : display) {
+            Arrays.fill(row, " ");
+        }
+    }
 
     private final String token = "#";
 
