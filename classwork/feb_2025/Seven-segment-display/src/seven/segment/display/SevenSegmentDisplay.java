@@ -15,14 +15,15 @@ public class SevenSegmentDisplay {
     private void setSegmentsValue(String prompt) {
         var promptChar = prompt.split("");
         setDisplayBlank();
-        setA(promptChar[0].equals("1"));
-        setB(promptChar[1].equals("1"));
-        setC(promptChar[2].equals("1"));
-        setD(promptChar[3].equals("1"));
-        setE(promptChar[4].equals("1"));
-        setF(promptChar[5].equals("1"));
-        setG(promptChar[6].equals("1"));
-        toggleDisplayOnOrOff(promptChar[7].equals("1"));
+        if (promptChar[7].equals("1")) {
+            setA(promptChar[0].equals("1"));
+            setB(promptChar[1].equals("1"));
+            setC(promptChar[2].equals("1"));
+            setD(promptChar[3].equals("1"));
+            setE(promptChar[4].equals("1"));
+            setF(promptChar[5].equals("1"));
+            setG(promptChar[6].equals("1"));
+        }
     }
 
     private void setA(boolean state) {
@@ -67,15 +68,9 @@ public class SevenSegmentDisplay {
         }
     }
 
-    private void toggleDisplayOnOrOff(boolean state) {
-        if (!state) {
-            setDisplayBlank();
-        }
-    }
-
     private void setDisplayBlank() {
-        for (String[] strings : display) {
-            Arrays.fill(strings, " ");
+        for (String[] row : display) {
+            Arrays.fill(row, " ");
         }
     }
 
@@ -84,11 +79,11 @@ public class SevenSegmentDisplay {
     }
 
     public String toString(){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         Arrays.stream(display).forEach(rows -> {
-            Arrays.stream(rows).forEach(sb::append);
-            sb.append("\n");
+            Arrays.stream(rows).forEach(result::append);
+            result.append("\n");
         });
-        return sb.toString();
+        return result.toString();
     }
 }
