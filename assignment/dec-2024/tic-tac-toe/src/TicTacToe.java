@@ -111,7 +111,7 @@ public class TicTacToe {
                 System.out.println("Position has been filled, try again!");
             }
             if (LAYERS_OF_BOARD > 1) {
-                System.out.printf("Player %s: enter board layer (A, B, C, D) >> ", token);
+                System.out.printf("Player %s: enter board layer (A, B, C%s) >> ", token, (LAYERS_OF_BOARD == 4)?", D1":"");
                 layer = collectLayer();
             }
             System.out.printf("Player %s: enter row >> ", token);
@@ -123,9 +123,9 @@ public class TicTacToe {
     }
 
     public void collectComputerNextMove(String token) {
-        int layer = 1;
-        int row = 1;
-        int col = 1;
+        int layer;
+        int row;
+        int col;
         do {
             layer = (LAYERS_OF_BOARD == 1) ? 1 : RANDOM.nextInt(1, LAYERS_OF_BOARD + 1);
             row = RANDOM.nextInt(LENGTH_OF_BOARD_SIDES) + 1;
