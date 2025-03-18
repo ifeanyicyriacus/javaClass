@@ -40,11 +40,17 @@ public class TicTacToe {
         private final String[][][] board;
 
         BoardTypes(int i) {
+            int ONE_LAYER = 1;
+            int THREE_LAYERS = 3;
+            int FOUR_LAYERS = 4;
+            int SIDES_X3 = 3;
+            int SIDES_X4 = 4;
+
             this.board = switch (i) {
-                case 1 -> new String[1][3][3];
-                case 2 -> new String[1][4][4];
-                case 3 -> new String[3][3][3];
-                case 4 -> new String[4][4][4];
+                case 1 -> new String[ONE_LAYER][SIDES_X3][SIDES_X3];
+                case 2 -> new String[ONE_LAYER][SIDES_X4][SIDES_X4];
+                case 3 -> new String[THREE_LAYERS][SIDES_X3][SIDES_X3];
+                case 4 -> new String[FOUR_LAYERS][SIDES_X4][SIDES_X4];
                 default -> throw new IllegalStateException("Unexpected value for board type: " + i);
             };
         }
@@ -111,7 +117,7 @@ public class TicTacToe {
                 System.out.println("Position has been filled, try again!");
             }
             if (LAYERS_OF_BOARD > 1) {
-                System.out.printf("Player %s: enter board layer (A, B, C%s) >> ", token, (LAYERS_OF_BOARD == 4)?", D1":"");
+                System.out.printf("Player %s: enter board layer (A, B, C%s) >> ", token, (LAYERS_OF_BOARD == 4)?", D":"");
                 layer = collectLayer();
             }
             System.out.printf("Player %s: enter row >> ", token);

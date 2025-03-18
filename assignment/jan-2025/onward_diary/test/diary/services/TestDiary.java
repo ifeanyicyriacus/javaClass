@@ -71,7 +71,7 @@ public class TestDiary {
         assertThrows(IllegalStateException.class,
                 () -> diary.changePassword("newPassword", Passwords[0]));
         assertThrows(IllegalStateException.class,
-                () -> diary.changeUsername("newPassword", Passwords[0]));
+                () -> diary.changeUsername("newUsername", Passwords[0]));
     }
 
     @Test
@@ -158,14 +158,14 @@ public class TestDiary {
     }
 
     @Test
-    void testDiary_canChangeUsernameWhenCorrectPassword(){
+    void testDiary_canChangeUsernameWhenCorrectPasswordIsGiven(){
         assertEquals(usernames[0], diary.getUsername());
         diary.changeUsername(usernames[1], Passwords[0]);
         assertEquals(usernames[1], diary.getUsername());
     }
 
     @Test
-    void testDiary_canNotChangePasswordWithIncorrectPassword(){
+    void testDiary_canNotChangeUsernameWithIncorrectPassword(){
         assertEquals(usernames[0], diary.getUsername());
         assertThrows(IllegalArgumentException.class,
                 () -> diary.changeUsername(usernames[1], wrongPassword));
@@ -173,7 +173,7 @@ public class TestDiary {
     }
 
     @Test
-    void testDiary_canChangePasswordWhenCorrectPassword(){
+    void testDiary_canChangePasswordWhenCorrectPasswordIsGiven(){
         String oldPassword = Passwords[0];
         String newPassword = Passwords[1];
         diary.changePassword(newPassword, oldPassword);

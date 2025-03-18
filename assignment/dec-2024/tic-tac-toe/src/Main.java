@@ -37,7 +37,7 @@ public class Main {
     }
 
     private static boolean selectDifficultyLevel(int noOfPlayers) {
-        String difficultLevelMenu = """
+        String difficultyLevelMenu = """
                 Select Difficulty Level:
                 1. Easy (3 X 3)
                 2. Hard (4 X 4)
@@ -47,7 +47,7 @@ public class Main {
                 """;
         boolean gameOn = true;
         while (gameOn) {
-            System.out.println(difficultLevelMenu);
+            System.out.println(difficultyLevelMenu);
             String difficultLevelChoice = INPUT.next();
             gameOn = switch (difficultLevelChoice) {
                 case "1", "2", "3", "4" -> {

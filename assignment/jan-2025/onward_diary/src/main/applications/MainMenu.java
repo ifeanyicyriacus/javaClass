@@ -15,7 +15,7 @@ public class MainMenu {
         try {
             mainMenu(successMessage("Welcome!!!"));
         } catch (RuntimeException e) {
-            mainMenu(successMessage(errorMessage(e.getMessage())));
+            mainMenu(errorMessage(e.getMessage()));
         }
     }
 
@@ -81,10 +81,10 @@ public class MainMenu {
         if (isConfirmed) {
             try {
                 diaries.delete(username, password);
+                mainMenu(successMessage("Successfully deleted the diary."));
             } catch (IllegalArgumentException e) {
-                print(e.getMessage());
+                mainMenu(errorMessage(e.getMessage()));
             }
-            mainMenu(successMessage("Successfully deleted the diary."));
         } else {
             mainMenu(infoMessage("Deletion attempt was avoided - close call!"));
         }
@@ -130,7 +130,7 @@ public class MainMenu {
             return scanner.nextInt();
         } catch (InputMismatchException inputMismatchException) {
             clearScreen();
-            print(errorMessage("Only Numbers 0 - 9 are supported"));
+            print(errorMessage("Only numbers are allowed. Try again."));
             return inputNumber(prompt);
         }
     }
