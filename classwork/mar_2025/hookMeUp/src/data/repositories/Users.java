@@ -2,23 +2,26 @@ package data.repositories;
 
 import data.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Users implements IUserRepository{
 
+    List<User> users = new ArrayList<User>();
+    
     @Override
     public long count() {
-        return 0;
+        return users.size();
     }
 
     @Override
     public void delete(User user) {
-
+        users.remove(user);
     }
 
     @Override
     public void deleteAll() {
-
+        users.clear();
     }
 
     @Override
@@ -28,12 +31,12 @@ public class Users implements IUserRepository{
 
     @Override
     public void deleteAllById(List<Integer> ids) {
-
+        ids.forEach(this::deleteById);
     }
 
     @Override
     public void deleteById(int id) {
-
+        users.removeIf(user -> user.getId() == id);
     }
 
     @Override
@@ -53,12 +56,16 @@ public class Users implements IUserRepository{
 
     @Override
     public User findById(int id) {
-        return null;
+        return users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public User save(User user) {
-        return null;
+        users.add(user);
+        return user;
     }
 
     @Override

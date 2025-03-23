@@ -1,9 +1,15 @@
 package data.models;
 
 public class User {
-    private String username;
-    private String password;
+    private final int     id;
+    private       String  username;
+    private       String  password;
+
     private Profile profile;
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -21,7 +27,16 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String password) {
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public User(int id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.profile = new Profile();
