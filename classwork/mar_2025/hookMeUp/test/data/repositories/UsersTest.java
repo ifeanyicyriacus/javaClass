@@ -4,10 +4,11 @@ import data.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UsersTest {
 
@@ -69,30 +70,56 @@ class UsersTest {
     }
 
     @Test
-    void deleteById() {
+    void TestUserCanBeDeletedById() {
+        assertEquals(0, users.count());
+        User user1 = new User(1, "username1", "password1");
+        User user2 = new User(2, "username2", "password2");
+        users.save(user1);
+        users.save(user2);
+        assertEquals(2, users.count());
+        users.deleteById(2);
+        assertEquals(1, users.count());
+        assertFalse(users.existsById(2));
+        assertTrue(users.existsById(1));
     }
 
     @Test
-    void existsById() {
+    void thatSeveralUsersInAListCanBeDeletedFromTheDatabase() {
+        List<User> newUserList = new ArrayList<>();
+        assertEquals(0, users.count());
+        newUserList.add(new User(1, "username1", "password1"));
+        newUserList.add(new User(2, "username2", "password2"));
+        newUserList.add(new User(3, "username3", "password3"));
+        users.saveAll(newUserList);
+        assertEquals(3, users.count());
+        users.deleteAll(newUserList);
     }
 
     @Test
-    void findAll() {
+    void thatSavedUserCanBeFound() {
+        List<User> newUserList = new ArrayList<>();
+        assertEquals(0, users.count());
+        newUserList.add(new User(1, "username1", "password1"));
+        newUserList.add(new User(2, "username2", "password2"));
+        newUserList.add(new User(3, "username3", "password3"));
+        users.saveAll(newUserList);
+        assertArrayEquals(newUserList.toArray(), users.findAll().toArray());
+        assertEquals(3, users.count());
+        assertEquals(newUserList.getFirst().getId(), users.findById(1).getId());
     }
 
     @Test
-    void findAllById() {
+    void findAllByIdReturnsCorrectValue() {
+        List<User> newUserList = new ArrayList<>();
+        assertEquals(0, users.count());
+        newUserList.add(new User(1, "username1", "password1"));
+        newUserList.add(new User(2, "username2", "password2"));
+        newUserList.add(new User(3, "username3", "password3"));
+        users.saveAll(newUserList);
+        assertEquals(3, users.count());
+        List<Integer> savedUsersIds = Arrays.asList(1, 2, 3);
+        assertArrayEquals(newUserList.toArray(), users.findAllById(savedUsersIds).toArray());
+
     }
 
-    @Test
-    void findById() {
-    }
-
-    @Test
-    void save() {
-    }
-
-    @Test
-    void saveAll() {
-    }
 }

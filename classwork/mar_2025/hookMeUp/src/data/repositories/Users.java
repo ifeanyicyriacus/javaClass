@@ -4,6 +4,7 @@ import data.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users implements IUserRepository{
 
@@ -26,7 +27,7 @@ public class Users implements IUserRepository{
 
     @Override
     public void deleteAll(List<User> users) {
-
+        users.removeAll(users);
     }
 
     @Override
@@ -41,17 +42,19 @@ public class Users implements IUserRepository{
 
     @Override
     public boolean existsById(int id) {
-        return false;
+        return users.stream().anyMatch(user -> user.getId() == id);
     }
 
     @Override
     public List<User> findAll() {
-        return List.of();
+        return users;
     }
 
     @Override
     public List<User> findAllById(List<Integer> ids) {
-        return List.of();
+        return ids.stream()
+                .map(this::findById)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -70,6 +73,6 @@ public class Users implements IUserRepository{
 
     @Override
     public List<User> saveAll(List<User> users) {
-        return List.of();
+        return users.stream().map(this::save).collect(Collectors.toList());
     }
 }
