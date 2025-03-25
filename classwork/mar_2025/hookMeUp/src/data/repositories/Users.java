@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Users implements IUserRepository{
 
-    List<User> users = new ArrayList<User>();
+    private final List<User> users = new ArrayList<User>();
     
     @Override
     public long count() {
@@ -36,12 +36,12 @@ public class Users implements IUserRepository{
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         users.removeIf(user -> user.getId() == id);
     }
 
     @Override
-    public boolean existsById(int id) {
+    public boolean existsById(long id) {
         return users.stream().anyMatch(user -> user.getId() == id);
     }
 
@@ -58,7 +58,7 @@ public class Users implements IUserRepository{
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(long id) {
         return users.stream()
                 .filter(user -> user.getId() == id)
                 .findFirst()
@@ -74,5 +74,11 @@ public class Users implements IUserRepository{
     @Override
     public List<User> saveAll(List<User> users) {
         return users.stream().map(this::save).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return users.stream()
+                .anyMatch(user -> user.getUsername().equalsIgnoreCase(username));
     }
 }

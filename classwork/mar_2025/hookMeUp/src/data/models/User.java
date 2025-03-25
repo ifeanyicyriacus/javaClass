@@ -1,13 +1,13 @@
 package data.models;
 
 public class User {
-    private final int     id;
+    private final long     id;
     private       String  username;
     private       String  password;
 
     private Profile profile;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class User {
         this.profile = profile;
     }
 
-    public User(int id, String username, String password) {
+    public User(long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;

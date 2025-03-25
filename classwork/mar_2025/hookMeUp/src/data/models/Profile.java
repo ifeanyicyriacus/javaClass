@@ -6,17 +6,17 @@ public class Profile {
     private String    name;
     private EGender   gender;
     private LocalDate dateOfBirth;
-    private String    location;
+    private Location    location;
     private EHeight   height;
     private EWeight   weight;
 
     public Profile() {}
     public Profile(String name, EGender gender, LocalDate dateOfBirth,
-                   String location, EHeight height, EWeight weight) {
+                   EHeight height, EWeight weight) {
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.location = location;
+        this.location = new Location();
         this.height = height;
         this.weight = weight;
     }
@@ -45,11 +45,11 @@ public class Profile {
         this.height = height;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
