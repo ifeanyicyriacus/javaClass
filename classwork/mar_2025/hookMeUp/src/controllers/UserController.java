@@ -1,19 +1,17 @@
 package controllers;
 
 import data.models.User;
-import data.repositories.Users;
+import services.IUserService;
 import services.UserService;
 
 public class UserController {
-    Users users;
+    final private IUserService userService;
 
-    public UserController() {
-//        i expected the controller to not initialise the users but to read from db
-        users = new Users();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     public User register(String username, String password){
-        UserService userService = new UserService(users);
         return userService.register(username, password);
     }
 }

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Users implements IUserRepository{
 
-    private final List<User> users = new ArrayList<User>();
+    private final List<User> users = new ArrayList<>();
     
     @Override
     public long count() {
@@ -27,7 +27,7 @@ public class Users implements IUserRepository{
 
     @Override
     public void deleteAll(List<User> users) {
-        users.removeAll(users);
+        this.users.removeAll(users);
     }
 
     @Override
