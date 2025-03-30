@@ -1,14 +1,15 @@
 package services;
 
-import data.repositories.Users;
-import exceptions.DuplicateUsernameException;
+import main.data.repositories.Users;
+import main.exceptions.DuplicateUsernameException;
+import main.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
-    Users users;
+    Users       users;
     UserService userService;
     @BeforeEach
     void setUp() {

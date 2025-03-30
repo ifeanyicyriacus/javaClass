@@ -1,17 +1,18 @@
 package controllers;
 
-import data.models.User;
-import data.repositories.Users;
+import main.controllers.UserController;
+import main.data.models.User;
+import main.data.repositories.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import services.UserService;
+import main.services.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
 
     Users users;
-    UserService userService;
+    UserService    userService;
     UserController userController;
 
     @BeforeEach

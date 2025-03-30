@@ -1,6 +1,7 @@
 package data.repositories;
 
-import data.models.User;
+import main.data.models.User;
+import main.data.repositories.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
