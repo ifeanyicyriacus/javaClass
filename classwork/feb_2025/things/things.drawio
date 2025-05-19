@@ -1,0 +1,128 @@
+<mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" background="none" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="node0" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Amphibians&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Amphibians(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-390" y="721" width="181" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node9" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Animals&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Animals(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-252" y="301" width="145" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node3" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Invertebrates&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Invertebrates(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-122" y="461" width="199" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node1" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;LivingThings&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ LivingThings(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-396" y="141" width="192" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node4" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Mammals&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Mammals(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-160" y="721" width="160" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node2" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NonLivingThings&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ NonLivingThings(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-156" y="141" width="233" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node7" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Pisces&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Pisces(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-246" y="621" width="133" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node8" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Plants&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Plants(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-448" y="301" width="131" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node6" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Reptiles&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Reptiles(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-52" y="621" width="145" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node10" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Things&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Things(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-367" y="-19" width="135" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="node5" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Vertebrates&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Vertebrates(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-391" y="461" width="183" height="73" as="geometry" />
+    </mxCell>
+    <mxCell id="edge8" edge="1" value="" parent="1" source="node0" target="node5" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-300" y="595" />
+          <mxPoint x="-180" y="595" />
+          <mxPoint x="-180" y="435" />
+          <mxPoint x="-300" y="435" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge0" edge="1" value="" parent="1" source="node9" target="node1" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-180" y="115" />
+          <mxPoint x="-300" y="115" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge3" edge="1" value="" parent="1" source="node3" target="node9" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-23" y="415" />
+          <mxPoint x="-80" y="415" />
+          <mxPoint x="-80" y="275" />
+          <mxPoint x="-180" y="275" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge2" edge="1" value="" parent="1" source="node1" target="node10" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=1.001;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge5" edge="1" value="" parent="1" source="node4" target="node5" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-80" y="595" />
+          <mxPoint x="-180" y="595" />
+          <mxPoint x="-180" y="435" />
+          <mxPoint x="-300" y="435" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge9" edge="1" value="" parent="1" source="node2" target="node10" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=1.001;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-40" y="95" />
+          <mxPoint x="-300" y="95" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge4" edge="1" value="" parent="1" source="node7" target="node5" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-180" y="435" />
+          <mxPoint x="-300" y="435" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge1" edge="1" value="" parent="1" source="node8" target="node1" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-382" y="255" />
+          <mxPoint x="-180" y="255" />
+          <mxPoint x="-180" y="115" />
+          <mxPoint x="-300" y="115" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge7" edge="1" value="" parent="1" source="node6" target="node5" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="20" y="595" />
+          <mxPoint x="-180" y="595" />
+          <mxPoint x="-180" y="435" />
+          <mxPoint x="-300" y="435" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge6" edge="1" value="" parent="1" source="node5" target="node9" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="-300" y="415" />
+          <mxPoint x="-80" y="415" />
+          <mxPoint x="-80" y="275" />
+          <mxPoint x="-180" y="275" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
